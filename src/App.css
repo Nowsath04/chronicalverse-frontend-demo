@@ -1,0 +1,206 @@
+body {
+  background: rgba(7, 13, 36, 1) !important;
+  box-sizing: border-box !important;
+}
+img{
+  object-fit: cover;
+}
+.slick-slider {
+  width: 84%;
+}
+
+.slick-prev {
+  z-index: 1;
+  /* background-color: red !important; */
+}
+
+.slick-next {
+  z-index: 1;
+  /* background-color: red !important; */
+}
+
+.slick-dots li button:before {
+  color: rgb(179, 178, 178) !important;
+  font-size: 0.625rem !important;
+  margin-top: 10px;
+}
+
+.slide {
+  margin: 0px 15px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: white !important;
+  /* font-size: 12px !important; */
+}
+
+.slick-list {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.slick-list {
+  padding: 0px 27px;
+}
+
+
+@media screen and (max-width: 928px) {
+  .slick-slider {
+    /* background-color: aquamarine; */
+    /* padding-left: 90px;
+    padding-right: 60px; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Change the scrollbar width and color */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+@media screen and (min-width: 1440px) {
+  .Home {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .JesusAbout {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .About2 {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .buysell_mainCard {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .card_1box {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .TopNft {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .card_2box {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .TopNft_header_Div2 {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .Allcard {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .AllCardMainDiv {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .Bar_count {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .Bar_passion {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .create_collection {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  header {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .MonalisaDiv {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .Footer {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .about {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .contact_page {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .create_collectible {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .dashboard {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .singlecollectible {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .profile {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .editprofile {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .SearchAllcard {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .itemdetails_div {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .activity_div {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .Help_support {
+    width: 1440px !important;
+    margin: 0 auto;
+  }
+
+  .downgrident_div {
+    width: 1195.19px !important;
+    margin: 0 auto;
+  }
+}

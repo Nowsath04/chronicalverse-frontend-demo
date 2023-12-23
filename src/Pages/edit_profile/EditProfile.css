@@ -1,0 +1,580 @@
+.editprofile {
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+p {
+  margin: 0;
+}
+
+.editprofile_container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.editprofile_image {
+  width: 144px !important;
+  height: 144px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+
+.editprofile_heading {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.editprofile_heading > img {
+  position: absolute;
+  left: -100px;
+  top: 0;
+}
+
+.editprofile_heading > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editprofile_heading > div > h4 {
+  font-family: Averia Serif Libre;
+  font-size: 40px;
+  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.editprofile_heading > div > p {
+  font-size: 16px;
+}
+
+.editprofile_section {
+  margin-top: 100px;
+  display: flex;
+  gap: 80px;
+  margin-bottom: 125px;
+}
+
+.editprofile_section_left {
+  width: 40%;
+  display: flex;
+  gap: 20px;
+}
+
+.editprofile_section_left > img {
+  width: 144px;
+  height: 144px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.editprofile_section_icon_section {
+  height: 144px;
+  width: 144px;
+  position: relative;
+}
+
+.editprofile_section_icon_section > .edit_icon {
+  position: absolute;
+  right: 13px;
+  bottom: 8px;
+  width: 15px;
+  display: none;
+  height: 15px;
+}
+
+.editprofile_section_left > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 12px;
+}
+
+.editprofile_section_left > div > input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.editprofile_section_left > div > .editprofile_section_left_heading {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.editprofile_section_left > div > p {
+  font-size: 12px;
+  color: rgba(176, 176, 176, 1);
+}
+
+.editprofile_section_left > div > div {
+  height: 44px;
+  width: 100px;
+  display: flex;
+  background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 1px solid transparent;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.editprofile_section_left > div > div > label {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #070d24;
+  outline: none;
+  border: transparent;
+  border-radius: 4px;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+
+/* right side */
+.editprofile_section_right {
+  width: 60%;
+  display: flex;
+  justify-content: end;
+  padding: 5px;
+}
+
+.editprofile_section_right_acc_ifo {
+  width: 100%;
+}
+
+.editprofile_section_right_acc_ifo > p {
+  font-weight: 500;
+  font-size: 20px;
+  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.editprofile_section_right_input {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.editprofile_section_right_input > p {
+  font-size: 16px;
+}
+
+.editprofile_section_right_input > div {
+  position: relative;
+  width: 100%;
+  display: flex;
+  background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 44px;
+}
+
+.editprofile_section_right_input > div > input {
+  padding-left: 20px;
+  color: white;
+  width: 100%;
+  background-color: #070d24;
+  outline: none;
+  border: transparent;
+  border-radius: 4px;
+}
+
+.editprofile_section_right_input_area {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 50px;
+}
+
+.editprofile_section_right_input_area > p {
+  font-size: 16px;
+}
+
+.editprofile_section_right_input_area > div {
+  width: 100%;
+  height: 127px;
+  display: flex;
+  background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.editprofile_section_right_input_area > div > textarea {
+  padding-top: 10px;
+  padding-left: 20px;
+  color: white;
+  width: 100%;
+  background-color: #070d24;
+  outline: none;
+  border: transparent;
+  border-radius: 4px;
+}
+
+.editprofile_section_right_input > div > button {
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  width: 180px;
+  height: 42px;
+  border: none;
+  background: linear-gradient(93.42deg, #c100a2 0%, #9700c1 100%);
+  border-radius: 4px;
+}
+
+.editprofile_section_right_acc_ifo > .add_more {
+  margin-top: 40px;
+  height: 44px;
+  width: 100%;
+  display: flex;
+  background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 1px solid transparent;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.editprofile_section_right_acc_ifo > .add_more > button {
+  padding-left: 15px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+  width: 100%;
+  background-color: #070d24;
+  outline: none;
+  border: transparent;
+  border-radius: 4px;
+  gap: 20px;
+}
+
+.editprofile_section_right_input_submit {
+  justify-content: end;
+  display: flex;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.editprofile_section_right_input_submit > div {
+  display: flex;
+  gap: 24px;
+}
+
+.editprofile_section_right_input_submit > div > P {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.editprofile_section_right_input_submit > div > input {
+  width: 180px;
+  height: 44px;
+  background: linear-gradient(93.42deg, #c100a2 0%, #9700c1 100%);
+  border-radius: 4px;
+  color: white;
+  border: none;
+}
+
+.editprofile_responsive_arrowbar {
+  display: none;
+}
+
+@media screen and (max-width: 1300px) {
+  .editprofile_container {
+    width: 69%;
+    margin: 0 auto;
+  }
+
+  .editprofile_section {
+    gap: 50px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .editprofile_container {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .editprofile_heading > img {
+    left: -80px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .editprofile_heading > img {
+    flex-direction: row;
+  }
+
+  .editprofile_section {
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .editprofile_section_left {
+    width: 100%;
+    align-items: start;
+    padding-left: 60px;
+    gap: 20px;
+  }
+  .editprofile_section_left > div > div {
+    display: none;
+  }
+
+  .editprofile_section_right {
+    width: 100%;
+  }
+
+  .editprofile_section_left > div {
+    height: 144px;
+    justify-content: center;
+  }
+
+  .editprofile_section {
+    margin-top: 30px;
+  }
+
+  .editprofile_section_icon_section > .edit_icon {
+    display: flex;
+  }
+
+  .editprofile_heading > img {
+    position: static;
+    width: 40px;
+    height: 40px;
+  }
+
+  .editprofile_heading {
+    flex-direction: row;
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .editprofile_section {
+    margin-bottom: 45px;
+  }
+  .editprofile_section_right_input_submit > div > P {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: row-reverse;
+  }
+  .editprofile_section_right_acc_ifo > .add_more > button {
+    font-size: 14px;
+  }
+  .editprofile_heading > img {
+    display: none;
+  }
+  .editprofile_responsive_arrowbar {
+    display: flex;
+    color: white;
+    font-size: 40px;
+    position: relative;
+    top: -5px;
+    left: -4px;
+  }
+  .editprofile_section_right_input > div > button {
+    font-size: 14px;
+    width: 127px;
+    height: 42px;
+  }
+  .editprofile_section_right_input_submit > div > input {
+    width: 130px;
+    height: 44px;
+    font-size: 14px;
+  }
+  .editprofile_heading > img {
+    flex-direction: row;
+  }
+
+  .editprofile_section {
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .editprofile_section_left {
+    width: 100%;
+    align-items: start;
+    padding-left: 60px;
+    gap: 20px;
+  }
+
+  .editprofile_section {
+    margin-top: 24px;
+  }
+
+  .editprofile_heading {
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .editprofile_section_left > div {
+    height: 100px;
+    justify-content: center;
+  }
+  .editprofile_section_icon_section {
+    width: 100px;
+    height: 100px;
+  }
+  .editprofile_section_icon_section > .edit_icon {
+    bottom: 6px;
+    right: 5px;
+  }
+  .editprofile_image {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .editprofile_heading > div > h4 {
+    font-size: 28px;
+  }
+
+  .editprofile_heading > img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .editprofile_section_right_input {
+    margin-top: 10px;
+  }
+
+  .editprofile {
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+
+  .editprofile_section_right_input_submit {
+    margin-top: 16px;
+  }
+
+  .editprofile_section_right_input_area {
+    margin-top: 10px;
+  }
+
+  .editprofile_container {
+    width: 90%;
+  }
+  .editprofile_section_right {
+    padding: 0;
+  }
+  .editprofile_section_right_acc_ifo > .add_more {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .editprofile_section_left {
+    width: 100%;
+    align-items: start;
+    padding-left: 50px;
+    gap: 10px;
+  }
+
+  .editprofile_section_left > div {
+    height: 78px;
+    justify-content: center;
+    gap: 5px;
+  }
+  .editprofile_section {
+    margin-top: 20px;
+  }
+  .editprofile_section_icon_section > .edit_icon {
+    display: flex;
+  }
+  .editprofile_section_icon_section {
+    width: 78px;
+  }
+  .editprofile_heading > img {
+    position: static;
+    width: 40px;
+    height: 40px;
+  }
+
+  .editprofile_heading {
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .editprofile_image {
+    width: 78px !important;
+    height: 78px !important;
+  }
+
+  .editprofile_section_icon_section > .edit_icon {
+    bottom: 2px;
+    right: 2px;
+  }
+  .editprofile_heading > div > h4 {
+    font-size: 24px;
+  }
+
+  .editprofile_heading > img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .editprofile_section_right_input {
+    margin-top: 10px;
+  }
+
+  .editprofile_section_right_input_area {
+    margin-top: 10px;
+  }
+
+  .editprofile_container {
+    width: 90%;
+  }
+
+  .editprofile {
+    margin-top: 40px;
+  }
+  .editprofile_heading > div > p {
+    font-size: 12px;
+  }
+  .editprofile_section_left > div > .editprofile_section_left_heading {
+    font-size: 16px;
+  }
+  .editprofile_section_right_acc_ifo > p {
+    font-size: 16px;
+  }
+  .editprofile_section_right_input > p {
+    font-size: 14px;
+  }
+  .editprofile_section_right_input_area > p {
+    font-size: 14px;
+  }
+
+  .editprofile_section_right_input > div > button {
+    width: 79px;
+  }
+}

@@ -1,0 +1,247 @@
+p {
+  margin: 0px;
+}
+
+.ProfileCard {
+  width: 284px;
+  padding: 15px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 0;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.ProfileCard::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(33, 36, 60, 1);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+.ProfileCard_paragraph {
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 400;
+  color: #b8b8b8;
+}
+
+.ProfileCard > img {
+  width: 251px;
+  height: 217.25px;
+}
+
+.ProfileCard_name {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.ProfileCard_name > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ProfileCard_name > div > img {
+  width: 16px;
+  height: 16px;
+}
+
+.ProfileCard_bid {
+  margin-top: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ProfileCard_bid > p {
+  font-size: 10px;
+}
+
+.heart_value p {
+  font-size: 10px;
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 500;
+  color: #a3a6b7;
+}
+
+.ProfileCard_bid > div {
+  font-family: Averia Serif Libre;
+  font-size: 12px;
+  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ProfileCard_bid_dollor {
+  margin-top: 4px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.ProfileCard_bid_dollor > p {
+  font-size: 10px;
+}
+
+.ProfileCard >a{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+  width: 100%;
+  height: 47px;
+  background: linear-gradient(108.95deg, #c100a2 5.78%, #9700c1 82.65%);
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+@media screen and (max-width: 1080px) {
+  .ProfileCard {
+    width: 250px;
+    padding: 15px 15px;
+    border-radius: 4px;
+  }
+  .ProfileCard > img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 928px) {
+  .ProfileCard {
+    width: 320px;
+    margin: 0 auto;
+  }
+  .onsale_responsive {
+    display: flex;
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+  .OnSale {
+    display: none;
+  }
+  .profile_nav_router {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .ProfileCard {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 810px) {
+  .ProfileCard {
+    width: 280px;
+  }
+}
+@media screen and (max-width: 770px) {
+  .ProfileCard {
+    width: 260px;
+  }
+}
+@media screen and (max-width: 730px) {
+  .ProfileCard {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .ProfileCard {
+    width: 220px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .ProfileCard {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 610px) {
+  .ProfileCard {
+    width: 350px;
+  }
+  .profile_nav_router {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .ProfileCard {
+    width: 340px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .ProfileCard {
+    width: 320px;
+  }
+}
+@media screen and (max-width: 530px) {
+  .ProfileCard {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 505px) {
+  .ProfileCard {
+    width: 280px;
+  }
+}
+@media screen and (max-width: 485px) {
+  .ProfileCard {
+    width: 260px;
+  }
+}
+@media screen and (max-width: 470px) {
+  .ProfileCard {
+    width: 350px;
+  }
+}
+@media screen and (max-width: 410px) {
+  .ProfileCard {
+    width: 300px !important;
+  }
+}
+@media screen and (max-width: 720px) {
+  .onsale_responsive {
+    display: flex;
+    width: 100%;
+  }
+  .OnSale {
+    display: none;
+  }
+}

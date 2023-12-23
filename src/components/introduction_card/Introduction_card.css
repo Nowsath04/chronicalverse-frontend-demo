@@ -1,0 +1,142 @@
+p {
+  margin: 0px;
+}
+
+.introduction_card {
+  z-index: 2;
+  margin-top: 0;
+  width: 234px;
+  height: 341.87px;
+  padding: 13px 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(193, 0, 162, 1);
+  background: rgb(19 18 18 / 8%);
+  border-radius: 4px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.introduction_card > img {
+  width: 208.28px;
+  height: 180.27px;
+}
+
+.introduction_card_name {
+  margin-top: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.introduction_card_name > p {
+  font-size: 12px;
+}
+.introduction_card_name > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.introduction_card_name > div > img {
+  width: 13.33px;
+  height: 12.22px;
+}
+.introduction_card_name > div > p {
+  font-size: 10px;
+}
+
+.introduction_card_bid {
+  margin-top: 9px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.introduction_card_bid > p {
+  font-size: 10px;
+}
+
+.introduction_card_bid > div {
+  font-size: 12px;
+  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.introduction_card_bid_dollor {
+  margin-top: 4px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.introduction_card_bid_dollor > p {
+  font-size: 12px;
+}
+.introduction_card_bid > p {
+  font-size: 10px;
+}
+
+.introduction_card > button {
+  margin-top: 4px;
+  width: 197px;
+  height: 38.28px;
+  background: linear-gradient(108.95deg, #c100a2 5.78%, #9700c1 82.65%);
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  color: white;
+}
+.introduction_container_right {
+  position: relative;
+}
+.introduction_container_right > div {
+  z-index: 4;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  .introduction_card {
+    width: 200px;
+    height: 320.87px;
+  }
+  .introduction_card > img {
+    width: 180.28px;
+    height: 180.27px;
+  }
+  .introduction_card_name > p {
+    font-size: 10px;
+  }
+
+  .introduction_card > button {
+    margin-top: 4px;
+    width: 100%;
+    height: 38.28px;
+  }
+}
+@media screen and (max-width: 460px) {
+  .introduction_card {
+    width: 163px;
+    height: 294px;
+  }
+  .introduction_card > img {
+    width: 142.11px;
+    height: 123px;
+  }
+  .introduction_card_name > p {
+    font-size: 10px;
+  }
+
+  .introduction_card > button {
+    margin-top: 4px;
+    width: 100%;
+    height: 38.28px;
+  }
+}

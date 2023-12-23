@@ -1,0 +1,349 @@
+.SearchAllcard_Input_div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 108px;
+}
+
+.SearchAllcard_div_grident {
+  width: 83%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
+  border: 0;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+  margin-bottom: 30px;
+}
+
+.SearchAllcard_div_grident::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(7, 13, 36, 1);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+
+.SearchAllcard_Input {
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding-left: 40px;
+  font-size: 20px;
+  color: white;
+}
+
+.SearchAllcard_Input_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border: none;
+  background: linear-gradient(135deg, #c100a2 0%, #9700c1 100%);
+  color: white;
+  border-radius: 0px 4px 4px 0px;
+  height: 50px;
+  width: 50px;
+}
+
+.Search_Allcard_header_div {
+  font-size: 2rem;
+  color: white;
+  font-family: Averia Serif Libre;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.Search_Allcard_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 83%;
+}
+
+.Search_heading_allcards h4 {
+  display: flex;
+  margin: 0 auto;
+  font-family: Averia Serif Libre;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.Search_heading_allcards span {
+  color: #9700c1;
+  margin: 0 5%;
+  font-family: Averia Serif Libre;
+}
+
+.Search_AllCardMainDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Search_AllCard_div {
+  width: 83%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.Search_vectorImg {
+  background: none;
+  outline: none;
+  border: none;
+  padding: 0;
+}
+
+.Search_card {
+  width: 282px;
+  padding: 15px;
+  background: radial-gradient(235.69% 274.09% at -41.39% -8.23%,
+      rgba(69, 69, 69, 0.16) 0%,
+      rgba(188, 188, 188, 0) 100%)
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+    ,
+    linear-gradient(0deg, #c100a2, #c100a2);
+  margin-bottom: 15px;
+  border: 0;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.Search_card::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(33, 36, 60, 1);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+
+.Search_card_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Search_card_img img {
+  width: 100%;
+}
+
+.search_filter_popup {
+  position: relative;
+}
+
+.search_filter_popup_div {
+  position: absolute;
+  z-index: 2;
+  box-shadow: 2px 2px 25px 0px rgba(0, 0, 0, 0.2);
+  color: white;
+  width: 140px;
+  left: -113px;
+  top: 35px;
+  border: 1px solid rgba(193, 0, 162, 1);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 5px;
+  padding: 18px 14px;
+}
+
+@media screen and (max-width: 1400px) {
+  .Search_card {
+    width: 270px;
+  }
+}
+
+@media screen and (max-width: 1370px) {
+  .Search_card {
+    width: 260px;
+  }
+}
+
+@media screen and (max-width: 1290px) {
+  .Search_card {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 1290px) {
+  .Search_card {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 1096px) {
+  .Search_card {
+    width: 280px;
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .Search_card {
+    width: 260px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .Search_card {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 915px) {
+  .Search_card {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 875px) {
+  .Search_card {
+    width: 230px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .Search_card {
+    width: 220px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .Search_card {
+    width: 210px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Search_card {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .Search_card {
+    width: 290px;
+  }
+
+  .SearchAllcard_Input_div {
+    margin-top: 45px;
+  }
+
+  .SearchAllcard_Input {
+    height: 40px;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 716px) {
+  .Search_card {
+    width: 290px;
+  }
+
+  .Search_Allcard_header_div {
+    display: flex;
+    margin-top: 20px;
+    position: relative;
+    top: 16px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .Search_card {
+    width: 270px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .Search_card {
+    width: 390px;
+  }
+
+  .Search_AllCard_div {
+    width: 83%;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  /* .SearchAllcard_Input {
+    width: 70%;
+    height: 35px;
+  } */
+}
+
+@media screen and (max-width: 515px) {
+  .Search_card {
+    width: 390px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .Search_card {
+    width: 370px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .Search_card {
+    width: 368px;
+  }
+
+  .Search_AllCard_div {
+    width: 90%;
+    justify-content: center;
+  }
+
+  .SearchAllcard_div_grident {
+    width: 90%;
+    height: 40px;
+  }
+
+  .Search_Allcard_header {
+    width: 90%;
+  }
+
+  .SearchAllcard_Input_button {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Search_card {
+    width: 340px;
+  }
+}

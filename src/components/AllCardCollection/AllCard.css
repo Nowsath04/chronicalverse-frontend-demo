@@ -1,0 +1,1158 @@
+.Allcard {
+  text-align: center;
+  width: 100%;
+}
+
+.heading_allcards {
+  font-size: 2.5rem;
+  color: white;
+  font-family: Averia Serif Libre;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading_allcards span {
+  background: linear-gradient(90.58deg, #c100a2 42.76%, #9700c1 75.78%),
+    linear-gradient(0deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 0 0.8%;
+  font-family: Averia Serif Libre;
+}
+
+.topnft_card4_div {
+  width: 282px;
+  background: rgba(33, 36, 60, 1);
+  margin-bottom: 25px;
+}
+
+.topnft_card4 {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
+  border: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.topnft_card4::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(33, 36, 60, 1);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+
+.activebutton li {
+  list-style: none;
+}
+
+.activebutton_div {
+  width: 100%;
+  position: relative;
+  margin: 80px 0;
+}
+
+.Allcard_grident {
+  position: absolute;
+  z-index: -1;
+  background: radial-gradient(50% 50% at 50% 50%,
+      rgba(151, 0, 193, 0.3) 0%,
+      rgba(143, 0, 183, 0) 100%);
+  width: 634px;
+  height: 634px;
+  left: -350px;
+  top: -250px;
+}
+
+.Allcard_grident2 {
+  position: absolute;
+  z-index: -1;
+  background: radial-gradient(50% 50% at 50% 50%,
+      rgba(193, 0, 162, 0.27) 0%,
+      rgba(196, 0, 164, 0) 100%);
+  width: 634px;
+  height: 634px;
+  right: -300px;
+  top: -250px;
+}
+
+/* .activebutton li button {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  padding: 1rem 2rem;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.active,
+.activebutton li button:hover {
+  background-color: #9700c1;
+  border-radius: 5px;
+}  */
+
+/* Add these styles for the active button */
+.selected_button.active,
+.selected_button:hover {
+  background-color: #9700c1;
+  border-radius: 5px;
+}
+
+.selected_button {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  padding: 1rem 2rem;
+  position: relative;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+}
+
+.linkbutton {
+  width: 100%;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: linear-gradient(108.95deg, #c100a2 5.78%, #9700c1 82.65%);
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+
+.activebutton_div ul {
+  width: 83%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.AllCarddropdown {
+  margin-left: 50px;
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
+  border: 0;
+  width: 130px;
+  height: 40px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.AllCarddropdown::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(7, 13, 36, 1);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+
+.AllCarddropdownbtn {
+  width: 130px;
+  padding-left: 10px;
+  height: 40px;
+  background: transparent;
+  color: white;
+  outline: none;
+  border: none;
+  -webkit-appearance: none;
+  font-size: 0.8rem;
+  text-align: start;
+  background-color: transparent !important;
+  display: flex;
+  align-items: center;
+}
+
+.Allcardoption {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  background: rgba(7, 13, 36, 1) !important;
+}
+
+.AllCarddropdownicon {
+  z-index: -1;
+  position: absolute;
+  color: #9700c1;
+  font-size: 1.25rem;
+  right: 10px;
+  top: 10px;
+}
+
+.AllCarddropdownicon_down {
+  z-index: -1;
+  position: absolute;
+  color: #9700c1;
+  font-size: 1.25rem;
+  right: 10px;
+  top: 10px;
+  transform: rotate(180deg);
+}
+
+.select_div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selectmaindiv {
+  display: flex;
+  justify-content: space-between;
+  width: 83%;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.selectinput_name {
+  display: flex;
+}
+
+.select_input_icon_div {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
+  border: 0;
+  width: 282px;
+  height: 40px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.select_input_icon_div::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(7, 13, 36, 1);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+
+.select_input {
+  padding-left: 10px;
+  position: relative;
+  text-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  height: 40px;
+  background: transparent;
+  color: white;
+  outline: none;
+  border: none;
+  -webkit-appearance: none;
+  font-size: 14px;
+}
+
+.select_input_option_div {
+  width: 282px;
+  z-index: 99999;
+  margin-top: 10px;
+  padding: 18px 10px 22px 10px;
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
+  border: 0;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: absolute;
+  border-radius: 4px;
+}
+
+.select_input_option_div::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(7, 13, 36, 1);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+
+.select_input_icon {
+  z-index: 2;
+  position: absolute;
+  color: #9700c1;
+  font-size: 1.25rem;
+  right: 20px;
+  top: 10px;
+  transform: rotate();
+}
+
+.select_input_icon_up {
+  transform: rotate(180deg);
+  z-index: 2;
+  position: absolute;
+  color: #9700c1;
+  font-size: 1.25rem;
+  right: 20px;
+  top: 10px;
+}
+
+.selectinput_name {
+  color: #b8b8b8;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.selectoption {
+  background: rgba(7, 13, 36, 1) !important;
+  color: white;
+  border-bottom: 1px solid #656565;
+  text-align: start;
+  padding: 4px 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.AllCardMainDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.AllCard_div {
+  width: 83%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.topnft_img4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topnft_img4 img {
+  width: 100%;
+  height: 220px;
+}
+
+.downgrident {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  margin-top: 90px;
+  background: linear-gradient(90deg,
+      #ed39d0 0%,
+      #264edc 46.74%,
+      #c905ff 85.42%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.downgrident_div {
+  display: flex;
+  justify-content: space-between;
+  width: 83%;
+}
+
+.downgrident_content {
+  font-size: 36px;
+  font-family: Averia Serif Libre !important;
+  font-weight: 700;
+}
+
+.downgrident_grident_div {
+  position: relative;
+}
+
+.Allcard_box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  display: none;
+}
+
+.downgrident_grident1 {
+  position: absolute;
+  background: radial-gradient(50% 50% at 50% 50%,
+      rgba(193, 0, 162, 0.45) 0%,
+      rgba(196, 0, 164, 0) 100%);
+  width: 633px;
+  height: 633px;
+  left: -300px;
+  z-index: -1;
+  top: -250px;
+}
+
+.downgrident_grident2 {
+  position: absolute;
+  background: radial-gradient(50% 50% at 50% 50%,
+      rgba(193, 0, 162, 0.45) 0%,
+      rgba(196, 0, 164, 0) 100%);
+  width: 634px;
+  height: 634px;
+  z-index: -1;
+  top: -250px;
+  right: -300px;
+}
+
+.vectorImg {
+  background: none;
+  outline: none;
+  border: none;
+  display: none;
+  background-color: transparent !important;
+}
+
+/* filter_popup */
+
+.filter_popup {
+  position: relative;
+}
+
+.filter_popup_div {
+  position: absolute;
+  z-index: 2;
+  box-shadow: 2px 2px 25px 0px rgba(0, 0, 0, 0.2);
+  color: white;
+  width: 140px;
+  left: -134px;
+  top: 57px;
+  border: 1px solid rgba(193, 0, 162, 1);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 5px;
+  padding: 18px 14px;
+}
+
+.Menu_arrowbar_filter img {
+  position: absolute;
+  top: -38px;
+  right: -20px;
+  z-index: -1;
+  height: 60px;
+  width: 70px;
+}
+
+.filter_pop_button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  color: rgba(255, 255, 255, 1);
+}
+
+.filter_pop_name {
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(184, 184, 184, 1);
+  margin-bottom: 4px;
+}
+
+.filter_bottom_div {
+  border: 1px solid rgba(101, 101, 101, 1);
+  margin: 8px 0;
+}
+
+.filter_bottom_div_4 {
+  border: 1px solid rgba(101, 101, 101, 1);
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.filter_popup_dropdown {
+  font-size: 24px;
+}
+
+.filter_dropdown_content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.filter_dropdown_content_list {
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.filter_dropdown_content_list:hover {
+  color: #c100a2;
+}
+
+/* grident bar */
+
+@media screen and (max-width: 1130px) {
+  .downgrident_content {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 998px) {
+  .downgrident {
+    width: 100%;
+    height: 130px;
+    gap: 8%;
+  }
+
+  .downgrident li {
+    list-style: none;
+    font-family: Averia Serif Libre;
+    font-size: 1.6rem;
+  }
+
+  .downgrident_div {
+    width: 81%;
+  }
+
+  .downgrident_content {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .downgrident {
+    height: 130px;
+  }
+
+  .downgrident_content {
+    font-size: 23px;
+  }
+}
+
+@media screen and (max-width: 734px) {
+  .downgrident {
+    height: 120px;
+  }
+
+  .downgrident_content {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .downgrident {
+    height: 100px;
+  }
+
+  .downgrident_content {
+    font-size: 18px;
+  }
+
+  .downgrident_div {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .downgrident {
+    height: 67px;
+  }
+
+  .downgrident_content {
+    font-size: 16px;
+  }
+
+  .downgrident_div {
+    width: 95%;
+    overflow-x: scroll;
+    gap: 24px;
+  }
+}
+
+/* ALL CARD */
+
+@media screen and (max-width: 1400px) {
+  .topnft_card4_div {
+    width: 270px;
+  }
+
+  .select_input_icon_div {
+    width: 270px;
+  }
+
+  .select_input_option_div {
+    width: 270px;
+  }
+}
+
+@media screen and (max-width: 1370px) {
+  .topnft_card4_div {
+    width: 260px;
+  }
+
+  .select_input_icon_div {
+    width: 260px;
+  }
+
+  .select_input_option_div {
+    width: 260px;
+  }
+}
+
+@media screen and (max-width: 1290px) {
+  .topnft_card4_div {
+    width: 240px;
+  }
+
+  .select_input_icon_div {
+    width: 240px;
+    height: 40px;
+  }
+
+  .select_input_option_div {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .topnft_card4_div {
+    width: 230px;
+  }
+
+  .select_input_icon_div {
+    width: 230px;
+    height: 40px;
+  }
+
+  .select_input_option_div {
+    width: 230px;
+  }
+
+  /* .downgrident_grident2 {
+    left: 850px;
+    top: -250px;
+  } */
+}
+
+@media screen and (max-width: 1130px) {
+  .topnft_card4_div {
+    width: 290px;
+  }
+
+  .select_input_icon_div {
+    width: 210px;
+    height: 40px;
+  }
+
+  .select_input_option_div {
+    width: 210px;
+  }
+
+  .activebutton li button {
+    padding: 0.9rem 1.5rem !important;
+  }
+
+  .heading_allcards {
+    font-size: 2.3rem;
+  }
+
+  /* .downgrident_grident2 {
+    left: 800px;
+    top: -250px;
+  } */
+}
+
+@media screen and (max-width: 1180px) {
+  .activebutton li button {
+    padding: 1.1rem 1.9rem;
+  }
+
+  .heading_allcards {
+    font-size: 2.4rem;
+  }
+
+  .topnft_card4_div {
+    width: 270px;
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .select_input_icon_div {
+    width: 190px;
+    height: 40px;
+  }
+
+  .select_input_option_div {
+    width: 190px;
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  .activebutton li button {
+    padding: 0.9rem 1.3rem !important;
+  }
+
+  .AllCarddropdownbtn {
+    width: 120px;
+    padding-left: 10px;
+    height: 30px;
+    margin-top: 3px;
+  }
+
+  .heading_allcards {
+    font-size: 2.2rem;
+  }
+
+  .Allcard_box {
+    display: flex;
+  }
+
+  .AllCardMainDiv {
+    display: none;
+  }
+
+  .loading {
+    display: none;
+  }
+
+  /* .downgrident_grident2 {
+    left: 700px;
+    top: -250px;
+  } */
+
+  .AllCarddropdown {
+    width: 130px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .AllCarddropdownicon {
+    right: 10px;
+    top: 8px;
+  }
+
+  .AllCarddropdownicon_down {
+    right: 10px !important;
+    top: 8px;
+  }
+
+  .select_input_icon {
+    right: 10px !important;
+    top: 8px;
+  }
+
+  .select_input_icon_up {
+    right: 10px !important;
+    top: 8px !important;
+  }
+
+  .select_input_icon_div {
+    width: 190px;
+    height: 35px;
+  }
+
+  .downgrident {
+    margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 928px) {
+  .topnft_card4_div {
+    width: 320px;
+  }
+
+  .Allcard {
+    margin-top: 30px;
+  }
+
+  .activebutton li button {
+    padding: 0.9rem 1rem !important;
+    font-size: 14px;
+  }
+
+  .AllCarddropdownbtn {
+    width: 110px;
+    padding-left: 10px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .AllCarddropdownicon {
+    right: 10px;
+    top: 9px;
+  }
+
+  .AllCarddropdownicon_down {
+    right: 10px;
+    top: 9px;
+  }
+
+  .select_input_icon {
+    right: 10px;
+    top: 7px;
+  }
+
+  .select_input_icon_up {
+    right: 10px;
+    top: 7px;
+  }
+
+  .heading_allcards {
+    font-size: 2.1rem;
+  }
+
+  .select_input {
+    font-size: 12px;
+  }
+
+  .selectoption {
+    font-size: 12px;
+  }
+
+  .select_input_icon {
+    right: 15px;
+    top: 9px;
+  }
+
+  /* .downgrident_grident2 {
+    left: 600px;
+    top: -250px;
+  } */
+
+  .select_input_icon_div {
+    width: 170px;
+    height: 35px;
+  }
+
+  .select_input_option_div {
+    width: 170px;
+  }
+
+  .downgrident {
+    margin: 0;
+  }
+
+  .MonalisaDiv {
+    margin: 45px 0 10px 0 !important;
+  }
+
+  .activebutton_div {
+    width: 100%;
+    position: relative;
+    margin: 50px 0;
+  }
+
+  .Allcard_box {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .activebutton li button {
+    padding: 0.7rem 0.7rem !important;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .select_input_icon_div {
+    width: 160px;
+    height: 35px;
+  }
+
+  .select_input_option_div {
+    width: 160px;
+  }
+
+  .AllCarddropdown {
+    width: 100px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  /* .downgrident_grident2 {
+    left: 500px;
+    top: -250px;
+  } */
+}
+
+@media screen and (max-width: 790px) {
+  .select_input_icon_div {
+    width: 150px;
+    height: 35px;
+  }
+
+  .select_input_option_div {
+    width: 150px;
+  }
+
+  .activebutton li button {
+    padding: 0.7rem 0.65rem !important;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .AllCarddropdownbtn {
+    width: 120px;
+    padding-left: 10px;
+    height: 30px;
+  }
+
+  .heading_allcards {
+    font-size: 2.1rem;
+  }
+
+  /* .downgrident_grident2 {
+    left: 500px;
+    top: -250px;
+  } */
+}
+
+@media screen and (max-width: 740px) {
+  .heading_allcards {
+    font-size: 2.1rem;
+  }
+
+  /* .downgrident_grident2 {
+    left: 450px;
+    top: -250px;
+  } */
+
+  .select_input_icon_div {
+    width: 140px;
+    height: 35px;
+  }
+
+  .select_input_option_div {
+    width: 140px;
+  }
+}
+
+@media screen and (max-width: 716px) {
+  .activebutton li button {
+    padding: 0 1.5rem !important;
+    font-size: 1rem;
+  }
+
+  .Allcard_grident {
+    display: none;
+  }
+
+  .Allcard_grident2 {
+    display: none;
+  }
+
+  .active,
+  .activebutton li button:hover {
+    background: linear-gradient(92.19deg, #c100a2 0%, #9700c1 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-family: Inter;
+    font-weight: 500;
+  }
+
+  .AllCarddropdownbtn {
+    display: none;
+  }
+
+  .select_div {
+    display: none;
+  }
+
+  .Allcard_header {
+    display: flex;
+    align-items: center;
+    width: 83%;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .heading_allcards {
+    font-size: 2.1rem;
+    color: white;
+    font-family: Averia Serif Libre;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .vectorImg {
+    display: flex;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .AllCarddropdown {
+    display: none;
+  }
+
+  .activebutton_div ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .activebutton_div {
+    margin: 35px 0;
+  }
+
+  /* .downgrident_grident2 {
+    left: 400px !important;
+    top: -250px !important;
+  } */
+}
+
+@media screen and (max-width: 640px) {
+  .activebutton li button {
+    padding: 0 1.1rem !important;
+    font-size: 0.9rem;
+  }
+
+  .downgrident_grident1 {
+    width: 400px;
+    height: 400px;
+    left: -150px;
+    top: -150px;
+  }
+
+  .downgrident_grident2 {
+    width: 400px;
+    height: 400px;
+    right: -200px;
+    /* left: 400px !important;*/
+    top: -130px !important;
+
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .activebutton li button {
+    padding: 0 1.1rem !important;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 594px) {
+  .heading_allcards {
+    font-size: 1.5rem;
+    display: flex;
+    gap: 3px;
+  }
+
+  .activebutton li button {
+    padding: 0 1rem !important;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .activebutton li button {
+    padding: 0 0.9rem !important;
+    font-size: 0.8rem;
+  }
+
+  .activebutton_div {
+    overflow-x: scroll;
+  }
+
+  .downgrident_grident1 {
+    width: 300px;
+    height: 300px;
+    left: -130px;
+    top: -110px;
+  }
+
+  .downgrident_grident2 {
+    width: 300px;
+    height: 300px;
+    right: -150px;
+    /* left: 400px !important;*/
+    top: -110px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Allcard_header {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .activebutton_div ul {
+    padding-left: 30px;
+  }
+
+}
+
+@media screen and (max-width: 415px) {
+  .activebutton_div ul {
+    padding-left: 45px;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .activebutton_div ul {
+    padding-left: 70px;
+  }
+
+}
+
+@media screen and (max-width: 385px) {
+  .activebutton_div ul {
+    padding-left: 80px;
+  }
+}

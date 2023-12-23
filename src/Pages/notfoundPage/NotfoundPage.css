@@ -1,0 +1,128 @@
+.notfound {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-direction: column;
+}
+
+.notfound > img {
+  width: 369px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 491px;
+}
+.notfound > h4 {
+  font-size: 32px;
+  line-height: 50px;
+  text-align: center;
+}
+.notfound > p {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+.notfound_search {
+  width: 397px;
+  height: 44px;
+  position: relative;
+}
+.notfound_search > input {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #c100a2;
+  border-radius: 4px;
+  background: none;
+  outline: none;
+  padding-left: 20px;
+  color: white;
+}
+.notfound_search > button {
+  position: absolute;
+  right: 0;
+  height: 44px;
+  width: 50px;
+  outline: none;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(135deg, #c100a2 0%, #9700c1 100%);
+}
+
+@media screen and (max-width: 700px) {
+  .notfound > h4 {
+    font-size: 28px;
+  }
+  .notfound {
+    height: 70vh;
+  }
+  .notfound > img {
+    top: 40%;
+    left: 50%;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .notfound > h4 {
+    font-size: 25px;
+  }
+  .notfound > img {
+    width: 320px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+  }
+  .notfound > p {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+  .notfound_search {
+    width: 350px;
+    height: 44px;
+    position: relative;
+  }
+  .notfound > img {
+    top: 38%;
+    left: 50%;
+  }
+  .notfound {
+    height: 60vh;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .notfound > h4 {
+    font-size: 18px;
+  }
+  .notfound > img {
+    width: 290px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+  }
+  .notfound > p {
+    font-size: 12px;
+    margin-bottom: 30px;
+  }
+  .notfound_search {
+    width: 300px;
+    height: 40px;
+    position: relative;
+  }
+  .notfound_search > button {
+    height: 40px;
+    width: 40px;
+  }
+  .notfound > img {
+    top: 38%;
+    left: 50%;
+  }
+  .notfound {
+    height: 60vh;
+  }
+}

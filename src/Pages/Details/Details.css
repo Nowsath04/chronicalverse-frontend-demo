@@ -1,0 +1,509 @@
+.About2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.About2_div {
+  width: 83%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.About2_heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: Averia Serif Libre;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.About2_heading span {
+  background: linear-gradient(90.58deg, #c100a2 42.76%, #9700c1 75.78%),
+    linear-gradient(0deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: Averia Serif Libre;
+}
+
+.About2_paragraph {
+  color: #a3a6b7;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.About2_Content {
+  width: 33%;
+}
+
+.About2_Box {
+  justify-content: end;
+  width: 60%;
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Card {
+  margin-bottom: 100px;
+  width: 282px;
+  height: 194px;
+  border-radius: 4px;
+  background: rgba(33, 36, 60, 1);
+  position: relative;
+  margin: 25px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .Card_split {
+  width: 100%;
+} */
+
+.card_top {
+  position: absolute;
+  top: -35px;
+  left: 105px;
+}
+.card_top img {
+  width: 100%;
+  height: 100%;
+}
+
+.card_content {
+  text-align: center;
+  padding: 0rem 2rem 0rem 2rem;
+}
+
+.card_content h2 {
+  font-size: 1rem;
+  color: white;
+  margin: 20px 0;
+}
+
+.card_content p {
+  font-size: 0.9rem;
+  color: rgba(184, 184, 184, 1);
+}
+
+.Jesus_div2_details {
+  display: none;
+}
+
+@media screen and (max-width: 1240px) {
+  .Card {
+    width: 240px;
+    height: 180px;
+  }
+  .card_top {
+    position: absolute;
+    top: -35px;
+    left: 85px;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .Card {
+    width: 220px !important;
+    height: 160px;
+  }
+  .card_top {
+    position: absolute;
+    top: -39px;
+    left: 75px;
+  }
+  .card_content h2 {
+    font-size: 0.9rem;
+  }
+  .card_content p {
+    font-size: 0.8rem;
+  }
+  .About2_heading {
+    font-size: 2.3rem;
+  }
+  .About2_paragraph {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .Card {
+    width: 200px !important;
+    height: 150px;
+  }
+  .card_top {
+    position: absolute;
+    top: -39px;
+    left: 65px;
+  }
+  .card_content h2 {
+    font-size: 0.9rem;
+  }
+  .card_content p {
+    font-size: 0.7rem;
+  }
+  .About2_heading {
+    font-size: 2.1rem;
+  }
+  .About2_paragraph {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .About2_Box {
+    margin-right: 0;
+  }
+  .About2_div {
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 21px;
+  }
+  .About2_Content {
+    width: 83%;
+    text-align: center;
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+  .Card {
+    width: 350px !important;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card_top {
+    top: -33px;
+    left: 140px;
+  }
+  .About2_heading {
+    font-size: 2.6rem;
+  }
+  .About2_paragraph {
+    font-size: 1.4rem;
+  }
+  .card_content h2 {
+    font-size: 1rem;
+  }
+  .card_content p {
+    font-size: 0.9rem;
+  }
+  .Jesus_div2_details {
+    display: flex;
+  }
+  .Jesus_div1_details {
+    display: none;
+  }
+  .About2_Box {
+    justify-content: space-between;
+    width: 83%;
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 870px) {
+  .Card {
+    width: 320px !important;
+    height: 200px;
+  }
+  .card_top {
+    top: -33px;
+    left: 123px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .About2_paragraph {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .Card {
+    width: 300px !important;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card_top {
+    top: -33px;
+    left: 115px;
+  }
+  .About2_heading {
+    font-size: 2.4rem;
+  }
+  .About2_paragraph {
+    font-size: 1rem;
+  }
+  .card_content h2 {
+    font-size: 1rem;
+  }
+  .card_content p {
+    font-size: 0.9rem;
+  }
+  .Jesus_div2_details {
+    display: flex;
+  }
+  .Jesus_div1_details {
+    display: none;
+  }
+}
+@media screen and (max-width: 750px) {
+  .Card {
+    width: 280px !important;
+    height: 200px;
+  }
+  .card_top {
+    top: -33px;
+    left: 105px;
+  }
+}
+@media screen and (max-width: 704px) {
+  .About2_div {
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Card {
+    width: 250px !important;
+    height: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card_top {
+    top: -33px;
+    left: 90px;
+  }
+  .About2_heading {
+    font-size: 2.3rem;
+  }
+  .About2_paragraph {
+    font-size: 1rem;
+  }
+  .card_content h2 {
+    font-size: 1rem;
+  }
+  .card_content p {
+    font-size: 0.9rem;
+  }
+  .Jesus_div2_details {
+    display: flex;
+  }
+  .Jesus_div1_details {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .Card {
+    width: 230px !important;
+    height: 200px;
+  }
+  .card_top {
+    top: -33px;
+    left: 79px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .About2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0px 0;
+  }
+  .Card {
+    width: 215px !important;
+    height: 170px;
+  }
+  .card_top {
+    top: -35px;
+    left: 73px;
+  }
+  .About2_heading {
+    font-size: 2.2rem;
+  }
+  .About2_paragraph {
+    font-size: 1rem;
+  }
+  .card_content h2 {
+    font-size: 0.9rem;
+  }
+  .card_content p {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .About2_div {
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card_top {
+    top: -35px;
+    left: 72px;
+  }
+  .Jesus_div2_details {
+    display: flex;
+  }
+  .Jesus_div1_details {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  .Card {
+    width: 200px !important;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card_top {
+    top: -39px;
+    left: 65px;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .Card {
+    width: 190px !important;
+    height: 170px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Card {
+    width: 200px !important;
+    height: 170px;
+  }
+  .About2_heading {
+    font-size: 2.1rem;
+  }
+  .About2_paragraph {
+    font-size: 0.9rem;
+  }
+  .About2_Box {
+    justify-content: space-between;
+    width: 90%;
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .About2_div {
+    gap: 0px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .Card {
+    width: 170px !important;
+    height: 170px;
+  }
+  .card_content {
+    text-align: center;
+    padding: 2rem 2rem 0.5rem 2rem;
+  }
+  .card_top {
+    top: -40px;
+    left: 55px;
+  }
+  .About2_heading {
+    font-size: 2.1rem;
+  }
+  .About2_paragraph {
+    font-size: 0.8rem;
+  }
+  .card_content h2 {
+    font-size: 0.9rem;
+  }
+  .card_content p {
+    font-size: 0.7rem;
+  }
+  .Jesus_div2_details {
+    display: flex;
+  }
+  .Jesus_div1_details {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .Card {
+    width: 180px !important;
+    height: 150px;
+  }
+  .card_content h2 {
+    font-size: 14px;
+    color: white;
+    margin: 10px 0;
+  }
+  .card_top img {
+    width: 80%;
+    height: 80%;
+  }
+  .card_top {
+    top: -25px;
+    left: 60px;
+  }
+  .card_content {
+    text-align: center;
+    padding: 1rem 1rem 0rem 1rem;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .About2_heading {
+    font-size: 24px;
+  }
+  .About2_paragraph {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .Card {
+    width: 170px !important;
+    height: 132px;
+  }
+  .card_top {
+    top: -30px;
+    left: 55px;
+  }
+
+  .card_content h2 {
+    font-size: 0.8rem;
+  }
+  .card_content p {
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .Card {
+    width: 165px !important;
+    height: 132px;
+  }
+  .About2_Box {
+    justify-content: space-between;
+    width: 90%;
+    gap: 5px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

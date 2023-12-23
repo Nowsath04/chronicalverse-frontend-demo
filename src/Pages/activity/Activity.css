@@ -1,0 +1,472 @@
+.activity_div {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.activity {
+  width: 83%;
+  margin: 0 auto;
+  margin-top: 80px;
+  display: flex;
+  color: white;
+  gap: 100px;
+  position: relative;
+}
+
+.activity_left {
+  width: 65%;
+}
+
+.activity_right_responsive {
+  width: 45%;
+  display: none;
+}
+
+.activity_right {
+  width: 35%;
+  display: flex;
+}
+
+.activity_left_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Activity_vecter_img {
+  display: none;
+}
+
+.activity_left_bottom {
+  margin: 100px 0;
+}
+
+.activity_left_content > h4 {
+  font-family: Averia Serif Libre;
+  font-size: 32px;
+  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.activity_nav {
+  margin-left: 21px;
+  margin-top: 40px;
+  width: 377px !important;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.borderbottom_activity {
+  position: absolute;
+  height: 2px;
+  width: 416px;
+  top: 50px;
+  margin-left: -20px;
+  margin-right: 300px;
+  background: rgba(44, 44, 44, 1);
+}
+
+.activity_nav > a {
+  color: white;
+  position: relative;
+  text-decoration: none;
+}
+
+.activity_right {
+  display: flex;
+  justify-content: end;
+}
+
+.activity_right_box {
+  border-radius: 4px;
+  border: 1px solid #c100a2;
+  width: 384px;
+  height: 630px;
+  padding: 80px 40px 70px 80px;
+  background: rgba(109, 93, 93, 0.063);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.6px);
+  -webkit-backdrop-filter: blur(6.6px);
+}
+
+.activity_right_box_top {
+  border-bottom: 1px solid #2c2c2c;
+  width: 100%;
+}
+
+.activity_right_box_top > .check_box {
+  display: flex;
+  gap: 16px;
+}
+
+.check_box input {
+  width: 24px;
+  height: 24px;
+  accent-color: #c100a2;
+  margin-bottom: 24px;
+}
+.activity_right_box_bottom {
+  margin-top: 30px;
+  width: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.activity_right_box_bottom > div {
+  width: 126px;
+  height: 40px;
+  background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.activity_right_box_bottom > div > button {
+  background-color: #070d24;
+  outline: none;
+  border: transparent;
+  border-radius: 4px;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.notification_ManuBar {
+  position: absolute;
+}
+
+.activity_right_responsive_div {
+  position: relative;
+  z-index: 9999;
+  box-shadow: 2px 2px 25px 0px rgba(0, 0, 0, 0.2);
+  color: white;
+  height: 400px;
+  width: 200px;
+  margin-left: -165px;
+  margin-top: 40px;
+  border: 1px solid rgba(193, 0, 162, 1);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* responsive_navbar */
+
+.activity_notification_ManuBar {
+  position: absolute;
+  z-index: 2;
+  box-shadow: 2px 2px 25px 0px rgba(0, 0, 0, 0.2);
+  color: white;
+  height: 420px;
+  width: 220px;
+  top: 80px;
+  right: -5px;
+  border: 1px solid rgba(193, 0, 162, 1);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 5px;
+}
+
+.activity_notification_ManuBar_div {
+}
+
+.checkbox_div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity_right_box_top_responsive {
+  width: 80%;
+  padding: 25px;
+}
+.activity_right_box_top_responsive > .check_box {
+  display: flex;
+  gap: 16px;
+}
+
+.Menu_arrowbar_activity {
+  position: relative;
+}
+
+.Menu_arrowbar_activity img {
+  position: absolute;
+  top: -47px;
+  right: 0px;
+}
+.activity_active {
+  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.activity_active:after {
+  transition: 0.4s;
+  position: absolute;
+  content: "";
+  width: calc(100% + 40px);
+  height: 10px;
+  bottom: -28px;
+  left: -20px;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(90.75deg, #c100a2 0%, #9700c1 89.35%);
+}
+
+@media screen and (max-width: 1150px) {
+  .activity_right_box {
+    width: 350px;
+    height: 590px;
+    padding: 60px 28px 70px 45px;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .activity_right {
+    display: none;
+  }
+  .checkbox_div {
+    width: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Activity_vecter_img {
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    right: 0px;
+    top: 8px;
+  }
+  .activity_notification_ManuBar {
+    display: flex;
+  }
+  .activity_left_bottom {
+    width: 550px;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .myactivitycard_left > img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  .myactivitycard_left_container > div > h4 {
+    font-size: 50px;
+  }
+  .myactivitycard_left_container > div > p {
+    font-size: 15px;
+    color: #b8b8b8;
+  }
+  .myactivitycard_left_container > p {
+    font-size: 15px;
+  }
+}
+
+/* @media screen and (max-width: 1070px) {
+  .activity_right_box {
+    display: none;
+  }
+  .activity_right {
+    width: 0%;
+  }
+  .activity_left {
+    width: 100%;
+  }
+  .activity_left_content {
+    gap: 100%;
+  }
+} */
+
+@media screen and (max-width: 690px) {
+  .myactivitycard_left > img {
+    width: 70px !important;
+    height: 70px !important;
+    border-radius: 50%;
+  }
+  .myactivitycard_left_container > div > h4 {
+    font-size: 20px !important;
+  }
+  .myactivitycard_left_container > div > p {
+    font-size: 16px !important;
+    color: #b8b8b8;
+  }
+  .myactivitycard_left_container > p {
+    font-size: 16px !important;
+  }
+  .myactivitycard_left_container {
+    margin-top: -20px !important;
+  }
+  .myactivitycard_left {
+    width: 500px !important;
+  }
+  .myactivitycard {
+    margin-bottom: 20px !important;
+    margin-top: 0 !important;
+  }
+  .activity_nav {
+    margin-left: 22px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 27px;
+  }
+  .borderbottom_activity {
+    position: absolute;
+    height: 2px;
+    width: 800px;
+    top: 50px;
+    margin-left: -80px;
+    margin-right: 300px;
+    background: rgba(44, 44, 44, 1);
+  }
+  .activity_left_bottom {
+    margin: 50px 0;
+  }
+}
+
+.activity_responsive_p {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  /* .myactivitycard_left {
+    width: 400px !important;
+  } */
+  .myactivitycard_left {
+    gap: 20px !important;
+  }
+  .myactivitycard_left > img {
+    width: 65px !important;
+    height: 65px !important;
+    border-radius: 50%;
+  }
+  .myactivitycard_left_container > div > h4 {
+    font-size: 17px !important;
+  }
+  .myactivitycard_left_container > div > p {
+    font-size: 15px !important;
+    color: #b8b8b8;
+  }
+  .myactivitycard_left_container > p {
+    font-size: 15px !important;
+  }
+  .activity_responsive_p {
+    display: flex;
+  }
+  .activity_p {
+    display: none;
+  }
+  .activity_left_bottom {
+    width: 150%;
+  }
+  .myactivitycard {
+    margin-bottom: 10px !important;
+    margin-top: 0 !important;
+  }
+  .activity_nav {
+    width: 300px !important;
+    gap: 10% !important;
+  }
+  .activity {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  /* .activity_left_bottom {
+    width: 350px;
+  } */
+  /* .activity_nav {
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    padding-bottom: 27px;
+    width: 300px !important;
+    gap: 10% !important;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+  } */
+  .activity_left_bottom {
+    margin: 24px 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .activity {
+    width: 90%;
+  }
+  .activity_active:after {
+    transition: 0.4s;
+    position: absolute;
+    content: "";
+    width: calc(100% + 10px);
+    height: 10px;
+    bottom: -29px;
+    left: -4px;
+    border-radius: 8px 8px 0 0;
+    background: linear-gradient(90.75deg, #c100a2 0%, #9700c1 89.35%);
+  }
+  .activity_nav {
+    margin-left: 4px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    padding-bottom: 27px;
+    width: 300px !important;
+    gap: 10% !important;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .myactivitycard_left > img {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50%;
+  }
+  .myactivitycard_left_container > div > h4 {
+    font-size: 14px !important;
+  }
+  .myactivitycard_left_container > div > p {
+    font-size: 14px !important;
+  }
+  .myactivitycard_left_container > div {
+    display: flex;
+    gap: 8px !important;
+  }
+  .myactivitycard_left_container > p {
+    font-size: 14px !important;
+  }
+  .myactivitycard {
+    height: 70px !important;
+  }
+  .myactivitycard_left_container {
+    margin-top: -10px !important;
+  }
+  .activity_nav {
+    margin-left: 4px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    padding-bottom: 27px;
+    width: 270px !important;
+    gap: 5% !important;
+  }
+}

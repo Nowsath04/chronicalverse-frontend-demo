@@ -1,0 +1,13 @@
+.OnSale {
+  margin-bottom: 100px;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.onsale_responsive {
+  display: flex;
+  display: none;
+  width: 100%;
+}

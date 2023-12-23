@@ -1,0 +1,46 @@
+.myactivitycard {
+  margin-top: 50px;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.myactivitycard_left {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 100%;
+}
+.myactivitycard_left > img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+.myactivitycard_left_container {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -15px;
+}
+.myactivitycard_left_container > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 10px;
+}
+.myactivitycard_left_container > div > h4 {
+  font-size: 24px;
+}
+.myactivitycard_left_container > div > p {
+  font-size: 16px;
+  color: #b8b8b8;
+}
+.myactivitycard_left_container > p {
+  display: flex;
+  align-items: end;
+  font-size: 16px;
+  color: #b8b8b8;
+}

@@ -1,0 +1,351 @@
+.create_collection {
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 150px;
+  overflow-x: hidden !important;
+}
+
+.create_collection_container {
+  width: 83%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.create_collection_heading {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  gap: 36px;
+}
+
+.create_collection_heading>p {
+  margin: 0;
+  font-size: 40px;
+  font-weight: bold;
+  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.create_collection_form_container {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.create_collection_image {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 100px;
+  position: relative;
+  width: 100%;
+}
+
+.create_collection_image>.create_collection_bannerimg {
+  width: 108.435%;
+  height: 400px;
+}
+
+.create_collection_editbtn {
+  display: flex;
+  gap: 12px;
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+}
+
+.create_collection_profileimg {
+  top: 220px;
+  left: 0;
+  position: absolute;
+  width: 350px;
+  height: 350px;
+}
+
+.create_collection_editbtn>a {
+  width: 114px;
+  height: 44px;
+  background: linear-gradient(98.47deg, #c100a2 0%, #9700c1 100%);
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.create_collection_input_group {
+  width: 100%;
+
+  color: white;
+}
+
+.create_collection_input_group>p {
+  margin-bottom: 16px;
+}
+
+.create_collection_input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  margin-bottom: 30px;
+}
+
+.create_collection_input>input {
+  padding-left: 20px;
+  color: white;
+  width: 100%;
+  height: 44px;
+  background-color: #070d24;
+  outline: none;
+  border: transparent;
+  border-radius: 4px;
+}
+
+.create_collection_input_textarea {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  margin-bottom: 100px;
+}
+
+.create_collection_input_textarea>textarea {
+  height: 168px;
+  width: 100%;
+  background-color: #070d24;
+  outline: none;
+  border: transparent;
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-left: 20px;
+  color: white;
+}
+
+.create_collection_input_group>input {
+  width: 100%;
+  background: linear-gradient(90.04deg, #c100a2 0%, #9700c1 96.3%);
+  height: 44px;
+  color: white;
+  background-repeat: 4px;
+  border: none;
+  border-radius: 4px;
+}
+
+.createcollectionpage_mobilebackarrow {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .create_collection_image>.create_collection_bannerimg {
+    width: 110%;
+  }
+
+  .create_collection_profileimg {
+    left: 0;
+  }
+
+  .create_collection_form_container {
+    width: 100%;
+  }
+
+  .create_collection_form_container {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .create_collection_image>.create_collection_bannerimg {
+    width: 121%;
+    height: 320px;
+  }
+
+  .create_collection_editbtn {
+    bottom: 10px;
+  }
+
+  .create_collection_profileimg {
+    width: 300px;
+    height: 300px;
+    top: 180px;
+  }
+
+  .create_collection_form_container {
+    margin-top: 30px;
+  }
+
+  .create_collection {
+    margin-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .create_collection_image>.create_collection_bannerimg {
+    height: 250px;
+  }
+
+  .create_collection_profileimg {
+    width: 250px;
+    height: 250px;
+    top: 125px !important;
+  }
+
+  .create_collection_form_container {
+    margin-top: 20px;
+  }
+
+  .create_collection_editbtn {
+    bottom: -20px;
+  }
+
+  .create_collection_image {
+    margin-bottom: 160px;
+  }
+
+  .create_collection_heading {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .create_collection_editbtn>a {
+    width: 85px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .createcollectionpage_mobilebackarrow {
+    display: flex;
+    color: white;
+    font-size: 20px;
+    position: relative;
+    left: -4px;
+  }
+
+  .create_collection_input_group>p {
+    margin-bottom: 8px;
+  }
+
+  .create_collection_input_textarea {
+    margin-bottom: 40px;
+  }
+
+  .create_collection_image>.create_collection_bannerimg {
+    height: 200px;
+  }
+
+  .create_collection {
+    margin-top: 50px;
+  }
+
+  .create_collection_profileimg {
+    width: 200px;
+    height: 200px;
+    top: 106px !important;
+  }
+
+  .create_collection_image {
+    margin-bottom: 160px;
+  }
+
+  .create_collection_form_container {
+    margin-top: 24px;
+  }
+
+  .create_collection_editbtn {
+    bottom: -25px;
+  }
+
+  .create_collection_heading>p {
+    font-size: 24px;
+  }
+
+  .create_collection_heading>img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .create_collection_input_group p {
+    font-size: 14px;
+  }
+
+  .create_collection_input {
+    margin-bottom: 16px;
+  }
+
+  .create_collection {
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .create_collection_container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .create_collection_image>.create_collection_bannerimg {
+    height: 140px;
+  }
+
+  .create_collection_profileimg {
+    width: 130px;
+    height: 130px;
+  }
+
+  .create_collection_profileimg {
+    top: 80px !important;
+  }
+
+  .create_collection_image {
+    margin-bottom: 100px;
+  }
+
+  .create_collection_editbtn {
+    bottom: -15px;
+    gap: 8px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .create_collection_container {
+    width: 90%;
+  }
+
+  .create_collection_image>.create_collection_bannerimg {
+    width: 111%;
+    height: 130px;
+  }
+
+  .create_collection_profileimg {
+    width: 109px;
+    height: 109px;
+    top: 80px !important;
+  }
+
+  .create_collection_editbtn>a {
+    padding: 7px;
+    font-size: 12px;
+  }
+
+  /* .create_collection_heading {
+    gap: 10px;
+  } */
+}

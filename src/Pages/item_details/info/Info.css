@@ -1,0 +1,17 @@
+.Info {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  padding-bottom: 100px;
+}
+
+@media screen and (max-width: 600px) {
+  .Info {
+    padding-bottom: 40px;
+    gap: 16px;
+  }
+  .itemdetails_bottom {
+    margin-top: 30px;
+    width: 90%;
+  }
+}

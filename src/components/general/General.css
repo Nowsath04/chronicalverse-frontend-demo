@@ -1,0 +1,74 @@
+.general1 {
+  width: 100%;
+  padding: 30px 0;
+  border-bottom: 1px solid #4d4d4d;
+  overflow-x: hidden;
+}
+
+.general3 {
+  width: 100%;
+  padding: 30px 0;
+  border-bottom: 1px solid #4d4d4d;
+  overflow-x: hidden;
+}
+
+.general_div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.general_div {
+  font-size: 16px;
+}
+.active_arrow {
+  cursor: pointer;
+  transform: rotate(180deg);
+}
+.active_arrow2 {
+  cursor: pointer;
+}
+.general_hidden_div {
+  flex-direction: column;
+  margin-top: 24px;
+  transition-timing-function: linear;
+}
+
+.general_hidden_div > div {
+  height: auto;
+  margin-top: 16px;
+  width: 132px;
+  height: 44px;
+  display: flex;
+  background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.general_hidden_div > div > button {
+  background-color: #070d24;
+  outline: none;
+  border: transparent;
+  border-radius: 4px;
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.general_hidden_div > p {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .general3 {
+    border-bottom: none;
+  }
+  .general_div p {
+    font-size: 14px;
+  }
+}

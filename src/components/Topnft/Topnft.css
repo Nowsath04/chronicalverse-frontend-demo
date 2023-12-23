@@ -1,0 +1,197 @@
+.TopNft {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.TopNft_div {
+  width: 83%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.TopNft_header {
+  font-size: 2.5rem;
+  font-family: Averia Serif Libre;
+}
+
+.TopNft_header_Div {
+  color: white;
+  position: relative;
+}
+
+.TopNft_grident {
+  position: absolute;
+  z-index: -1;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(193, 0, 162, 0.45) 0%,
+    rgba(196, 0, 164, 0) 100%
+  );
+  width: 633px;
+  height: 633px;
+  left: 900px;
+  top: -150px;
+}
+
+.TopNft_header_Div span {
+  background: linear-gradient(94.89deg, #c100a2 74.76%, #9700c1 98.19%),
+    linear-gradient(0deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: Averia Serif Libre;
+}
+
+.dropdown_div {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 0;
+  height: 2.2rem;
+  width: 9rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: -8px;
+  margin-right: 15px;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.dropdown::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(7, 13, 36, 1);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+
+.dropicon {
+  position: absolute;
+  color: #9700c1;
+  font-size: 1.5rem;
+  right: 10px;
+  top: 5px;
+}
+
+.dropicon_up {
+  position: absolute;
+  color: #9700c1;
+  font-size: 1.5rem;
+  right: 10px;
+  top: 5px;
+  transform: rotate(180deg);
+}
+
+.dropbtn {
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-align: start;
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropbtn option {
+  background: rgba(7, 13, 36, 1);
+  color: white;
+  border: 1px solid #c100a2;
+  margin-top: 10px;
+  border: none;
+}
+
+.leftarrow {
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  margin-top: -15px;
+}
+.leftarrow:hover {
+  color: #9700c1;
+}
+.rightarrow {
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  margin-top: -15px;
+  padding: 0;
+}
+.rightarrow:hover {
+  color: #9700c1;
+}
+
+.card_1box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.Thisweek_dropdown {
+  width: 9rem;
+  z-index: 2;
+  margin-top: 10px;
+  padding: 18px 10px 22px 10px;
+  background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+}
+
+.Thisweek_dropdown::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: #070d24;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+
+.Thisweek_dropdown_option {
+  border-bottom: 1px solid #656565;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 4px 0;
+}

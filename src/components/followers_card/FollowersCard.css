@@ -1,0 +1,182 @@
+.followers_card {
+  width: 629px;
+  height: 88px;
+  padding: 13px 33px;
+  background: rgba(145, 126, 126, 0.101);
+  border-radius: 4px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.6px);
+  -webkit-backdrop-filter: blur(6.6px);
+  border: 1px solid #c100a2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 34px;
+}
+.followers_card_left {
+  display: flex;
+  align-items: center;
+  gap: 33px;
+}
+.followers_card_left > img {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  position: relative;
+}
+.followers_card_left > div {
+  display: flex;
+  flex-direction: column;
+}
+.followers_card_left > div > h5 {
+  font-size: 25px;
+}
+.followers_card_left > div > p {
+  font-size: 16px;
+  color: #b8b8b8;
+}
+.followers_card_right > button {
+  width: 108px;
+  height: 44px;
+  background: linear-gradient(93.97deg, #c100a2 0%, #9700c1 100%);
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
+
+.followers_check_icon {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  color: #9700c1;
+  display: none;
+}
+.followers_card_left >div>a{
+  text-decoration: none;
+  font-size: 24px;
+  color: white;
+}
+
+@media screen and (max-width: 1040px) {
+  .followers_card {
+    width: 550px;
+    height: 88px;
+    padding: 13px 33px;
+    margin-bottom: 34px;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .followers_card {
+    width: 550px;
+    height: 88px;
+    padding: 13px 33px;
+    margin-bottom: 34px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  div::-webkit-scrollbar {
+    display: none;
+  }
+}
+@media screen and (max-width: 700px) {
+  .followers_card {
+    width: 500px;
+    height: 88px;
+    padding: 13px 33px;
+    margin-bottom: 34px;
+  }
+}
+@media screen and (max-width: 630px) {
+  .followers_card_left > img {
+    width: 60px;
+    height: 60px;
+  }
+  .followers_card_left > div > h5 {
+    font-size: 20px;
+    margin: 0;
+  }
+  .followers_card_left > div > p {
+    font-size: 14px;
+  }
+  .followers_card_right > button {
+    width: 100px;
+    height: 40px;
+  }
+  .followers_card {
+    width: 450px;
+    height: 88px;
+    padding: 13px 33px;
+    margin-bottom: 34px;
+  }
+  .followers_card_left > div {
+    gap: 8px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .followers_card {
+    width: 100%;
+    height: 88px;
+    padding: 14px 20px;
+    margin-bottom: 16px;
+  }
+  .followers_card_right > button {
+    display: none;
+  }
+  .followers_check_icon {
+    display: flex;
+  }
+  .followers_card_left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .following {
+    width: 90% !important;
+    height: 520px !important;
+  }
+  .followers {
+    width: 90% !important;
+    height: 520px !important;
+  }
+}
+
+/* @media screen and (max-width: 540px) {
+  .followers_card_left > img {
+    width: 40px;
+    height: 40px;
+  }
+  .followers_card_left > div > h5 {
+    font-size: 18px;
+    margin: 0;
+  }
+  .followers_card_left > div > p {
+    font-size: 12px;
+  }
+  .followers_card_right > button {
+    width: 80px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 477px) {
+  .followers_card_left > img {
+    width: 30px;
+    height: 30px;
+  }
+  .followers_card_left > div > h5 {
+    font-size: 15px;
+    margin: 0;
+  }
+  .followers_card_left > div > p {
+    font-size: 12px;
+  }
+  .followers_card_left {
+    gap: 20px;
+  }
+  .profile_nav_router {
+    width: 90%;
+  }
+} */

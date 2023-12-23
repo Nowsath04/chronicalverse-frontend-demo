@@ -1,0 +1,270 @@
+.UserDropDown_ManuBar {
+  position: absolute;
+  right: 70px;
+  z-index: 9999;
+  top: 100px;
+}
+
+.UserDropDown_ManuBar_div {
+  z-index: 2;
+  box-shadow: 2px 2px 25px 0px #00000033;
+  color: white;
+  height: 520px;
+  width: 350px;
+  border: 1px solid rgba(193, 0, 162, 1);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 5px;
+}
+
+.UserDropDown_Heading {
+  text-align: start;
+  padding: 30px 27px;
+}
+.UserDropDown_Heading h3 {
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 500;
+}
+.UserDropDown_Heading p {
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  background: linear-gradient(90.31deg, #ff00d6 0%, #c800ff 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  display: flex;
+  align-items: center;
+}
+.UserDropDown_Heading p .Copy_Icon {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 17px;
+  color: #ff00d6;
+  margin-left: 10px;
+}
+
+.UserDropDown_Box_div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -15px;
+}
+
+.UserDropDown_Box {
+  background: rgba(0, 0, 0, 0.32);
+  width: 293px;
+  height: 150px;
+}
+
+.UserDropDown_Box_Content_div {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+}
+
+.UserDropDown_Box_Content_div img {
+  width: 40px;
+  height: 40px;
+}
+
+.UserDropDown_Box_Content {
+  text-align: start;
+  margin-left: 20px;
+}
+.UserDropDown_Box_Content p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #ff00d6;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 12px;
+}
+.UserDropDown_Box_Content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.UserDropDown_Box_button {
+  border: 1px solid #c100a2;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 3px;
+  text-align: center;
+  cursor: pointer;
+  /* background: linear-gradient(
+    92.76deg,
+    rgba(193, 0, 162, 0.75) 0%,
+    rgba(151, 0, 193, 0.75) 75.44%
+  );
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1; */
+}
+/* .UserDropDown_Box_button::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(0, 0, 0, 0.32);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+} */
+
+.UserDropDown_Box_button button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  text-align: center;
+  height: 35px;
+  font-family: Inter;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.UserDropDown_list ul li {
+  list-style: none;
+  text-align: start;
+  display: flex;
+  align-items: center;
+  padding: 19px 0;
+  gap: 10px;
+  margin-left: -4px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.mypofile_link {
+  text-decoration: none;
+  color: white !important;
+}
+
+.mypofile_link:hover {
+  background: linear-gradient(90.31deg, #ff00d6 0%, #c800ff 100%) !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
+}
+
+.UserDropDown_list ul li:hover {
+  background: linear-gradient(90.31deg, #ff00d6 0%, #c800ff 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.UserDropDown_list ul img {
+  width: 22px;
+  height: 22px;
+}
+.UserDropDown_list ul hr {
+  background: rgba(101, 101, 101, 1);
+  border: 0.5px solid rgba(101, 101, 101, 1);
+  margin-right: 31px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* toggle_button */
+
+.toggle_btn_dropdown {
+  width: 48px;
+  height: 20px;
+  position: relative;
+  display: inline-block;
+  right: -112px;
+}
+
+.toggle_btn_dropdown > input {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+
+.toggle_btn_dropdown_slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  cursor: pointer;
+  transition: 0.4s;
+  border: 1px solid white;
+  border-radius: 12px;
+}
+
+.toggle_btn_dropdown_slider:before {
+  position: absolute;
+  content: "";
+  width: 14px;
+  height: 14px;
+  left: 3px;
+  bottom: 2.6px;
+  background-color: rgba(255, 255, 255, 1);
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .toggle_btn_dropdown_slider:before {
+  background: linear-gradient(124.16deg, #c100a2 17.55%, #9700c1 93.68%);
+
+  transform: translateX(27px);
+}
+input:checked + .toggle_btn_dropdown_slider {
+  border: 1px solid #9700c1;
+}
+
+.UserDropDown_list_responsive ul li {
+  list-style: none;
+  text-align: start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-size: 14px;
+  white-space: nowrap;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.UserDropDown_list_responsive ul li:hover {
+  color: #c100a2;
+}
+
+.UserDropDown_Heading_responsive p .Copy_Icon {
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 17px;
+  color: #ff00d6;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.UserDropDown_Box_div_responsive {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification_ManuBar_responive {
+  position: absolute;
+  top: 70px;
+  right: 150px;
+}

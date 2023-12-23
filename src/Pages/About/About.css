@@ -1,0 +1,334 @@
+.JesusAbout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.JesusAbout_div {
+  width: 83%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 130px 0;
+}
+
+.JesusImgdiv {
+  position: relative;
+}
+
+.JesusImg {
+  position: relative;
+  height: 500px;
+  width: 500px;
+}
+
+.Jesus_grdient {
+  position: absolute;
+  z-index: -1;
+  height: 1177px;
+  width: 1177px;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(193, 0, 162, 0.71) 0%,
+    rgba(143, 0, 183, 0) 100%
+  );
+  top: -400px;
+  left: -450px;
+}
+
+.JesusImg span {
+  position: absolute;
+  inset: 0;
+  transition: 0.5s;
+  background: url("../../Assets/Group\ 13062.jpg");
+  background-size: cover;
+}
+
+.JesusImg span:nth-child(1) {
+  clip-path: polygon(48.5% 0, 48.5% 48.5%, 0 48.5%, 0 0);
+}
+.JesusImg span:nth-child(2) {
+  clip-path: polygon(100% 0, 100% 48.5%, 51.5% 48.5%, 51.5% 0);
+}
+.JesusImg span:nth-child(3) {
+  clip-path: polygon(48.5% 51.5%, 48.5% 100%, 0 100%, 0 51.5%);
+}
+.JesusImg span:nth-child(4) {
+  clip-path: polygon(100% 51.5%, 100% 100%, 51.5% 100%, 51.5% 51.5%);
+}
+
+.JesusContent {
+  align-items: start;
+}
+
+.Jesus_heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: Averia Serif Libre;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.Jesus_heading span {
+  background: linear-gradient(90.58deg, #c100a2 42.76%, #9700c1 75.78%),
+    linear-gradient(0deg, #ffffff, #ffffff);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: Averia Serif Libre;
+}
+
+.Jesus_paragraph {
+  color: #a3a6b7;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.Jesus_Button {
+  background: linear-gradient(108.95deg, #c100a2 5.78%, #9700c1 82.65%);
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  border: none;
+  width: 160px;
+  height: 48px;
+  margin-left: -0.0625px;
+  margin-top: 10px;
+}
+
+.Jesus_div2 {
+  display: none;
+}
+
+@media screen and (max-width: 1190px) {
+  .JesusImg {
+    position: relative;
+    height: 445px;
+    width: 445px;
+  }
+  .Jesus_heading {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+}
+@media screen and (max-width: 1190px) {
+  .JesusImg {
+    position: relative;
+    height: 435px;
+    width: 435px;
+  }
+  .Jesus_heading {
+    font-size: 2.3rem;
+    font-weight: 700;
+  }
+}
+
+@media screen and (max-width: 1060px) {
+  .JesusImg {
+    height: 430px;
+    width: 430px;
+  }
+  .Jesus_heading {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .Jesus_paragraph {
+    font-size: 0.9rem;
+  }
+
+  .Jesus_grdient {
+    height: 900px;
+    width: 900px;
+    top: -250px;
+    left: -300px;
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  .JesusImg {
+    height: 410px;
+    width: 410px;
+  }
+  .Jesus_heading {
+    font-size: 2.3rem;
+    font-weight: 700;
+  }
+  .Jesus_heading {
+    font-size: 1.9rem;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .JesusImg {
+    height: 380px;
+    width: 380px;
+  }
+  .Jesus_heading {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .JesusAbout_div {
+    margin: 50px 0;
+    padding-bottom: 0;
+    flex-direction: column-reverse;
+    width: 100%;
+    text-align: center;
+  }
+  .Jesus_div1 {
+    display: none;
+  }
+  .Jesus_div2 {
+    display: flex;
+    padding-top: 1.25rem;
+  }
+  .JesusImg {
+    height: 450px;
+    width: 450px;
+  }
+  .Jesus_heading {
+    font-size: 2.6rem;
+  }
+  .Jesus_paragraph {
+    font-size: 1.4rem;
+  }
+  .Jesus_grdient {
+    height: 800px;
+    width: 800px;
+    top: -180px;
+    left: -200px;
+  }
+  .Jesus_Button {
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .JesusAbout {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+  .JesusImg {
+    width: 450px;
+    height: 450px;
+    margin-top: 1.8rem;
+  }
+  .JesusImgdiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .JesusImg span:nth-child(1) {
+    clip-path: polygon(49% 0, 49% 49%, 0 49%, 0 0);
+  }
+  .JesusImg span:nth-child(2) {
+    clip-path: polygon(100% 0, 100% 49%, 51% 49%, 51% 0);
+  }
+  .JesusImg span:nth-child(3) {
+    clip-path: polygon(49% 51%, 49% 100%, 0 100%, 0 51%);
+  }
+  .JesusImg span:nth-child(4) {
+    clip-path: polygon(100% 51%, 100% 100%, 51% 100%, 51% 51%);
+  }
+  .Jesus_div1 {
+    display: none;
+  }
+  .Jesus_div2 {
+    display: flex;
+    padding: 0;
+  }
+  .Jesus_heading {
+    font-size: 2.3rem;
+  }
+  .Jesus_paragraph {
+    font-size: 1rem !important;
+  }
+  .Jesus_grdient {
+    height: 800px;
+    width: 800px;
+    top: -170px;
+    left: -20px;
+  }
+  .Jesus_Button {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 706px) {
+  .JesusImg {
+    width: 347px;
+    height: 360px;
+    margin-top: 1.8rem;
+  }
+  .Jesus_paragraph {
+    font-size: 0.8rem;
+  }
+  .Jesus_grdient {
+    height: 563px;
+    width: 563px;
+    top: -80px;
+    left: 60px;
+  }
+  .Jesus_Button {
+    width: 144px;
+    height: 40px;
+    margin: 0;
+  }
+  .JesusImgdiv {
+    margin-bottom: 16px !important;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .Jesus_grdient {
+    height: 500px;
+    width: 500px;
+    top: -39px;
+    left: 60px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .Jesus_grdient {
+    height: 500px;
+    width: 500px;
+    top: -39px;
+    left: 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Jesus_grdient {
+    height: 500px;
+    width: 500px;
+    top: -39px;
+    left: -20px;
+  }
+  .Jesus_heading {
+    font-size: 2.1rem;
+  }
+  .Jesus_paragraph {
+    font-size: 0.8rem !important;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Jesus_heading {
+    font-size: 24px;
+  }
+  .Jesus_paragraph {
+    font-size: 0.8rem !important;
+  }
+  .Jesus_grdient {
+    height: 500px;
+    width: 500px;
+    top: -39px;
+    left: -70px;
+  }
+}
+
+/* 568 */
