@@ -1,7 +1,7 @@
 
 
 
-export const API_URL = "http://localhost:5000";
+export const API_URL = "http://ec2-65-2-141-244.ap-south-1.compute.amazonaws.com:5000";
 
 
 // export const STRIPE_PUBLIC_KEY =
