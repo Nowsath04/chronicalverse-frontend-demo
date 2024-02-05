@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-const OtherFollowingCard = ({data,setUpadte}) => {
+const OtherFollowingCard = ({ data, setUpadte }) => {
     const [logedUser, setLogedUser] = useState(false)
     const { user } = useSelector((selector) => selector.auth);
     const [following, setFollowing] = useState(false)
@@ -47,8 +47,8 @@ const OtherFollowingCard = ({data,setUpadte}) => {
     }
 
 
-       // handle following
-       const handleFollowing = async () => {
+    // handle following
+    const handleFollowing = async () => {
         const data1 = {
             follower: user._id,
             following: data._id
@@ -65,23 +65,23 @@ const OtherFollowingCard = ({data,setUpadte}) => {
     useEffect(() => {
         getFollowers()
     }, [user, data])
-  return (
-    <div className="followers_card">
-    <div className="followers_card_left">
-        <img src={data.imgpath} alt="" />
-        <BsFillCheckCircleFill className="followers_check_icon" />
-        <div>
-            <Link to={logedUser ? "/profile/onsale" : `/otherprofile/onsale/${data.userid}`}>{data.name}</Link>
-            <p>{data.followers.length}</p>
+    return (
+        <div className="followers_card">
+            <div className="followers_card_left">
+                <img src={data.imgpath} alt="" />
+                <BsFillCheckCircleFill className="followers_check_icon" />
+                <div>
+                    <Link to={logedUser ? "/profile/onsale" : `/otherprofile/onsale/${data.userid}`}>{data.name}</Link>
+                    <p>{data.followers.length}</p>
+                </div>
+            </div>
+            <div className="followers_card_right">
+                {
+                    !user ? "" : logedUser ? "" : following ? <button onClick={handleUnFollowing}>unfollow</button> : <button onClick={handleFollowing}>follow</button>
+                }
+            </div>
         </div>
-    </div>
-    <div className="followers_card_right">
-        {
-            logedUser ? "" :following? <button onClick={handleUnFollowing}>unfollow</button>: <button onClick={handleFollowing}>follow</button>
-        }
-    </div>
-</div>
-  )
+    )
 }
 
 export default OtherFollowingCard

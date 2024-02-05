@@ -45,6 +45,7 @@ import OthersLikes from "./Pages/otherProfile/Otherslikes/OthersLikes";
 import OthersProfile from "./Pages/otherProfile/OthersProfile";
 import WhitlistCheck from "./components/whiteUserCheck/WhitlistCheck";
 import PrivateRouter from "./components/privateRouter/PrivateRouter";
+import HotCollectionPage from "./Pages/hotCollectionPage/HotCollectionPage";
 
 function App() {
   useEffect(() => {
@@ -88,14 +89,7 @@ function App() {
               </Layout>
             }
           />
-          <Route
-            path="/dashboard"
-            element={
-              <Layout>
-                <DashBoard />
-              </Layout>
-            }
-          />
+      
           <Route
             path="/createsinglecollection"
             element={
@@ -194,6 +188,15 @@ function App() {
             element={
               <Layout>
                 <Aboutus />
+              </Layout>
+            }
+          />
+
+          <Route
+            path="/hotcollection/:id"
+            element={
+              <Layout>
+                <HotCollectionPage />
               </Layout>
             }
           />

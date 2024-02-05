@@ -195,6 +195,7 @@
   font-size: 14px;
   width: 480px;
   margin-bottom: 100px;
+  overflow-wrap: break-word;
 }
 .profile_nav {
   padding-bottom: 27px;

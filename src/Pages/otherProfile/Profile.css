@@ -116,6 +116,7 @@
 }
 
 .profile_link_content > img {
+  cursor: pointer;
   position: absolute;
   right: 20px;
 }

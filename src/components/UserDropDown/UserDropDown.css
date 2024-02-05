@@ -9,7 +9,6 @@
   z-index: 2;
   box-shadow: 2px 2px 25px 0px #00000033;
   color: white;
-  height: 520px;
   width: 350px;
   border: 1px solid rgba(193, 0, 162, 1);
   background: linear-gradient(
@@ -61,7 +60,6 @@
 .UserDropDown_Box {
   background: rgba(0, 0, 0, 0.32);
   width: 293px;
-  height: 150px;
 }
 
 .UserDropDown_Box_Content_div {

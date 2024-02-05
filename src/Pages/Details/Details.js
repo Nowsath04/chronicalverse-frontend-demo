@@ -1,33 +1,35 @@
+import { useNavigate } from "react-router-dom";
 import coin from "../../Assets/coin.png";
 import data_collection from "../../Assets/data-collection.png";
 import paint_palette from "../../Assets/Group 13063.png";
 import task_list from "../../Assets/Vector (1).png";
 import "./Details.css";
+import { useEffect } from "react";
 
 const cardDetails = [
   {
     title: "Best collection",
     img: data_collection,
     description:
-      "Art does not exist only to entertain, but also to challenge one to think",
+      "Curating the finest NFT collection for ultimate digital art enthusiasts.",
   },
   {
     title: "List of theme",
     img: task_list,
     description:
-      "Art does not exist only to entertain, but also to challenge one to think",
+      "Exceptional NFTs by great artists define a new era in creativity.",
   },
   {
     title: "Great artists",
     img: paint_palette,
     description:
-      "Art does not exist only to entertain, but also to challenge one to think",
+      "Diverse NFT themes to captivate collectors with unique artistic expressions.",
   },
   {
     title: "Coin exchange",
     img: coin,
     description:
-      "Art does not exist only to entertain, but also to challenge one to think",
+      "Trade art seamlessly with our cutting-edge NFT coin exchange platform.",
   },
 ];
 
@@ -48,6 +50,14 @@ function DetailsCard({ card }) {
 }
 
 export default function Details() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const handleClick = () => {
+    navigate("/searchallcard")
+  }
+  
   return (
     <>
       <div className="About2">
@@ -59,11 +69,11 @@ export default function Details() {
               <span>NFTs</span> for you
             </div>
             <p className="About2_paragraph">
-              Lorem ipsum dolor sit amet consectetur. Viverra sagittis dignissim
-              amet cursus urna vitae et. Amet aliquet volutpat ac at nunc.
+              Explore greatness in every pixel with our meticulously crafted NFTs.
+              Join us in redefining digital art as we bring you a collection designed exclusively for your appreciation.
             </p>
             <div className="Jesus_div1_details">
-              <button className="Jesus_Button">See more</button>
+              <button className="Jesus_Button" onClick={handleClick}>See more</button>
             </div>
           </div>
           <div className="About2_Box">
@@ -76,7 +86,7 @@ export default function Details() {
             })}
           </div>
           <div className="Jesus_div2_details">
-            <button className="Jesus_Button">See more</button>
+            <button className="Jesus_Button" onClick={handleClick}>See more</button>
           </div>
         </div>
       </div>

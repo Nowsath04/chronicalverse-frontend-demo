@@ -15,20 +15,31 @@ const Following = () => {
       setFollowingData(data.following)
     } catch (error) {
       console.log(error);
+      setFollowingData([])
     }
   }
 
   useEffect(() => {
     getFollowing()
   }, [user,update])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  console.log("followingData",followingData.length);
   return (
     <div className='following'>
       {
-        followingData.map((data, index) => {
+       followingData.map((data, index) => {
           return (
             <FollowersCards key={index} data={data} user={user} setUpadte={setUpadte}/>
           )
         })
+       
+      }
+      {
+        followingData.length ==0? <div >
+          You're not following any users.
+        </div>:""
       }
     </div>
   )

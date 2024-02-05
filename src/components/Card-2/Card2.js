@@ -11,7 +11,7 @@ export default function Card2({ item }) {
           </div>
           <div className="topnftcard_content2">
             <div>
-              <h3>{item.leftText1}</h3>
+              <h3>{item.nft_name}</h3>
             </div>
             <div
               style={{
@@ -21,10 +21,6 @@ export default function Card2({ item }) {
                 gap: "5px",
               }}
             >
-              <span className="cardheart_gredient_span">
-                <AiFillHeart className="cardheart_gredient" />
-              </span>
-              {item.rightText1}
             </div>
           </div>
           <p className="topnftcard_content2_P">{item.description}</p>

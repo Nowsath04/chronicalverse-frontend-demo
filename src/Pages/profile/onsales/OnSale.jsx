@@ -158,22 +158,29 @@ const [saleNft,setSaleNft]=useState([])
       getAllOnSaleData()
     }
   },[user])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="OnSale">
-        {saleNft.map((data, index) => {
+        {saleNft.length !==0?saleNft.map((data, index) => {
           return <ProfileCard data={data} />;
-        })}
+        }):<div>
+          No NFT in Onsale
+        </div>}
       </div>
       <div className="onsale_responsive">
         <Slider ref={slider}  {...settings}>
-          {saleNft.map((data, index) => {
+          {saleNft.length !==0?saleNft.map((data, index) => {
             return (
               <React.Fragment key={index}>
                 <ProfileCard  data={data} />
               </React.Fragment>
             );
-          })}
+          }):<div>
+            No NFT in Onsale
+          </div>}
         </Slider>
       </div>
     </>

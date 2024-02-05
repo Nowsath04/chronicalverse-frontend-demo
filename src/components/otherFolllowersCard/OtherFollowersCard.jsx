@@ -77,7 +77,7 @@ const OtherFollowersCard = ({ data,setUpadte }) => {
             </div>
             <div className="followers_card_right">
                 {
-                    logedUser ? "" :following? <button onClick={handleUnFollowing}>unfollow</button>: <button onClick={handleFollowing}>follow</button>
+                   !user?"": logedUser ? "" :following? <button onClick={handleUnFollowing}>unfollow</button>: <button onClick={handleFollowing}>follow</button>
                 }
             </div>
         </div>

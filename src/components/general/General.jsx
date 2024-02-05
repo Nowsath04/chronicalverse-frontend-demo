@@ -48,56 +48,11 @@ const General = () => {
           style={{ display: show1 ? "flex" : "none" }}
         >
           <p>
-            Lorem ipsum dolor sit amet consectetur. Nunc felis sagittis blandit
-            urna sit hac eu ultricies ut. In tortor quis ultrices euismod vel
-            imperdiet vitae duis lacus. Et aliquam quam massa ultrices quam
-            aliquet mauris faucibus nec. Elit posuere augue sit molestie urna
-            semper. Maecenas tempus eget aliquam consequat congue rhoncus
-            fringilla. Lorem venenatis nec aliquam gravida. Interdum nulla nibh
-            id elit adipiscing montes ut sagittis.
+          Select the 'Connect Wallet' option, then link your Metamask wallet to yours. 
+          If you're not a Metamask user, you can easily create a wallet within Metamask.
           </p>
-          <div>
-            <button>Learn more</button>
-          </div>
         </div>
         <div className="helpsupport_div"></div>
-      </div>
-      <div className="general1">
-        <div className="general_div">
-          <p>How this is works</p>
-          {show2 ? (
-            <img
-              src={arrow}
-              alt=""
-              onClick={buttton2}
-              className="active_arrow"
-            />
-          ) : (
-            <img
-              src={dropdown_icon_btn}
-              alt=""
-              onClick={buttton2}
-              className="active_arrow2"
-            />
-          )}
-        </div>
-        <div
-          className="general_hidden_div"
-          style={{ display: show2 ? "flex" : "none" }}
-        >
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Nunc felis sagittis blandit
-            urna sit hac eu ultricies ut. In tortor quis ultrices euismod vel
-            imperdiet vitae duis lacus. Et aliquam quam massa ultrices quam
-            aliquet mauris faucibus nec. Elit posuere augue sit molestie urna
-            semper. Maecenas tempus eget aliquam consequat congue rhoncus
-            fringilla. Lorem venenatis nec aliquam gravida. Interdum nulla nibh
-            id elit adipiscing montes ut sagittis.
-          </p>
-          <div>
-            <button>Learn more</button>
-          </div>
-        </div>
       </div>
       <div className="general3">
         <div className="general_div">
@@ -123,17 +78,9 @@ const General = () => {
           style={{ display: show3 ? "flex" : "none" }}
         >
           <p>
-            Lorem ipsum dolor sit amet consectetur. Nunc felis sagittis blandit
-            urna sit hac eu ultricies ut. In tortor quis ultrices euismod vel
-            imperdiet vitae duis lacus. Et aliquam quam massa ultrices quam
-            aliquet mauris faucibus nec. Elit posuere augue sit molestie urna
-            semper. Maecenas tempus eget aliquam consequat congue rhoncus
-            fringilla. Lorem venenatis nec aliquam gravida. Interdum nulla nibh
-            id elit adipiscing montes ut sagittis.
+          If you can create an NFT, you must be a whitelisted user. If you become a whitelisted user,
+           kindly fill out the 'Contact Us' form, and then you can create NFTs.
           </p>
-          <div>
-            <button>Learn more</button>
-          </div>
         </div>
       </div>
     </div>

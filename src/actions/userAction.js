@@ -42,6 +42,7 @@ export const logoutUser = async (dispatch) => {
 
     await axios.get(`${API_URL}/logout`, { withCredentials: true })
     dispatch(logoutSuccess())
+    window.location.href = "/";
   } catch (error) {
     dispatch(logoutError(error))
   }

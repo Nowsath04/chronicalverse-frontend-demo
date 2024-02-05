@@ -11,10 +11,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const OthersOnSale = ({ otherUser }) => {
-  console.log(otherUser);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
   const slider = useRef(null);
   const { user } = useSelector((selector) => selector.auth);
   const { id } = useParams()
+  console.log(id);
   const [saleNft, setSaleNft] = useState([])
   const settings = {
     dots: false,
@@ -152,15 +155,15 @@ const OthersOnSale = ({ otherUser }) => {
 
   const getAllOnSaleData = async () => {
     const { data } = await axios.get(`${API_URL}/user-salenft/${id}`)
-    console.log(data.getnft);
     setSaleNft(data.getnft)
   }
-
   useEffect(() => {
-    if (user) {
+    if(id){
       getAllOnSaleData()
     }
-  }, [user])
+  }, [user, id])
+
+ 
   return (
     <>
       <div className="OnSale">

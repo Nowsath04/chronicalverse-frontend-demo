@@ -29,6 +29,7 @@ p {
   font-weight: 500;
 }
 
+
 .itemdetails_des_heading {
   font-size: 16px;
   margin-bottom: 16px;
@@ -125,7 +126,7 @@ p {
 }
 
 .itemdetails_card_left_btn > div > button {
-  background-color: #070d24;
+  background: linear-gradient(93.92deg, #c100a2 0%, #9700c1 100%);    
   outline: none;
   border: transparent;
   border-radius: 4px;
@@ -150,6 +151,11 @@ p {
   -webkit-text-fill-color: transparent;
 }
 
+.color{
+  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .itemdetails_card_left_fee > p {
   font-size: 14px;
 }
@@ -233,12 +239,13 @@ p {
   padding-left: 30px;
 }
 
-.itemdetails_link > a {
+.itemdetails_link > div {
   color: white;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 27px;
+  cursor: pointer;
 }
 
 .itemdetails_bottom {
@@ -305,12 +312,9 @@ p {
 
 .item_detail_popup > div > p {
   font-size: 14px;
+  color: white;
 }
-.item_detail_popup > div > p:hover {
-  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
 .arrow {
   position: absolute;
   right: -15px;
@@ -322,7 +326,7 @@ p {
 }
 
 .last {
-  z-index: 9;
+  z-index: 2;
 }
 
 /* item_detail_popup_detail */
@@ -693,4 +697,9 @@ p {
     border-radius: 4px;
     z-index: 1;
   }
+}
+
+.heart_icon{
+  color: #9700c1 !important;
+  font-size: 24px;
 }

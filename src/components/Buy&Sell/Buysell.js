@@ -2,29 +2,33 @@ import "./BuySell.css";
 import blockchain from "../../Assets/blockchain (2).png";
 import wallet from "../../Assets/wallet.png";
 import cart from "../../Assets/cart.png";
+import { useEffect } from "react";
 
 const cardDetails = [
   {
     title: "Connect wallet",
     img: wallet,
     description:
-      "Lorem ipsum dolor sit amet consectetur. Nam consequat egestas tortor laoreet. Non scelerisque proin id hendrerit libero dolor id. Amet pellentesque congue volutpat sociis.",
+      "Securely link your digital wallet and unlock seamless NFT transactions.",
   },
   {
     title: "Add your NFTs",
     img: cart,
     description:
-      "Lorem ipsum dolor sit amet consectetur. Nam consequat egestas tortor laoreet. Non scelerisque proin id hendrerit libero dolor id. Amet pellentesque congue volutpat sociis.",
+      "Showcase your digital masterpieces by effortlessly adding them to our platform.",
   },
   {
     title: "List them for sale",
     img: blockchain,
     description:
-      "Lorem ipsum dolor sit amet consectetur. Nam consequat egestas tortor laoreet. Non scelerisque proin id hendrerit libero dolor id. Amet pellentesque congue volutpat sociis.",
+      "Monetize your creativity – easily list your NFTs for sale today.",
   },
 ];
 
 export default function Buysell() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <h1 className="buysell_header">
@@ -61,10 +65,7 @@ export default function Buysell() {
                       <div className="buysell_content">
                         <h2>Connect wallet</h2>
                         <p>
-                          Lorem ipsum dolor sit amet consectetur. Nam consequat
-                          egestas tortor laoreet. Non scelerisque proin id
-                          hendrerit libero dolor id. Amet pellentesque congue
-                          volutpat sociis.
+                        Securely link your digital wallet and unlock seamless NFT transactions.
                         </p>
                       </div>
                     </div>
@@ -79,10 +80,7 @@ export default function Buysell() {
                       <div className="buysell_content">
                         <h2>Add your NFTs</h2>
                         <p>
-                          Lorem ipsum dolor sit amet consectetur. Nam consequat
-                          egestas tortor laoreet. Non scelerisque proin id
-                          hendrerit libero dolor id. Amet pellentesque congue
-                          volutpat sociis.
+                        Showcase your digital masterpieces by effortlessly adding them to our platform.
                         </p>
                       </div>
                     </div>
@@ -97,10 +95,7 @@ export default function Buysell() {
                       <div className="buysell_content">
                         <h2>List them for sale</h2>
                         <p>
-                          Lorem ipsum dolor sit amet consectetur. Nam consequat
-                          egestas tortor laoreet. Non scelerisque proin id
-                          hendrerit libero dolor id. Amet pellentesque congue
-                          volutpat sociis.
+                        Monetize your creativity – easily list your NFTs for sale today.
                         </p>
                       </div>
                     </div>

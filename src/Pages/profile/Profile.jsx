@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Profile.css";
-import profilebanner from "../../asserts/images/profileBanner.png";
+import profilebanner from "../../asserts/images/profile-back.jpg";
 import profile_pic from "../../asserts/images/propile_pic.png";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import copy from "../../asserts/images/copy (2) 1.png";
@@ -11,13 +11,14 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { API_URL } from "../../constants/userConstants";
 import { LoadingUser } from "../../actions/userAction";
+import { toast } from "react-toastify";
 
 const Profile = () => {
+
   const { user } = useSelector((selector) => selector.auth);
-  const dispatch = useDispatch()
   const [image, setImage] = useState("");
   const [bannerImg, setBannerImg] = useState(null);
-
+  const [userProfile, setUserProfile] = useState([])
   //get userimge from input
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -45,17 +46,37 @@ const Profile = () => {
   // request for ipfs
 
   // rendering for user
-  useEffect(() => {
-    if (user) {
-      setBannerImg(user.coverimg);
+
+
+  const getProfile = async () => {
+    try {
+      const { data } = await axios.get(`${API_URL}/myprofile`, { withCredentials: true })
+      setUserProfile(data.user)
+      setBannerImg(data.user.coverimg)
+    } catch (error) {
+      console.log(error);
     }
-  }, [user]);
+  }
+
   useEffect(() => {
-    dispatch(LoadingUser);
-  },[]);
+    getProfile()
+  }, [])
 
-  console.log(user);
+  useEffect(() => {
 
+  }, []);
+  const userProfileCopy = () => {
+    var currentUrl = `http://ec2-65-2-141-244.ap-south-1.compute.amazonaws.com/otherprofile/onsale/${user.userid}`;
+    navigator.clipboard.writeText(currentUrl)
+    toast.success('User URL copied');
+  }
+
+
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(user?.userid)
+    toast.success('wallet Address copied');
+
+  };
   return (
     <div className="profile">
       <div className="profile_section">
@@ -64,7 +85,7 @@ const Profile = () => {
           <img src={bannerImg ? bannerImg : profilebanner} alt="banner_img" />
         </div>
         <div className="profile_pic">
-          <img src={user ? user.imgpath : profile_pic} alt="" />
+          <img src={userProfile ? userProfile.imgpath : profile_pic} alt="" />
           <div className="profile_pic_link">
             <Link to={"/editprofile"}>Edit profile</Link>
             <label for="file" className="edit_cover_button">
@@ -74,44 +95,33 @@ const Profile = () => {
           </div>
         </div>
         <div className="profile_container">
-          <h3>{user ? user.name : "Name"}</h3>
+          <h3>{userProfile ? userProfile.name : "Name"}</h3>
           <div className="profile_link">
             <div className="profile_link_left">
               <div className="profile_link_content">
-                <div>0GFHRYTIU77XJXZNXCJHSJH......TEY647UHFG</div>
-                <img src={copy} alt="" />
+                <div>{`${user?.userid?.substring(0, 28)}...${user?.userid?.substring(32)}`}</div>
+                <img src={copy} alt="" onClick={handleCopyClick} />
               </div>
             </div>
             <div className="profile_link_right">
               <div className="profile_share">
-                <button>
+                <button onClick={userProfileCopy}>
                   <img src={share} alt="" />
                 </button>
               </div>
-              <div className="profile_more">
-                <button>
-                  <img src={dots} alt="" />
-                </button>
-              </div>
+
             </div>
           </div>
           <div className="profile_dec">
-            {user
-              ? user.bio
-              : ` Lorem ipsum dolor sit amet consectetur. Donec ac natoque ac non
-            velit. Sed egestas consequat volutpat ac rutrum duis. Euismod massa
-            donec dignissim vitae mauris etiam tellus.`}
+            {userProfile
+              ? userProfile.bio
+              : ""}
           </div>
           <div className="profile_link_right_responsive">
             <button className="follow_btn">Follow</button>
             <div className="profile_share">
               <button>
                 <img src={share} alt="" />
-              </button>
-            </div>
-            <div className="profile_more">
-              <button>
-                <img src={dots} alt="" />
               </button>
             </div>
           </div>

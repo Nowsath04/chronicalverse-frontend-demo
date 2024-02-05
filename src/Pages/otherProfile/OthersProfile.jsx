@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 const OthersProfile = () => {
 
   const { id } = useParams()
+  const [sameProfile, setSameProfile] = useState(false)
   const [image, setImage] = useState("");
   const [bannerImg, setBannerImg] = useState(null);
   const [otherUser, setOtherUser] = useState([])
@@ -52,13 +53,16 @@ const OthersProfile = () => {
 
 
   const getUserData = async () => {
- try {
-  const { data } = await axios.get(`${API_URL}/oneuser/${id}`)
-  console.log(data);
-  setOtherUser(data.user)
- } catch (error) {
-  console.log(error);
- }
+    try {
+      const { data } = await axios.get(`${API_URL}/oneuser/${id}`)
+      console.log(data);
+      if (user?._id === data.user?._id) {
+        setSameProfile(true)
+      }
+      setOtherUser(data.user)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -94,7 +98,7 @@ const OthersProfile = () => {
         if (data._id == otherUser?._id) {
           console.log("yes");
           setAllreadyFollow(true)
-        } 
+        }
       })
 
     } catch (error) {
@@ -104,7 +108,7 @@ const OthersProfile = () => {
 
   // unfollow 
 
-  const handleUnFollowing = async() => {
+  const handleUnFollowing = async () => {
     const data2 = {
       userid: user._id,
       unfollowerid: otherUser._id
@@ -118,6 +122,17 @@ const OthersProfile = () => {
       console.log(error);
     }
   }
+  const userProfileCopy = () => {
+    var currentUrl = window.location.href;
+    navigator.clipboard.writeText(currentUrl)
+    toast.success('User URL copied');
+  }
+
+
+  const handleCopyClick =() => {
+      navigator.clipboard.writeText(otherUser?.userid);
+      toast.success('wallet Address copied');
+  };
   return (
     <div className="profile">
       <div className="profile_section">
@@ -135,23 +150,18 @@ const OthersProfile = () => {
           <div className="profile_link">
             <div className="profile_link_left">
               <div className="profile_link_content">
-                <div>0GFHRYTIU77XJXZNXCJHSJH......TEY647UHFG</div>
-                <img src={copy} alt="" />
+                <div>{`${otherUser?.userid?.substring(0, 28)}...${otherUser?.userid?.substring(32)}`}</div>
+                <img src={copy} alt="" onClick={handleCopyClick} />
               </div>
             </div>
             <div className="profile_link_right">
-              {allreadyFollow ? <button className="follow_btn" onClick={handleUnFollowing}>unFollow</button> :
+              {(!user || sameProfile) ? "" : allreadyFollow ? <button className="follow_btn" onClick={handleUnFollowing}>unFollow</button> :
                 <button className="follow_btn" onClick={handleFollowing}>Follow</button>}
 
 
               <div className="profile_share">
-                <button>
+                <button onClick={userProfileCopy}>
                   <img src={share} alt="" />
-                </button>
-              </div>
-              <div className="profile_more">
-                <button>
-                  <img src={dots} alt="" />
                 </button>
               </div>
             </div>
@@ -166,11 +176,6 @@ const OthersProfile = () => {
             <div className="profile_share">
               <button>
                 <img src={share} alt="" />
-              </button>
-            </div>
-            <div className="profile_more">
-              <button>
-                <img src={dots} alt="" />
               </button>
             </div>
           </div>

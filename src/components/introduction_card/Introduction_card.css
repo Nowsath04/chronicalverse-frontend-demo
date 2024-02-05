@@ -82,7 +82,11 @@ p {
   font-size: 10px;
 }
 
-.introduction_card > button {
+.introduction_card > a {
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
   margin-top: 4px;
   width: 197px;
   height: 38.28px;

@@ -1,25 +1,22 @@
 import React from "react";
 import heart from "../../asserts/images/heart.png";
 import "./Introduction_card.css";
-const introduction_cardcard = ({ data }) => {
+import { Link } from "react-router-dom";
+const introduction_cardcard = ({ data,usd }) => {
   return (
     <div className="introduction_card">
-      <img src={data.img} alt="" />
+      <img src={data?.image} alt="" />
       <div className="introduction_card_name">
-        <p>Metaverse man</p>
-        <div>
-          <img src={heart} alt="" />
-          <p>{data.likes}</p>
-        </div>
+        <p>`${data?.nft_name.substring(0, 30)}...`</p>
       </div>
       <div className="introduction_card_bid">
         <p>Current bid</p>
-        <div>{data.price}</div>
+        <div>{data?.amount}</div>
       </div>
       <div className="introduction_card_bid_dollor">
-        <p>{data.price_USD}</p>
+        <p>{`$ ${data?.amount* usd}`}</p>
       </div>
-      <button>Place bid</button>
+      <Link to={"/searchallcard"}>View more</Link>
     </div>
   );
 };

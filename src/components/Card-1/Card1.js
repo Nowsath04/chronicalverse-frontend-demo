@@ -3,6 +3,7 @@ import "./Card1.css";
 import { BsCheckCircleFill } from "react-icons/bs";
 
 export default function Card1({ item }) {
+  console.log(item);
   return (
     <div className="Card1">
       <div className="topnft_card_div">
@@ -16,9 +17,9 @@ export default function Card1({ item }) {
           </div>
           <div className="topnftcard_content">
             <h3>{item.name}</h3>
-            <p>{`${item.bio.substring(0,50)}...`}</p>
+            <p>{`${item.bio.substring(0,36)}...`}</p>
             <div className="topnftcard_button">
-              <Link to={`/otherprofile/onsale/${item.userid}`}>Follows</Link>
+              <Link to={`/otherprofile/onsale/${item.userid}`}>View Profile</Link>
             </div>
           </div>
         </div>

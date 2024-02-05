@@ -158,6 +158,9 @@ const OthersCreated = () => {
   useEffect(() => {
     getUserAllNft()
   },[])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
     <div className="OnSale">

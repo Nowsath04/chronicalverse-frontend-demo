@@ -57,18 +57,7 @@ const Support = () => {
                 <BsFillPersonFill className={general ? "icon_color" : ""} />
                 <p className={general ? "icon_active" : ""}>General</p>
               </div>
-              <div className="icon" onClick={supportdiv}>
-                <BiSolidMessage className={support ? "icon_color" : ""} />
-                <p className={support ? "icon_active" : ""}>Support</p>
-              </div>
-              <div className="icon" onClick={hostingdiv}>
-                <IoMdCloudUpload className={hosting ? "icon_color" : ""} />
-                <p className={hosting ? "icon_active" : ""}>Hosting</p>
-              </div>
-              <div className="icon" onClick={productdiv}>
-                <FaProductHunt className={product ? "icon_color" : ""} />
-                <p className={product ? "icon_active" : ""}>Product</p>
-              </div>
+
             </div>
           </div>
           <div className="support_bottom_right">
@@ -78,24 +67,7 @@ const Support = () => {
             >
               <General />
             </div>
-            <div
-              className="Support"
-              style={{ display: support ? "flex" : "none" }}
-            >
-              Support
-            </div>
-            <div
-              className="Hosting"
-              style={{ display: hosting ? "flex" : "none" }}
-            >
-              Hosting
-            </div>
-            <div
-              className="Product"
-              style={{ display: product ? "flex" : "none" }}
-            >
-              Product
-            </div>
+
           </div>
         </div>
       </div>

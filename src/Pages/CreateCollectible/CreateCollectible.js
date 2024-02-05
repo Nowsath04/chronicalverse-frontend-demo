@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./createCollectible.css";
 import arrow from "../../Assets/arrow-left (1) 1.png";
 import image1 from "../../Assets/Group 295.png";
@@ -8,12 +8,18 @@ import mobilebackarrow from "../../Assets/mobileBackarrow.png";
 import { AiOutlineLeft } from "react-icons/ai";
 
 const CreateCollectible = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const goBack = () => {
+    window.history.back();
+  };
   return (
     <div className="create_collectible">
       <div className="create_collectible_container">
         <div className="create_collectible_top">
-          <img src={arrow} className="backarrow" />
-          <AiOutlineLeft className="createcollection_mobilebackarrow" />
+          <img src={arrow} className="backarrow" alt="" onClick={goBack} />
+          {/* <AiOutlineLeft className="createcollection_mobilebackarrow" onClick={goBack}  /> */}
           <h3>Create collection</h3>
           <p>
             Choose “Single” if you want your collectible to be one of a kind or
@@ -30,14 +36,7 @@ const CreateCollectible = () => {
                 </div>
               </div>
             </div>
-            <div>
-              <div className="create_collectible_right_box">
-                <img src={image1} alt="" />
-                <div>
-                  <Link>multi Collectible</Link>
-                </div>
-              </div>
-            </div>
+          
           </div>
         </div>
         <div className="create_collectible_footer">

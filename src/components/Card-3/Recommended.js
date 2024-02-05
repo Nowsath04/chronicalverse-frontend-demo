@@ -1,12 +1,18 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { PiArrowCircleLeftBold, PiArrowCircleRightBold } from "react-icons/pi";
 import Card3 from "./Card3";
 import { cardDetails3 } from "./data3";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import Allcardfunction from "../AllCardCollection/Allcardfunction";
 
 export default function Recommended() {
+  const { user } = useSelector((selector) => selector.auth);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const slider = useRef(null);
-
+  const [usd, setUsd] = useState("")
+  const [recommentedNft, setRecommentedNft] = useState([])
   const settings = {
     dots: false,
     infinite: true,
@@ -144,38 +150,99 @@ export default function Recommended() {
       },
     ],
   };
+
+  const getRecomended = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:5000/user-recommended/${user?.userid}`)
+      setRecommentedNft(data.finaldata)
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+
+    getRecomended()
+
+  }, [user])
+  const getUsd = async () => {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd');
+      const data = await response.json();
+
+      const maticToUSDExchangeRate = data['matic-network'].usd;
+      setUsd(maticToUSDExchangeRate)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getUsd()
+  }, [])
+  console.log("usd", usd);
+
+  const updateWindowDimensions = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    // Add event listener for window resize
+    window.addEventListener('resize', updateWindowDimensions);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', updateWindowDimensions);
+    };
+  }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
-      <div className="TopNft_header_Div2">
-        <div className="TopNft_header_content">
-          <h1 className="TopNft_header2">Recommended</h1>
-          <div className="cardnftarrowbutton">
-            <button className="leftarrow">
-              <PiArrowCircleLeftBold
-                className="leftarrowIcon"
-                onClick={() => slider?.current?.slickPrev()}
-              />
-            </button>
-            <button className="rightarrow">
-              <PiArrowCircleRightBold
-                className="rightarrowIcon"
-                onClick={() => slider?.current?.slickNext()}
-              />
-            </button>
+      {
+        recommentedNft.length !== 0 ? <div>
+          <div className="TopNft_header_Div2">
+            <div className="TopNft_header_content">
+              <h1 className="TopNft_header2">Recommended</h1>
+              <div className="cardnftarrowbutton">
+                <button className="leftarrow">
+                  <PiArrowCircleLeftBold
+                    className="leftarrowIcon"
+                    onClick={() => slider?.current?.slickPrev()}
+                  />
+                </button>
+                <button className="rightarrow">
+                  <PiArrowCircleRightBold
+                    className="rightarrowIcon"
+                    onClick={() => slider?.current?.slickNext()}
+                  />
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="card_2box">
-        <Slider ref={slider} {...settings}>
-          {cardDetails3.map((item, index) => {
-            return (
-              <React.Fragment key={index}>
-                <Card3 item={item} />
-              </React.Fragment>
-            );
-          })}
-        </Slider>
-      </div>
+          <div className="card_2box">
+            {
+              (recommentedNft < 4 && windowWidth > 530) ? <div className="artistcard_len">
+                {recommentedNft && recommentedNft.map((item, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <Allcardfunction item={item} usd={usd} />
+                    </React.Fragment>
+                  );
+                })}
+              </div> : <Slider ref={slider} {...settings}>
+                {recommentedNft && recommentedNft.map((item, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <Allcardfunction item={item} usd={usd} />
+                    </React.Fragment>
+                  );
+                })}
+              </Slider>
+            }
+          </div>
+        </div> : ""
+      }
     </>
   );
 }

@@ -175,7 +175,11 @@ p {
   font-size: 10px;
 }
 
-.introduction_card_big > button {
+.introduction_card_big > a {
+  display: flex;
+  align-items: center;
+ justify-content: center;
+  text-decoration: none;
   margin-top: 4px;
   width: 100%;
   height: 48px;
@@ -383,7 +387,8 @@ p {
   width: 75%;
 }
 
-.our_future > button {
+.our_future > a {
+  text-decoration: none;
   width: 126px;
   height: 44px;
   background: linear-gradient(90.16deg, #c100a2 0.06%, #9700c1 99.91%);
@@ -391,6 +396,9 @@ p {
   color: white;
   outline: none;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 1400px) {

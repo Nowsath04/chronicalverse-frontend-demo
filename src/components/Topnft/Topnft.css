@@ -195,3 +195,10 @@
   font-weight: 400;
   padding: 4px 0;
 }
+.artistcard_len{
+  width: 83%;
+  display: flex;
+  margin: 0 auto;
+  gap: 20px;
+justify-content: start;
+}

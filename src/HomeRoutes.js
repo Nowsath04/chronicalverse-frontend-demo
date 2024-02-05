@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import About from "./Pages/About/About";
 import Details from "./Pages/Details/Details";
 import Home from "./Pages/Home/Home";
@@ -13,6 +13,9 @@ import { useSelector } from "react-redux";
 
 function HomeRoutes() {
   const { user } = useSelector((selector) => selector.auth);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div style={{ overflow: "hidden" }}>
       <div>
@@ -33,9 +36,11 @@ function HomeRoutes() {
       <div>
         <CardMain />
       </div>
-      <div>
-        <Recommended />
-      </div>
+    {
+      user?  <div>
+      <Recommended />
+    </div>:""
+    }
       <div>
         <MonalisaPage />
       </div>

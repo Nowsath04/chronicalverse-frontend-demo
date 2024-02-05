@@ -13,21 +13,28 @@
   width: 45%;
   position: relative;
 }
-.HomeDownButton_div{
+
+.HomeDownButton_div {
   display: flex;
   flex-direction: column;
-  
+
 }
-.link{
+
+.link {
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%) !important;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
 }
+
 .Home_heading {
   font-size: 2.5rem;
   font-weight: 700;
   font-family: Averia Serif Libre;
+  width: 423px;
 }
 
 .Home_heading span {
@@ -39,11 +46,13 @@
 }
 
 .Home_paragraph {
+  width: 423px;
   color: #a3a6b7;
   font-size: 14px;
   margin: 10px 0;
-  width: 462px;
+  overflow-wrap: break-word;
 }
+
 .Home_button {
   background: linear-gradient(92.76deg,
       rgba(193, 0, 162, 0.75) 0%,
@@ -160,7 +169,9 @@
   display: block;
   height: calc(100% - calc(1px * 2));
   width: calc(100% - calc(1px * 2));
-  background: rgba(7, 13, 36, 1);
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
   position: absolute;
   top: 1px;
   left: 1px;
@@ -168,11 +179,7 @@
   z-index: -1;
 }
 
-.HomeDownButton:hover:before {
-  background: linear-gradient(92.76deg,
-      rgba(193, 0, 162, 0.75) 0%,
-      rgba(151, 0, 193, 0.75) 75.44%);
-}
+
 
 .Image_Page {
   width: 39%;
@@ -355,12 +362,12 @@
 
 .bar_artist {
   position: relative;
-  left: 15px;
+  left: 5px;
 }
 
 .bar_artwork {
   position: relative;
-  left: 15px;
+  left: -5px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -390,16 +397,6 @@
 
   .Bar_passion {
     font-size: 0.9rem;
-  }
-
-  .bar_artist {
-    position: relative;
-    left: 10px;
-  }
-
-  .bar_artwork {
-    position: relative;
-    left: 10px;
   }
 
   .rounded_div_all {
@@ -459,7 +456,7 @@
     border-radius: 50%;
     height: 400px;
     width: 400px;
-    z-index: -1;
+    z-index: 2;
     position: relative;
   }
 
@@ -495,10 +492,22 @@
     width: 380px;
   }
 
+  .home_left_btn_group {
+    width: 378px !important;
+  }
+
   .spandiv {
     width: 2px;
     height: 94px;
-    margin: 0 45px;
+    margin: 0 35px;
+  }
+
+  .Home_heading {
+    width: 378px !important;
+  }
+
+  .Home_paragraph {
+    width: 378px !important;
   }
 
   .HomeDownButton {
@@ -565,7 +574,7 @@
     border-radius: 50%;
     height: 350px;
     width: 350px;
-    z-index: -1;
+    z-index: 2;
   }
 
   .Home_backroundGrident1 {
@@ -598,26 +607,46 @@
     margin-left: 0;
   }
 
+  .home_left_btn_group {
+    gap: 395px !important;
+    position: relative !important;
+    top: -167px !important;
+  }
+
+  .home_left_btn_group {
+    width: 100% !important;
+    display: flex;
+    margin-top: 20px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px;
+  }
+
   .Home {
     padding: 50px 0;
   }
 
   .Home_heading {
     font-size: 2.6rem;
+    width: 90% !important;
   }
 
   .Home_content {
-    width: 100%;
+    width: 100% !important;
   }
 
   .Home_paragraph {
-    width: 100%;
+    width: 80% !important;
     font-size: 1.4rem;
   }
 
   .responsive_home_content {
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .Image_Page {
@@ -787,6 +816,12 @@
     font-size: 0.8rem;
   }
 
+  .home_left_btn_group {
+    gap: 305px !important;
+    position: relative !important;
+    top: -150px !important;
+  }
+
   .Home_button:hover {
     width: 104px;
     height: 40px;
@@ -882,7 +917,7 @@
   .spandiv {
     width: 2px;
     height: 71px;
-    margin: 0 40px;
+    margin: 0px 25px;
   }
 
   .currentbid_timebox_content {
@@ -935,6 +970,17 @@
 }
 
 @media screen and (max-width: 410px) {
+
+  .home_left_btn_group>button>.icon {
+    font-size: 22px !important;
+  }
+
+  .home_left_btn_group {
+    gap: 300px !important;
+    position: relative !important;
+    top: -150px !important;
+  }
+
   .Home_heading {
     font-size: 24px;
   }
@@ -997,16 +1043,6 @@
     font-size: 14px;
   }
 
-  .bar_artist {
-    position: relative;
-    left: 10px;
-  }
-
-  .bar_artwork {
-    position: relative;
-    left: 10px;
-  }
-
   .Home_backroundGrident1 {
     position: absolute;
     z-index: -1;
@@ -1033,7 +1069,7 @@
 }
 
 
-.home_left_btn_group{
+.home_left_btn_group {
   width: 423px;
   display: flex;
   margin-top: 30px;
@@ -1042,7 +1078,7 @@
   gap: 10px;
 }
 
-.home_left_btn_group >button{
+.home_left_btn_group>button {
   display: flex;
   background-color: transparent;
   border: none;
@@ -1051,10 +1087,12 @@
   padding: 0;
 
 }
-.home_left_btn_group >button >.btn_right{
+
+.home_left_btn_group>button>.btn_right {
   display: flex;
- 
+
 }
-.home_left_btn_group >button >.icon{
+
+.home_left_btn_group>button>.icon {
   font-size: 24px;
 }

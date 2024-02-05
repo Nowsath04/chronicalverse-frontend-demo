@@ -182,7 +182,8 @@
   font-size: 16px;
 }
 
-.popup_button button {
+.popup_button a {
+  text-decoration: none;
   margin-top: 30px;
   width: 100%;
   height: 48px;
@@ -204,7 +205,32 @@
   font-size: 16px;
   align-items: center;
 }
-.popup_button >.btn{
+
+.popup_button button {
+  text-decoration: none;
+  margin-top: 30px;
+  width: 100%;
+  height: 48px;
+  background: transparent;
+  color: white;
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
+  border: 0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+  font-size: 16px;
+  align-items: center;
+}
+
+.popup_button>.btn {
   display: flex;
   justify-content: center;
   margin-top: 30px;
@@ -227,7 +253,8 @@
   text-decoration: none;
   align-items: center;
 }
-.popup_button >.btn::before {
+
+.popup_button>.btn::before {
   content: "";
   display: block;
   height: calc(100% - calc(1px * 2));
@@ -239,6 +266,7 @@
   border-radius: calc(4px - 1px);
   z-index: -1;
 }
+
 .popup_button button::before {
   content: "";
   display: block;
@@ -277,8 +305,10 @@
 }
 
 .Purchase_paragraph {
+  text-align: center;
+  margin-top: 20px;
   color: #b8b8b8;
-  font-size: 12px;
+  font-size: 16px;
   margin-top: 6px;
 }
 
@@ -382,16 +412,17 @@
 .popup_box_div3_heading {
   display: flex;
   gap: 120px;
+  justify-content: center;
   margin-bottom: 8px;
   color: #bdbdbd;
 }
 
 .popup_box_div3_paragraph {
   display: flex;
-  gap: 83px;
+  justify-content: center;
 }
 
-.pop_continue >a{
+.pop_continue>a {
   color: #9700c1;
   text-decoration: none;
 }
@@ -535,9 +566,8 @@
 
 .placebid3_header {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
-  margin-bottom: 38px;
 }
 
 .placebid3_header h2 {
@@ -617,6 +647,7 @@
   opacity: 30%;
   border-radius: 4px;
 }
+
 .placebid3_button_div {
   width: 100%;
   height: 44px;
@@ -630,7 +661,42 @@
   opacity: 30%;
   border-radius: 4px;
 }
+
 .placebid3_button_div_cancel button {
+  width: 100%;
+  height: 44px;
+  background: linear-gradient(92.76deg,
+      rgba(193, 0, 162, 0.75) 0%,
+      rgba(151, 0, 193, 0.75) 75.44%);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 4px;
+  z-index: 1;
+  margin-bottom: 10px;
+}
+
+.placebid3_button_div_cancel button::before {
+  content: "";
+  display: block;
+  height: calc(100% - calc(1px * 2));
+  width: calc(100% - calc(1px * 2));
+  background: rgba(7, 13, 36, 1);
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: calc(4px - 1px);
+  z-index: -1;
+}
+
+.placebid3_button_div_cancel a {
+  text-decoration: none;
   width: 100%;
   height: 44px;
   background: linear-gradient(92.76deg,
@@ -649,7 +715,7 @@
   z-index: 1;
 }
 
-.placebid3_button_div_cancel button::before {
+.placebid3_button_div_cancel a::before {
   content: "";
   display: block;
   height: calc(100% - calc(1px * 2));
@@ -663,6 +729,7 @@
 }
 
 .placebid3_img_div {
+  margin-top: 20px;
   display: flex;
   align-items: center;
   margin-bottom: 16px;
@@ -824,6 +891,22 @@
   justify-content: center;
 }
 
+.putonsale_button_div_Continue a {
+  text-decoration: none;
+  margin-top: 10px;
+  width: 100%;
+  height: 44px;
+  color: white;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .putonsale_img_div_3 {
   display: flex;
   margin-bottom: 40px;
@@ -838,7 +921,7 @@
 
 .putonsale_Purchase_paragraph {
   color: #b8b8b8;
-  font-size: 12px;
+  font-size: 16px;
   margin-top: 6px;
   width: 90%;
 }
@@ -933,6 +1016,8 @@
   margin-bottom: 30px;
 }
 
+
+
 .failed_paragraph {
   font-family: Inter;
   font-size: 12px;
@@ -1009,7 +1094,7 @@
   position: absolute;
   z-index: 5;
   background: #070d24;
-  width: 444px;
+  width: 554px;
   border-radius: 16px;
   padding: 50px 30px;
 }
@@ -1043,7 +1128,22 @@
   margin-bottom: 12px;
 }
 
+.transfer_messagebox {
+  display: flex;
+  flex-direction: column;
+}
+
+.transfer_messagebox>.icon {
+  width: 30px;
+  height: 100%;
+  color: white;
+  cursor: pointer;
+}
+
 .transfer_button_div_sendnow button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 44px;
   color: white;
@@ -1066,6 +1166,10 @@
   box-sizing: border-box;
   padding-left: 20px;
   padding-top: 10px;
+}
+
+.background {
+  width: 90% !important;
 }
 
 .transfer_messagebox_input::placeholder {
@@ -1122,6 +1226,25 @@ input:checked+.toggle_btn_popup_slider:before {
 
 input:checked+.toggle_btn_popup_slider {
   border: 1px solid #9700c1;
+}
+
+.share_social_media_icon {
+  margin-top: 20px;
+  gap: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share_social_media_icon>a {
+  text-decoration: none;
+}
+
+.share_social_media_icon>a>.icons {
+  font-size: 24px;
+  cursor: pointer;
+  color: #c100bb;
 }
 
 /* CheckOut-1 */
@@ -1223,6 +1346,16 @@ input:checked+.toggle_btn_popup_slider {
   .popup_header {
     margin-bottom: 20px;
   }
+}
+
+.share {
+  width: 100% !important;
+  height: 40px !important;
+  display: flex;
+  padding-top: 0 !important;
+
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 500px) {
@@ -1670,6 +1803,7 @@ input:checked+.toggle_btn_popup_slider {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
+    justify-content: center;
     gap: 15px;
   }
 
@@ -1777,30 +1911,36 @@ input:checked+.toggle_btn_popup_slider {
   }
 }
 
-.ppopup_input{
+.ppopup_input {
   width: 100%;
   text-decoration: none;
   border: none;
   outline: none;
   background: transparent;
-  border-bottom:1px solid  #c100a2;
+  border-bottom: 1px solid #c100a2;
   color: white;
   padding-bottom: 10px;
 }
-.ppopup_input::placeholder{
+
+.ppopup_input::placeholder {
   color: white;
 }
 
-select{
+select {
   margin-top: 30px;
   width: 100%;
   background: transparent;
   height: 40px;
-  border:1px solid  #c100a2;
-outline: none;
-color: white;
-padding: 0 10px;
+  border: 1px solid #c100a2;
+  outline: none;
+  color: white;
+  padding: 0 10px;
 }
-.popup_select >option{
- color: black;
+
+.popup_select>option {
+  color: black;
+}
+
+.background {
+  flex-direction: row !important;
 }

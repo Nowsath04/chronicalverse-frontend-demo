@@ -147,7 +147,8 @@ const Collectibles = () => {
     try {
       const {data} = await axios.get(`${API_URL}/user-nft/${user.userid}`)
       console.log(data);
-      setAllNft(data.getnft)
+      const notSale=data.getnft.filter((data)=>data.nftOnsale == false)
+      setAllNft(notSale.reverse())
     } catch (error) {
       console.log(error);
     }
@@ -156,23 +157,26 @@ const Collectibles = () => {
   useEffect(() => {
     getUserAllNft()
   },[])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   console.log(user);
   return (
     <>
     <div className="OnSale">
-      {allNft.map((data, index) => {
+      {allNft.length !==0 ? allNft.map((data, index) => {
         return <ProfileCard data={data} />;
-      })}
+      }):<div>No Nfts in collection</div>}
     </div>
     <div className="onsale_responsive">
       <Slider ref={slider}  {...settings}>
-        {allNft.map((data, index) => {
+        {allNft.length !==0?allNft.map((data, index) => {
           return (
             <React.Fragment key={index}>
               <ProfileCard  data={data} />
             </React.Fragment>
           );
-        })}
+        }):<div>No Nfts in collection.</div>}
       </Slider>
     </div>
   </>

@@ -9,7 +9,7 @@ import Slider from 'react-slick';
 import { useRef } from 'react';
 
 const Created = () => {
-  const [createdNft,setCreatedNft]=useState([])
+  const [createdNft, setCreatedNft] = useState([])
   const slider = useRef(null);
   const { user } = useSelector((selector) => selector.auth);
   console.log(user);
@@ -145,7 +145,7 @@ const Created = () => {
   };
   const getUserAllNft = async () => {
     try {
-      const {data} = await axios.get(`${API_URL}/user-creatednft/${user.userid}`)
+      const { data } = await axios.get(`${API_URL}/user-creatednft/${user.userid}`)
       console.log(data);
       setCreatedNft(data.getnft)
     } catch (error) {
@@ -154,27 +154,34 @@ const Created = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
     getUserAllNft()
-  },[])
+  }, [])
   return (
     <>
-    <div className="OnSale">
-      {createdNft.map((data, index) => {
-        return <ProfileCard data={data} />;
-      })}
-    </div>
-    <div className="onsale_responsive">
-      <Slider ref={slider}  {...settings}>
-        {createdNft.map((data, index) => {
-          return (
-            <React.Fragment key={index}>
-              <ProfileCard  data={data} />
-            </React.Fragment>
-          );
-        })}
-      </Slider>
-    </div>
-  </>
+      <div className="OnSale">
+        {createdNft.length !==0 ? createdNft?.map((data, index) => {
+          return <ProfileCard data={data} />;
+        }) : <div>
+          No NFT in Create
+        </div>}
+      </div>
+      <div className="onsale_responsive">
+        <Slider ref={slider}  {...settings}>
+          {createdNft.length !==0 ? createdNft?.map((data, index) => {
+            return (
+              <React.Fragment key={index}>
+                <ProfileCard data={data} />
+              </React.Fragment>
+            );
+          }) : <div>
+            No NFT in Create
+          </div>}
+        </Slider>
+      </div>
+    </>
   )
 }
 

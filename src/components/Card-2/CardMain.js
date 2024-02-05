@@ -1,11 +1,17 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { PiArrowCircleLeftBold, PiArrowCircleRightBold } from "react-icons/pi";
 import Card2 from "./Card2";
 import { cardDetails2 } from "./data2";
+import axios from "axios";
+import { API_URL } from "../../constants/userConstants";
+import ProfileCard from "../profileCard/ProfileCard";
+import HotCollectionCard from "../hotCollectionCard/HotCollectionCard";
 
 export default function CardMain() {
   const slider = useRef(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [cardLength, setCardLength] = useState(0)
 
   const settings = {
     dots: false,
@@ -144,7 +150,37 @@ export default function CardMain() {
       },
     ],
   };
+  const [hotCollection, setHotCollection] = useState([])
 
+  useEffect(() => {
+    geTopCollection()
+  }, [])
+
+  const geTopCollection = async () => {
+    try {
+      const { data } = await axios.get(`${API_URL}/hot-collection`)
+      setHotCollection(data.topCollection)
+      setCardLength(data.topCollection.length)
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const updateWindowDimensions = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    // Add event listener for window resize
+    window.addEventListener('resize', updateWindowDimensions);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', updateWindowDimensions);
+    };
+  }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="TopNft_header_Div2">
@@ -168,15 +204,27 @@ export default function CardMain() {
       </div>
 
       <div className="card_2box">
-        <Slider ref={slider} {...settings}>
-          {cardDetails2.map((item, index) => {
-            return (
-              <React.Fragment key={index}>
-                <Card2 item={item} />
-              </React.Fragment>
-            );
-          })}
-        </Slider>
+
+        {
+          (cardLength < 4 && windowWidth > 530) ? <div className="artistcard_len">
+             {hotCollection && hotCollection.map((item, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <HotCollectionCard data={item} />
+                </React.Fragment>
+              );
+            })}
+          </div> : <Slider ref={slider} {...settings}>
+            {hotCollection && hotCollection.map((item, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <HotCollectionCard data={item} />
+                </React.Fragment>
+              );
+            })}
+          </Slider>
+        }
+
       </div>
     </>
   );

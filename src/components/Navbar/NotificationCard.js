@@ -8,6 +8,9 @@ export default function NotificationCard({ item ,setUpdateNoti,user,updateNotifi
   console.log(item);
   console.log(item);
   const handleClick=()=>{
+    if(item?.notificationType =="burnToken"){
+     return "hello"
+    }
     const pathname=item.pathname
     window.location.replace(pathname)
   }
@@ -31,12 +34,14 @@ export default function NotificationCard({ item ,setUpdateNoti,user,updateNotifi
             :item?.notificationType=="directsale"?`You  ${item.Distillery} nft on sale`
             :item?.notificationType=="putonsale"?`You  ${item.Distillery} nft on sale`
             :item?.notificationType=="BidnftOwner"?`${item.user.name} place bid in you nft`
-            :item?.notificationType=="placedbid"?`you bid in ${item.Distillery} nft`
-            :item?.notificationType=="youbuydirectsale"?`you buy  ${item.Distillery} nft`
+            :item?.notificationType=="placedbid"?`You have bid on ${item.Distillery} nft`
+            :item?.notificationType=="youbuydirectsale"?`You purchased ${item.Distillery} nft`
             :item?.notificationType=="youwinbid"?`you won  ${item.Distillery} nft`
             :item?.notificationType=="transfernftreceiver"?`you Received ${item.Distillery} nft from ${user?.name}`
-            :item?.notificationType=="transfernftsend"?`you send ${item.Distillery} nft to ${user?.name}`
-            :item?.notificationType=="removefromsale"?`you removed ${item.Distillery} from sale`:""
+            :item?.notificationType=="transfernftsend"?`you sent ${item.Distillery} nft to ${user?.name}`
+            :item?.notificationType=="removefromsale"?`you removed ${item.Distillery} from sale`:
+            item?.notificationType =="yourdirectsalenftbuy" ?`Your ${item.Distillery} has been bought.`
+            :item?.notificationType =="burnToken" ?`Your burned ${item.Distillery} nft.`:""
           }
           </li>
           <li

@@ -33,8 +33,10 @@ const OthersFollowing = () => {
     }
   }
   useState(() => {
-    getUserData()
-  }, [update])
+    if(id){
+      getUserData()
+    }
+  }, [update,id])
   return (
     <div className='following'>
       {

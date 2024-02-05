@@ -21,10 +21,12 @@ import { create } from "ipfs-http-client";
 import { toast } from "react-toastify";
 import { CircleSpinner } from "react-spinners-kit";
 import { API_URL } from "../../constants/userConstants";
+import { NotWhitListUserPopup } from "../../components/Upload/UploadNotification";
 
 const SingleCollectible = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const web3 = new Web3(window.ethereum);
+  const [notWhitListPopup, setNotWhiteListPopup] = useState(false)
   const [mintLoading, setMintLoading] = useState(false)
   const [mintSuccess, setMintSuccess] = useState(false)
   const [tokenId, setTokenId] = useState("")
@@ -56,36 +58,6 @@ const SingleCollectible = () => {
   const handleClick = () => {
     inputImage.current.click();
   };
-  function getUserCollections() {
-    try {
-      let collectionContractAddress = Contract.collectionContract
-      let userAddress = account; //Metamask logged in Address
-      const contractInstance = new web3.eth.Contract(
-        COLLECTION_ABI,
-        collectionContractAddress
-      );
-      contractInstance.methods
-        .userCollections(userAddress)
-        .call()
-        .then((data) => {
-          setAllCollection(data);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  // get user account
-
-  useEffect(() => {
-    if (user) {
-      setAccount(user.userid);
-    }
-  }, [user]);
-
-  useEffect(() => {
-    getUserCollections();
-  }, [account])
-
   // get singleCollection data
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -100,7 +72,7 @@ const SingleCollectible = () => {
       const files = e.target.files;
       const selectedFile = files[0];
       setImageFile(selectedFile);
-
+      console.log(selectedFile);
       setPreview(URL.createObjectURL(selectedFile));
       imageUpload(files[0]);
     } catch (error) {
@@ -110,9 +82,8 @@ const SingleCollectible = () => {
 
   // send req in backend and store in db
   const createNftDetails = async (nfthash, token, type) => {
-    console.log(token);
     const formData = new FormData();
-    formData.append("collection_id", collection.newCollection);
+    formData.append("collection_id", collection.collectionId);
     formData.append("nft_token", token);
     formData.append("nft_name", collectionData.singlecollectible_name);
     formData.append("nft_owner", account);
@@ -131,7 +102,7 @@ const SingleCollectible = () => {
       "nft_itemsdetails",
       collectionData.singlecollectible_itemsdetails
     );
-    formData.append("pathname", `/item-1/${nfthash}/${token}/${collection.newCollection}`);
+    formData.append("pathname", `/item-1/${nfthash}/${token}/${collection.collectionId}`);
     formData.append("type", type);
     formData.append("image", imagefile);
     formData.append("nft_creator", account);
@@ -232,6 +203,8 @@ const SingleCollectible = () => {
 
     if (!collectionData.singlecollectible_description) {
       return toast.error("Please enter the Description field");
+    } else if (collectionData.singlecollectible_description.length < 50) {
+      return toast.error("Please write a minimum of 50 characters in the Description field");
     }
 
     if (!collectionData.singlecollectible_itemsdetails) {
@@ -250,13 +223,11 @@ const SingleCollectible = () => {
     ipfsDataSend();
   };
 
-  console.log(putOnSaleOpen);
-  console.log(collection);
   const createSingleCollection = async (hashmetaData) => {
     setLoading(true)
-    console.log(hashmetaData);
+
     try {
-      const nftContractAddress = collection.newCollection;
+      const nftContractAddress = collection.collectionId;
       const ipfsHash = hashmetaData;
       const royalty = 0;
       const marketContract = "0x27951D68849A72a37e52d9E33e4541AF9CB432cE";
@@ -265,21 +236,28 @@ const SingleCollectible = () => {
         NFT_ABI,
         nftContractAddress
       );
-      console.log(contractInstance);
+
       // Call a function of the contract:
       const data = await contractInstance.methods
         .mint(ipfsHash, royalty, marketContract)
         .send({
           from: account,
         });
-      console.log("transactionHash", data.transactionHash);
+      console.log(data);
+      console.log(data.logs[3]);
       if (data.transactionHash) {
-        createNftDetails(hashmetaData, Number(data.logs[3].address), "mint")
+        createNftDetails(hashmetaData, Number(data.logs[0].topics[3]), "mint")
         // send this value in for in app notification
-        const  pathname= `/item-1/${hashmetaData}/${Number(data.logs[3].address)}/${nftContractAddress}`
+        const pathname = `/item-1/${hashmetaData}/${Number(data.logs[0].topics[3])}/${nftContractAddress}`
+        const datas = {
+          ownerAddress: user.userid,
+          tokenId: Number(data.logs[0].topics[3]),
+          collectionId: collection.collectionId
+        }
+        nftOwner(datas)
         mintNotification(pathname)
         setLoading(false)
-        navigate("/profile/collectibles")
+        navigate("/profile/created")
         toast.success("successfully minted")
       }
     } catch (error) {
@@ -293,13 +271,13 @@ const SingleCollectible = () => {
   // mint notification
 
   const mintNotification = async (pathname) => {
-    const formData=new FormData()
-    formData.append("user",user?._id)
-    formData.append("notifyTo",user?._id)
-    formData.append("Distillery",collectionData.singlecollectible_name)
-    formData.append("notificationType","mint")
-    formData.append("pathname",pathname)
-    formData.append("image",imagefile)
+    const formData = new FormData()
+    formData.append("user", user?._id)
+    formData.append("notifyTo", user?._id)
+    formData.append("Distillery", collectionData.singlecollectible_name)
+    formData.append("notificationType", "mint")
+    formData.append("pathname", pathname)
+    formData.append("image", imagefile)
 
     try {
       const notification = await axios.post(`${API_URL}/notification`, formData, { withCredentials: true })
@@ -309,10 +287,9 @@ const SingleCollectible = () => {
   }
 
   const mintAndApproveMarket = async (hashmetaData) => {
-    console.log("hashmetaData", hashmetaData);
+
     try {
-      const nftContractAddress = collection.newCollection;
-      console.log(nftContractAddress);
+      const nftContractAddress = collection.collectionId;
       const ipfsHash = hashmetaData;
       const royalty = 0;
       const marketContract = "0x27951D68849A72a37e52d9E33e4541AF9CB432cE";
@@ -322,60 +299,122 @@ const SingleCollectible = () => {
         NFT_ABI,
         nftContractAddress
       )
-      console.log("contractInstance", contractInstance);
+      console.log(contractInstance);
       // find gas limit 
       let limit = await contractInstance.methods
         .mintAndApproveMarket(ipfsHash, royalty, marketContract).estimateGas({ from: account })
+      console.log(limit);
       // Call a funtion of the contract
       const PutOnsaleMint = await contractInstance.methods.mintAndApproveMarket(ipfsHash, royalty, marketContract).send({
         from: account,
       })
-      console.log(PutOnsaleMint);
+
       setTokenId(Number(PutOnsaleMint.logs[0].topics[3]));
       const type = instantsale ? "instantSale" : "putonsale"
       createNftDetails(hashmetaData, Number(PutOnsaleMint.logs[0].topics[3]), type)
+      const datas = {
+        ownerAddress: user.userid,
+        tokenId: Number(PutOnsaleMint.logs[0].topics[3]),
+        collectionId: collection.collectionId
+      }
+      nftOwner(datas)
       toast.success("successfully minted")
+
       setMintLoading(false)
+
       setMintSuccess(true)
     } catch (error) {
+      setMintLoading(false)
+      if (error.message == "Returned error: MetaMask Tx Signature: User denied transaction signature.") {
+        return toast.error("User denied transaction signature.")
+      }
       console.log(error);
+
     }
   }
   useEffect(() => {
     setNftData(nftdata)
-    console.log(nftdata);
   }, [nftdata])
+
+  const notWhiteListUser = () => {
+    if (user?.whiteListUser == false) {
+      setNotWhiteListPopup(true)
+      toast.error("your are unAuthorized to create collection ")
+    } else {
+      navigate("/create_collection_Page")
+    }
+  }
+
+  // clear all function 
+
+  const clearAllFunction = () => {
+
+    setCollectionData({
+      ...collectionData,
+      singlecollectible_name: "",
+      singlecollectible_date: "",
+      singlecollectible_description: "",
+      singlecollectible_additionalDetails: "",
+      singlecollectible_itemsdetails: "",
+    });
+    setCollection("")
+
+
+  }
+  const nftOwner = async (data) => {
+
+    try {
+      const owner = await axios.post(`${API_URL}/nft-owner`, { data })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const goBack = () => {
+    window.history.back();
+  };
+
+  const getCollection = async () => {
+    try {
+      const { data } = await axios.get(`${API_URL}/login-user-collection/${user._id}`, { withCredentials: true })
+      setAllCollection(data.collection)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      setAccount(user.userid)
+      getCollection()
+    }
+  }, [])
   return (
     <div className="singlecollectible">
       <div>
-        {(putOnSaleOpen || instantsaleOpen) && <SingleCollectiblePopup setPutOnSaleOpen={setPutOnSaleOpen}
-          collectionId={collection.newCollection} ipfsDataSend={ipfsDataSend} mintLoading={mintLoading}
+        {notWhitListPopup ? <NotWhitListUserPopup /> : (putOnSaleOpen || instantsaleOpen) && <SingleCollectiblePopup setPutOnSaleOpen={setPutOnSaleOpen}
+          collectionId={collection.collectionId} ipfsDataSend={ipfsDataSend} mintLoading={mintLoading}
           mintSuccess={mintSuccess} tokenId={tokenId} account={account}
           imagefile={imagefile} ipfsData={ipfsData} ipfsImageHash={ipfsImageHash}
-          collectionname={collectionData.singlecollectible_name} instantsale={instantsale} collection_description={collectionData.singlecollectible_description} user={user}  />}
+          collectionname={collectionData.singlecollectible_name} instantsale={instantsale} collection_description={collectionData.singlecollectible_description} user={user} loading={loading} />}
       </div>
       <div className="singlecollectible_container">
         <div className="singlecollectible_heading">
-          <img src={arrow} className="singlecollection_backarrow" />
+          <img src={arrow} className="singlecollection_backarrow" onClick={goBack} alt="" />
           <AiOutlineLeft className="singlecollection_mobilebackarrow" />
           <h3>Create single collectible</h3>
         </div>
         <div className="singlecollectible_Upload_responsive">
-          <div>
-            <Link to="#">
-              Switch to multible
-            </Link>
-          </div>
+
         </div>
         <div className="singlecollectible_contant_container">
           <form onSubmit={handleSubmit} className="singlecollectible_left">
             <div className="singlecollectible_Upload">
               <h4>Upload</h4>
-              <div>
-                <Link to="#">
-                  Switch to multible
-                </Link>
-              </div>
+
             </div>
             <p>Drag or choose your file to upload</p>
             <div
@@ -390,7 +429,7 @@ const SingleCollectible = () => {
               />
               <div className="image_upload">
                 <img src={upload} alt="" />
-                <p>PNG,GIF,WEBP,MP4 or MP3. Max 500MP</p>
+                <p>PNG,WEBP,MP4</p>
               </div>
             </div>
             <h3>Item details</h3>
@@ -488,27 +527,18 @@ const SingleCollectible = () => {
               </div>
               <p>Enter the price for which the item will be instantly sold</p>
             </div>
-            <div className="singlecollectible_toggle_btns1 margin_top">
-              <div className="singlecollectible_toggle_btn1">
-                <p>Unlock once purchased</p>
-                <label className="toggle_btn3">
-                  <input type="checkbox" onChange={() => setUnlock(!unlock)} />
-                  <span className="toggle_btn3_slider"></span>
-                </label>
-              </div>
-              <p>Contant will be unlocked after successful transection</p>
-            </div>
+
             <div className="singlecollectible_choose_col">
               <h4>Choose collection</h4>
               <p>Choose an exiting collection or a create new one</p>
               <div className="singlecollectible_choose_col_card">
                 <div>
-                  <Link to={"/create_collection_Page"} className="card1">
+                  <button onClick={notWhiteListUser} className="card1" type="button">
                     <div className="plus_round_div">
                       <img src={plus} className="plus_icon" />
                     </div>
                     <p>Create</p>
-                  </Link>
+                  </button>
                 </div>
                 {allcollection &&
                   allcollection.map((item, id) => {
@@ -523,7 +553,7 @@ const SingleCollectible = () => {
                           <div className="plus_round_div">
                             <img src={N} className="N_icon" />
                           </div>
-                          <p>{item.name}</p>
+                          <p>{item.collectiontitle}</p>
                         </div>
                       </div>
                     );
@@ -550,10 +580,12 @@ const SingleCollectible = () => {
                 )}
                 <div className="singlecollectible_right_card_detail">
                   <h4>{collectionData.singlecollectible_name}</h4>
-              
+                  {
+                    (collectionData.singlecollectible_description.length < 100) ? <p>{collectionData.singlecollectible_description}</p> : <p>{collectionData.singlecollectible_description.substring(0, 100)}..</p>
+                  }
                 </div>
-                <div className="singlecollectible_right_card_bottom">
-                  <p>Clear all</p>
+                <div className="singlecollectible_right_card_bottom" onClick={clearAllFunction}>
+                  <p>Clear details </p>
                   <img src={cancel} alt="" />
                 </div>
               </div>

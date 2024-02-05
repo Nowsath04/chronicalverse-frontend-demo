@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+
+import { FaFacebook, FaInstagramSquare, FaTelegram } from "react-icons/fa";
+import { BsTwitterX } from "react-icons/bs";
 import "./UploadNotification.css";
+import { FaCopy } from "react-icons/fa";
 import Maskgroup from "../../Assets/Maskgroup.png";
 import { SlClose } from "react-icons/sl";
 import iconcircle from "../../Assets/icon-circle.png";
@@ -24,12 +28,15 @@ import MARKET_ABI from "../../Config/Abi/marketAbi.json"
 import { Contract } from "../../Config/Contract";
 import Web3, { errors } from "web3";
 import { useSelector } from "react-redux";
+import whatsappIcon from "../../Assets/XMLID_468_.png"
 import axios from "axios";
 // import { CircleSpinner } from "react-spinners-kit";
 import { Link, useNavigate } from "react-router-dom";
 import NFT_ABI from "./../../Config/Abi/nft_abi.json";
 import { API_URL } from "../../constants/userConstants";
-export default function UploadNotification({ tokenId, collectionId, account,collection_description, imagefile, ipfsData, ipfsImageHash, collectionname,nftdata }) {
+import { FaPinterest, FaTwitter } from "react-icons/fa6";
+import { FacebookShareButton, InstapaperIcon, PinterestShareButton, TwitterShareButton } from "react-share";
+export default function UploadNotification({ tokenId, collectionId, account, collection_description, imagefile, ipfsData, ipfsImageHash, collectionname, nftdata }) {
   const { user } = useSelector((selector) => selector.auth);
 
   const web3 = new Web3(window.ethereum);
@@ -135,7 +142,7 @@ export default function UploadNotification({ tokenId, collectionId, account,coll
       formData.append("auctionId", data.events.ReserveAuctionCreated.returnValues.auctionId)
       formData.append("tokenId", tokenId)
       formData.append("collectionId", collectionId)
-      formData.append("description",collection_description)
+      formData.append("description", collection_description)
       saveAuction(formData)
       const auctionId = data.events.ReserveAuctionCreated.returnValues.auctionId
       createBid(auctionId)
@@ -220,9 +227,6 @@ export default function UploadNotification({ tokenId, collectionId, account,coll
             <div className="popup">
               <div className="popup_header">
                 <h2>Follow steps</h2>
-                <h2 onClick={() => setCancel(true)}>
-                  <SlClose className="wrong_icon" />
-                </h2>
               </div>
               <div className="popup_paragraph">
                 <p>
@@ -262,7 +266,7 @@ export default function UploadNotification({ tokenId, collectionId, account,coll
               </div>
               <div className="popup_button">
                 {
-                  auctionDone ? <Link to={"/profile"} className="btn">Done</Link> : <button onClick={handleCancel} disabled={loading} >{loading ? <CircleSpinner size={30} color="#ba00a7" loading={loading} /> : "START AUCTION"}</button>
+                  auctionDone ? <Link to={"/profile/onsale"} className="btn">Done</Link> : <button onClick={handleCancel} disabled={loading} >{loading ? <CircleSpinner size={30} color="#ba00a7" loading={loading} /> : "START AUCTION"}</button>
                 }
               </div>
             </div>
@@ -275,10 +279,15 @@ export default function UploadNotification({ tokenId, collectionId, account,coll
 export function Placebid3({ tokenId, collectionId, account, collectionname, nftdata, user, imagefile, ipfsData }) {
   console.log(nftdata);
   const web3 = new Web3(window.ethereum);
+  const [serviceFee, setServiceFee] = useState(0)
+  const [totelAmount, setTotelAmount] = useState(0)
   const [cancel, setCancel] = useState(false);
   const [amount, setAmount] = useState("")
   const [loading, setLoading] = useState(false)
   const [auctionDone, setAuctionDone] = useState(false)
+  useEffect(() => {
+    getServiceFee()
+  })
   const handleCancel = () => {
     setCancel(!cancel);
   };
@@ -399,6 +408,26 @@ export function Placebid3({ tokenId, collectionId, account, collectionname, nftd
       console.log(error);
     }
   }
+  const getServiceFee = async () => {
+    try {
+      // const amount = price * (10 ** 18)
+      const marketContract = "0x27951D68849A72a37e52d9E33e4541AF9CB432cE";
+      const contractInstance = await new web3.eth.Contract(
+        MARKET_ABI,
+        marketContract,
+      );
+      const nftContract = collectionId
+      const tokenid = tokenId
+      const auction_price = Number((amount) * (10 ** 18))
+      const fee = await contractInstance.methods.getFees(nftContract, tokenid, auction_price).ca
+      setServiceFee((Number(fee.foundationFee)) / (10 ** 18))
+      const totalValue = Number(amount) + (Number(fee.foundationFee) / (10 ** 18))
+      setTotelAmount(totalValue)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <div className="home_popup_background">
@@ -406,7 +435,7 @@ export function Placebid3({ tokenId, collectionId, account, collectionname, nftd
           <div className="placebid2">
             <div className="popup_placrbid2">
               <div className="popup_header">
-                <h2>Put on sale</h2>
+                <h2>Instant sale</h2>
                 <h2 onClick={handleCancel}>
                   <SlClose className="wrong_icon" />
                 </h2>
@@ -417,19 +446,18 @@ export function Placebid3({ tokenId, collectionId, account, collectionname, nftd
 
                 </div>
                 <div className="popup_payment_div">
-                  <input type="number" className="ppopup_input" placeholder="Minimum Bid Price" name="bidamount" value={amount} onChange={(e) => setAmount((e.target.value))} />
+                  <input type="number" className="ppopup_input" placeholder="Enter NFT Price" name="bidamount" value={amount} onChange={(e) => setAmount((e.target.value))} />
                 </div>
                 <div className="popup_payment">
-                  <p>Service fee</p>
-                  <p className="griedient_text">0 ETH</p>
+
                 </div>
                 <div className="popup_payment">
-                  <p>Total bid amount</p>
-                  <p className="griedient_text">0 ETH</p>
+                  <p>Nft Price</p>
+                  <p className="griedient_text">{amount} Matic</p>
                 </div>
               </div>
               <div className="popup_button">
-                {auctionDone ? <Link to={"/profile/onsale"} className="btn">Done</Link> : <button disabled={loading} onClick={handleSubmit}>{loading ? <CircleSpinner size={30} color="#ba00a7" loading={loading} /> : "START AUCTION"}</button>}
+                {auctionDone ? <Link to={"/profile/onsale"} className="btn">Done</Link> : <button disabled={loading} onClick={handleSubmit}>{loading ? <CircleSpinner size={30} color="#ba00a7" loading={loading} /> : "SALE"}</button>}
               </div>
             </div>
           </div>
@@ -440,13 +468,20 @@ export function Placebid3({ tokenId, collectionId, account, collectionname, nftd
 }
 
 export function PlaceBid({ setBidPopup, user, auctionDetails }) {
+  const [serviceFee, setSericeFee] = useState("")
+  const [totelAmount, setTotelAmount] = useState("")
   const [loading, setLoading] = useState(false)
   const [bidDone, setBidDone] = useState(false)
   const [cancel, setCancel] = useState(false);
   const [price, setPrice] = useState("")
   const web3 = new Web3(window.ethereum);
   const account = user.userid
+  useEffect(() => {
+    getServiceFee()
+  }, [price])
+
   const placeBid = async () => {
+
     setLoading(true)
     const autionId = auctionDetails.auctionId
     const amount = price * (10 ** 18)
@@ -456,7 +491,7 @@ export function PlaceBid({ setBidPopup, user, auctionDetails }) {
       const contractInstance = await new web3.eth.Contract(
         MARKET_ABI,
         marketContract,
-      ); console.log(amount);
+      );
       const getReserveAuctionInfo = await contractInstance.methods.getReserveAuction(autionId).call()
       console.log("getReserveAuctionamount", Number(getReserveAuctionInfo.amount));
       console.log("getReserveAuctionInfo", getReserveAuctionInfo);
@@ -485,11 +520,17 @@ export function PlaceBid({ setBidPopup, user, auctionDetails }) {
       UpdateAuctonData(amount)
 
     } catch (error) {
+      setLoading(false)
       if (error.message == "Returned error: MetaMask Tx Signature: User denied transaction signature.") {
         setLoading(false)
         return toast.error("User denied transaction signature.")
       }
-      console.log(error);
+
+      if (error.data.message.includes("insufficient funds for gas")) {
+        setLoading(false)
+        return toast.error("insufficient balance.")
+      }
+      console.log(error.data.message);
     }
   }
   const updateLastBidUser = async (amount) => {
@@ -517,6 +558,13 @@ export function PlaceBid({ setBidPopup, user, auctionDetails }) {
     try {
       const data = await axios.put(`${API_URL}/update-particular-action/${auctionDetails.tokenId}/${auctionDetails.collectionId}/${option.auctionPrice}`)
       console.log(data);
+      const details = {
+        bidprice: option.auctionPrice,
+        BidUser: user?._id,
+        tokenId: auctionDetails.tokenId,
+        collectionId: auctionDetails.collectionId
+      }
+      sendBidDetails(details)
       setBidDone(true)
       setLoading(false)
       toast.success("Bid Placed Successfully")
@@ -558,8 +606,47 @@ export function PlaceBid({ setBidPopup, user, auctionDetails }) {
     }
   }
   const bidHandler = async () => {
+    if (!price || price < 0) {
+      return toast.error("please enter price")
+    }
+    if (price < 0) {
+      return toast.error("please enter possitive value")
+    }
     placeBid()
   }
+
+  const sendBidDetails = async (data) => {
+
+    try {
+      const details = await axios.post(`${API_URL}/bid_details`, { data })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getServiceFee = async () => {
+    try {
+      const amount = price * (10 ** 18)
+      const marketContract = "0x27951D68849A72a37e52d9E33e4541AF9CB432cE";
+      const contractInstance = await new web3.eth.Contract(
+        MARKET_ABI,
+        marketContract,
+      );
+      const nftContract = auctionDetails.collectionId
+      const tokenId = auctionDetails.tokenId
+      const auction_price = Number(amount)
+      const fee = await contractInstance.methods.getFees(nftContract, tokenId, auction_price).call()
+      setSericeFee((Number(fee.foundationFee)) / (10 ** 18))
+      const totalValue = Number(price) + (Number(fee.foundationFee) / (10 ** 18))
+      console.log(totalValue);
+      console.log(Number(fee.foundationFee) / (10 ** 18));
+      setTotelAmount(totalValue)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   return (
     <>
       <div className="home_popup_background">
@@ -582,17 +669,17 @@ export function PlaceBid({ setBidPopup, user, auctionDetails }) {
                 </div>
                 <div className="popup_payment">
                   <p>Service fee</p>
-                  <p className="griedient_text">0 ETH</p>
+                  <p className="griedient_text">{serviceFee} Matic</p>
                 </div>
                 <div className="popup_payment">
                   <p>Total bid amount</p>
-                  <p className="griedient_text">0 ETH</p>
+                  <p className="griedient_text">{totelAmount} Matic</p>
                 </div>
               </div>
               <div className="popup_button">
                 {
                   bidDone ? <div>
-                    <button>Done</button>
+                    <Link to={"/profile/onsale"}>Done</Link>
                   </div> : <>
                     <button onClick={bidHandler} disabled={loading}>{loading ? <CircleSpinner size={30} color="#ba00a7" /> : "place a bid"}</button>
                     {
@@ -608,7 +695,7 @@ export function PlaceBid({ setBidPopup, user, auctionDetails }) {
   );
 }
 
-export function UploadNotification3({ setPurchasePopup }) {
+export function UploadNotification3({ setPurchasePopup, nftData }) {
   const [cancel, setCancel] = useState(false);
 
   const handleCancel = () => {
@@ -620,6 +707,12 @@ export function UploadNotification3({ setPurchasePopup }) {
     return null;
   }
 
+  const shareUrl = window.location.href;
+  const title = "I brought this Nft";
+  const instagramShareUrl = `https://www.instagram.com/sharing/share?url=${encodeURIComponent(shareUrl)}`;
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(title)}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`;
+  const whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(title + ': ' + shareUrl)}`;
   return (
     <>
       <div className="home_popup_background">
@@ -630,14 +723,12 @@ export function UploadNotification3({ setPurchasePopup }) {
                 <h2 className="popup_header3_heading">
                   Bravo! <img src={clap} />
                 </h2>
-                <h2 onClick={handleCancel}>
-                  <SlClose className="wrong_icon" />
-                </h2>
+
               </div>
               <div className="popup_header3_paragraph">
                 <p>
                   You successfully purchased{" "}
-                  <span className="griedient_text">monalisa#88/208</span> from
+                  <span className="griedient_text">{nftData.nft_name}</span> from
                   Chronical verse
                 </p>
               </div>
@@ -645,11 +736,9 @@ export function UploadNotification3({ setPurchasePopup }) {
                 <div className="popup_box3">
                   <div className="popup_box_div3_heading">
                     <div>Status</div>
-                    <div>Transaction ID</div>
                   </div>
                   <div className="popup_box_div3_paragraph">
-                    <div className="griedient_text">Processing</div>
-                    <div className="pop3_id">0SJhBVSHH...SDGYVGY</div>
+                    <div className="griedient_text">Success</div>
                   </div>
                 </div>
               </div>
@@ -657,18 +746,21 @@ export function UploadNotification3({ setPurchasePopup }) {
                 <Link to={"/profile/collectibles"}>Done</Link>
               </div>
               <div className="SocialMedia_font_div">
-                <div className="facebook_div">
-                  <img src={facebook} />
-                </div>
-                <div className="facebook_div">
-                  <img src={twitter} />
-                </div>
-                <div className="facebook_div">
-                  <img src={instagram} />
-                </div>
-                <div className="facebook_div">
-                  <img src={Pinterest} />
-                </div>
+                <a className="facebook_div" href={facebookShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  <img src={facebook} alt="facebook" />
+                </a>
+                <a className="facebook_div" href={twitterShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  <img src={twitter} alt="twitter" />
+                </a>
+                <a className="facebook_div" href={whatsappShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  <img src={whatsappIcon} alt="whatapp" />
+                </a>
               </div>
             </div>
           </div>
@@ -808,7 +900,13 @@ export function BuyDirectSalePopup({ nftData, setPurchasePopup, signOrderData, u
   const web3 = new Web3(window.ethereum);
   const [loading, setLoading] = useState(false)
   const [directSaleDone, setDirectSaleDone] = useState(false)
+  const [serviceFee, setServiceFee] = useState()
+  const [totelAmount, setTotelAmount] = useState()
 
+
+  useEffect(() => {
+    getServiceFee()
+  }, [])
   const callDirectSale = async () => {
     setLoading(true)
     const amount = JSON.stringify(signOrderData.amount)
@@ -819,6 +917,8 @@ export function BuyDirectSalePopup({ nftData, setPurchasePopup, signOrderData, u
     const tokenId = signOrderData.tokenId
     const deadline = signOrderData.deadline
     const account = user.userid
+
+
 
     const paymentMode = "0x0000000000000000000000000000000000000000"
     const option = {
@@ -867,10 +967,24 @@ export function BuyDirectSalePopup({ nftData, setPurchasePopup, signOrderData, u
           })
       updateOwner(tokenId, nftContract)
     } catch (error) {
+      setLoading(false)
       if (error.message == "Returned error: MetaMask Tx Signature: User denied transaction signature.") {
         setLoading(false)
         return toast.error("User denied transaction signature.")
       }
+      if (error.data.message.includes("insufficient funds for gas")) {
+        return toast.error("insufficient balance.")
+      }
+      console.log(error);
+    }
+  }
+
+  //set top artist function
+
+  const topArtists = async () => {
+    try {
+      const data = await axios.post("http://localhost:5000/topartists", { artist: nftData.nft_owner })
+    } catch (error) {
       console.log(error);
     }
   }
@@ -882,8 +996,15 @@ export function BuyDirectSalePopup({ nftData, setPurchasePopup, signOrderData, u
         "nftOnsale": false,
       }
       const data = await axios.put(`${API_URL}/update-nft/${tokenId}/${collectionId}`, value, { withCredentials: true })
-      setLoading(false)
       getNftOwner()
+      topArtists()
+      const datas = {
+        ownerAddress: user.userid,
+        tokenId: nftData.nfttoken,
+        collectionId: nftData.collection_id
+      }
+      nftOwner(datas)
+      setLoading(false)
       toast.success(`${nftData.nft_name} buyed successfull`)
       setDirectSaleDone(true)
     } catch (error) {
@@ -946,10 +1067,40 @@ export function BuyDirectSalePopup({ nftData, setPurchasePopup, signOrderData, u
       console.log(error);
     }
   }
+  const nftOwner = async (data) => {
+
+    try {
+      const owner = await axios.post(`${API_URL}/nft-owner`, { data })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getServiceFee = async () => {
+    try {
+      // const amount = price * (10 ** 18)
+      const marketContract = "0x27951D68849A72a37e52d9E33e4541AF9CB432cE";
+      const contractInstance = await new web3.eth.Contract(
+        MARKET_ABI,
+        marketContract,
+      );
+      const nftContract = signOrderData.nftContract
+      const tokenId = signOrderData.tokenId
+      const auction_price = Number((signOrderData.amount))
+      const fee = await contractInstance.methods.getFees(nftContract, tokenId, auction_price).call()
+      setServiceFee((Number(fee.foundationFee)) / (10 ** 18))
+      const totalValue = Number(signOrderData.amount) / (10 ** 18) + (Number(fee.foundationFee) / (10 ** 18))
+      setTotelAmount(totalValue)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   return (
     <>
       {
-        directSaleDone ? <UploadNotification3 setPurchasePopup={setPurchasePopup} /> : <div className="home_popup_background">
+        directSaleDone ? <UploadNotification3 setPurchasePopup={setPurchasePopup} nftData={nftData} /> : <div className="home_popup_background">
           <div className="placebid3_Maindiv">
             <div className="placebid3">
               <div className="popup_placrbid3">
@@ -975,11 +1126,11 @@ export function BuyDirectSalePopup({ nftData, setPurchasePopup, signOrderData, u
 
                   <div className="popup_payment">
                     <p>Service fee</p>
-                    <p className="griedient_text">0 ETH</p>
+                    <p className="griedient_text">{serviceFee} Matic</p>
                   </div>
                   <div className="popup_payment">
                     <p>Total  amount</p>
-                    <p className="griedient_text">{nftData.amount}</p>
+                    <p className="griedient_text">{totelAmount} Matic</p>
                   </div>
                 </div>
                 <div className="placebid3_button_div_cancel">
@@ -987,7 +1138,7 @@ export function BuyDirectSalePopup({ nftData, setPurchasePopup, signOrderData, u
                 </div>
                 <div className=" placebid3_button_div_startnow">
                   {
-                    loading ? "" : <button onClick={handleCancel}>Cancelled</button>
+                    loading ? "" : <button onClick={handleCancel}>cancel</button>
                   }
                 </div>
               </div>
@@ -1004,8 +1155,12 @@ export function AcceptBid({ setAcceptBidModel, bidDetails, user, nftData }) {
   const web3 = new Web3(window.ethereum);
   const [loading, setloading] = useState(false)
   const [cancel, setCancel] = useState(false);
-  const [acceptBid,setAcceptDone]=useState()
-  const account = user.userid
+  const [acceptBid, setAcceptDone] = useState(false)
+  const [serviceFee, setServiceFee] = useState(0)
+  const [totelAmount, setTotelAmount] = useState(0)
+  //   setServiceFee
+  // setTotelAmount
+  const account = user?.userid
   console.log(bidDetails);
   const handleCancel = () => {
     setCancel(!cancel);
@@ -1013,6 +1168,9 @@ export function AcceptBid({ setAcceptBidModel, bidDetails, user, nftData }) {
 
   };
 
+  useEffect(() => {
+    getServiceFee()
+  }, [])
   const acceptBidFunction = async () => {
     setloading(true)
     const auctionId = bidDetails.auctionId;
@@ -1037,7 +1195,15 @@ export function AcceptBid({ setAcceptBidModel, bidDetails, user, nftData }) {
       }
       const data = await axios.put(`${API_URL}/update-nft/${bidDetails.tokenId}/${bidDetails.collectionId}`, value, { withCredentials: true })
       finalizednftNotification()
+      topArtists()
+      const datas = {
+        ownerAddress: bidDetails.lastBidUser.userid,
+        tokenId: nftData.nfttoken,
+        collectionId: nftData.collection_id
+      }
+      nftOwner(datas)
       setloading(false)
+      setAcceptDone(true)
       toast.success(`you accept the Bid value`)
     } catch (error) {
       setloading(false)
@@ -1048,7 +1214,13 @@ export function AcceptBid({ setAcceptBidModel, bidDetails, user, nftData }) {
       console.log(errors);
     }
   }
-
+  const topArtists = async () => {
+    try {
+      const data = await axios.post("http://localhost:5000/topartists", { artist: nftData.nft_owner })
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   // send notification to finalize nft buyer
   const finalizednftNotification = async () => {
@@ -1068,6 +1240,37 @@ export function AcceptBid({ setAcceptBidModel, bidDetails, user, nftData }) {
   if (cancel) {
     return null;
   }
+
+  const nftOwner = async (data) => {
+
+    try {
+      const owner = await axios.post(`${API_URL}/nft-owner`, { data })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const getServiceFee = async () => {
+    try {
+      // const amount = price * (10 ** 18)
+      const marketContract = "0x27951D68849A72a37e52d9E33e4541AF9CB432cE";
+      const contractInstance = await new web3.eth.Contract(
+        MARKET_ABI,
+        marketContract,
+      );
+      const nftContract = nftData.collection_id
+      const tokenId = nftData.nfttoken
+      const auction_price = Number((bidDetails.bidprice) * (10 ** 18))
+      const fee = await contractInstance.methods.getFees(nftContract, tokenId, auction_price).call()
+      setServiceFee((Number(fee.foundationFee)) / (10 ** 18))
+      const totalValue = Number(bidDetails.bidprice) - (Number(fee.foundationFee) / (10 ** 18))
+      setTotelAmount(totalValue)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
   return (
     <>
       <div className="home_popup_background">
@@ -1076,9 +1279,7 @@ export function AcceptBid({ setAcceptBidModel, bidDetails, user, nftData }) {
             <div className="popup_placrbid3">
               <div className="placebid3_header">
                 <h2>Follow steps</h2>
-                <h2 onClick={handleCancel}>
-                  <SlClose className="wrong_icon" />
-                </h2>
+
               </div>
               <div className="accept_img_div">
                 <div className="acceptbid_img">
@@ -1093,25 +1294,27 @@ export function AcceptBid({ setAcceptBidModel, bidDetails, user, nftData }) {
               </div>
               <div className="popup_payment_div">
                 <div className="accept_payment_heading">
-                  <p>{bidDetails.bidprice} for 1 edition</p>
+                  <p>{nftData?.nft_name} </p>
                 </div>
                 <div className="popup_line_div"></div>
                 <div className="popup_payment">
                   <p>Service fee</p>
-                  <p className="griedient_text">0 ETH</p>
+                  <p className="griedient_text">{serviceFee} Matic</p>
                 </div>
                 <div className="popup_payment">
                   <p>Total bid amount</p>
-                  <p className="griedient_text">{bidDetails.bidprice} MATIC</p>
+                  <p className="griedient_text">{totelAmount} MATIC</p>
                 </div>
               </div>
               <div className="placebid3_button_div_cancel">
-                <button onClick={acceptBidFunction} disabled={loading}> {loading ? <CircleSpinner size={30} color="#ba00a7" /> : "Accept bid"}</button>
+                {
+                  acceptBid ? <Link to={"/profile/collectibles"}>Done</Link> : <button onClick={acceptBidFunction} disabled={loading}> {loading ? <CircleSpinner size={30} color="#ba00a7" /> : "Accept bid"}</button>
+                }
               </div>
 
               {
-                loading ? "" : <div className="placebid3_button_div_startnow">
-                  <button>Cancelled</button>
+                (loading || acceptBid) ? "" : <div className="placebid3_button_div_startnow">
+                  <button onClick={handleCancel}>Cancel</button>
                 </div>
               }
             </div>
@@ -1446,7 +1649,7 @@ export function PutOnsale4() {
   );
 }
 
-export function PutOnsale5() {
+export function NotWhitListUserPopup() {
   const [cancel, setCancel] = useState(false);
 
   const handleCancel = () => {
@@ -1463,42 +1666,19 @@ export function PutOnsale5() {
           <div className="placebid3">
             <div className="popup_placrbid3">
               <div className="placebid3_header">
-                <h2>Follow steps</h2>
                 <h2 onClick={handleCancel}>
                   <SlClose className="wrong_icon" />
                 </h2>
               </div>
               <div className="placebid3_img_div">
-                <div className="aprove_div">
-                  <img src={FileUpload} />
-                </div>
                 <div className="Placebid_3_rightcontent">
-                  <div className="Purchase_header">Approve</div>
                   <div className="Purchase_paragraph">
-                    Approve performing transactions with your wallet{" "}
+                    Whitelisted users can create NFTs; whitelist yourself by providing details in the Contact Us Page.
                   </div>
                 </div>
               </div>
-              <div className="putonsale_button_div_Failed">
-                <button>Failed</button>
-                <div className="failed_paragraph">
-                  Something went wrong, please try again
-                </div>
-              </div>
-              <div className="placebid3_img_div">
-                <div className="placebid3_img">
-                  <img src={Pencil} />
-                </div>
-                <div className="Placebid_3_rightcontent">
-                  <div className="Purchase_header">Sign sell order</div>
-                  <div className="Purchase_paragraph">
-                    Sign sell order using your wallet
-                  </div>
-                </div>
-              </div>
-              <div className="start_now_putonsale">
-                <button>Start now</button>
-              </div>
+
+
             </div>
           </div>
         </div>
@@ -1580,12 +1760,33 @@ export function Transfertoken({ setTransferToken, user, nftData }) {
   if (cancel) {
     return null;
   }
+  function isValidEthereumAddress(address) {
+    // Ethereum address regular expression
+    const ethAddressRegex = /^(0x)?[0-9a-fA-F]{40}$/;
 
+    // Test the address against the regular expression
+    return ethAddressRegex.test(address);
+  }
+
+  // Example usag
   const HandleTransfer = async () => {
     if (!address) {
       return toast.error("Please Enter the To Address")
     }
+    if (!isValidEthereumAddress(address)) {
+      return toast.error("Please Enter vailed  Address")
+
+    }
     setLoading(true)
+
+    try {
+      const user = await axios.get(`${API_URL}/findUser/${address}`)
+    } catch (error) {
+      console.log(error);
+      setLoading(false)
+      return toast.error("This Address Not registered")
+    }
+
     try {
       const fromAddress = user.userid
       const toAddress = address
@@ -1624,6 +1825,12 @@ export function Transfertoken({ setTransferToken, user, nftData }) {
       "nft_owner": address
     }
     const data = await axios.put(`${API_URL}/update-nft/${nftData.nfttoken}/${nftData.collection_id}`, value, { withCredentials: true })
+    const datas = {
+      ownerAddress: address,
+      tokenId: nftData.nfttoken,
+      collectionId: nftData.collection_id
+    }
+    nftOwner(datas)
     setTransferDone(true)
     getReceiverData()
     setLoading(false)
@@ -1673,6 +1880,17 @@ export function Transfertoken({ setTransferToken, user, nftData }) {
       console.log(error);
     }
   }
+
+  // send owner data on BE
+
+  const nftOwner = async (data) => {
+
+    try {
+      const owner = await axios.post(`${API_URL}/nft-owner`, { data })
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
       <div className="home_popup_background">
@@ -1695,7 +1913,7 @@ export function Transfertoken({ setTransferToken, user, nftData }) {
                 <input placeholder="Paste address" className="transfer_input" value={address} onChange={(e) => setAddress(e.target.value)} />
                 <div className="transfer_border_div"></div>
               </div>
-              {transferDone ? <div className="putonsale_button_div_Continue"><button>Done</button></div> : <div className="putonsale_button_div_Continue" onClick={HandleTransfer}>
+              {transferDone ? <div className="putonsale_button_div_Continue"><Link to={"/profile/collectibles"}>Done</Link></div> : <div className="putonsale_button_div_Continue" onClick={HandleTransfer}>
                 <button disabled={loading}>{loading ? <CircleSpinner size={30} color="#ba00a7" /> : "Continue"}</button>
               </div>}
               {(loading || transferDone) ? "" : <div className="placebid3_button_div_cancel">
@@ -1712,6 +1930,7 @@ export function Transfertoken({ setTransferToken, user, nftData }) {
 export function Transfertoken2({ setRemoveSale, bidDetails, user, nftData }) {
   const [cancel, setCancel] = useState(false);
   const [loading, setloading] = useState(false)
+  const [done, setDone] = useState(false)
   const web3 = new Web3(window.ethereum);
 
   const handleCancel = () => {
@@ -1739,9 +1958,10 @@ export function Transfertoken2({ setRemoveSale, bidDetails, user, nftData }) {
           gasLimit: Number(limit) + 5000,
         })
       updateOwnerOnBE()
-
       setloading(false)
+      setDone(true)
     } catch (error) {
+
       setloading(false)
       if (error.message == "Returned error: MetaMask Tx Signature: User denied transaction signature.") {
         return toast.error("User denied transaction signature.")
@@ -1756,6 +1976,7 @@ export function Transfertoken2({ setRemoveSale, bidDetails, user, nftData }) {
       }
       const data = await axios.put(`${API_URL}/update-nft/${nftData.nfttoken}/${nftData.collection_id}`, value, { withCredentials: true })
       sendnotificationRFS()
+      deleteAuctionDate()
       toast.success(`you removed ${nftData.nft_name} onsale`)
     } catch (error) {
       console.log(error);
@@ -1777,6 +1998,14 @@ export function Transfertoken2({ setRemoveSale, bidDetails, user, nftData }) {
       console.log(error);
     }
   }
+
+  const deleteAuctionDate = async () => {
+    try {
+      const { data } = await axios.delete(`${API_URL}/delete-particular-action/${nftData.nfttoken}/${nftData.collection_id}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       <div className="home_popup_background">
@@ -1794,13 +2023,18 @@ export function Transfertoken2({ setRemoveSale, bidDetails, user, nftData }) {
                   Do you really want to remove your item from sale
                 </p>
               </div>
-              <div className="placebid3_button_div_cancel">
-                <button onClick={handleRemoveSale}>{loading ? <CircleSpinner size={30} color="#ba00a7" /> : "Remove now"}</button>
-              </div>
               {
-                loading ? "" : <div className="putonsale_button_div_Continue">
-                  <button onClick={handleCancel}>Cancel</button>
-                </div>
+                done ? <div className="placebid3_button_div_cancel">
+                  <Link to={"/profile/collectibles"} >Done</Link>
+                </div> : <>
+                  <div className="placebid3_button_div_cancel">
+                    <button onClick={handleRemoveSale} disabled={loading}>{loading ? <CircleSpinner size={30} color="#ba00a7" /> : "Remove now"}</button>
+                  </div>
+                  {
+                    loading ? "" : <div className="putonsale_button_div_Continue">
+                      <button onClick={handleCancel}>Cancel</button>
+                    </div>
+                  }</>
               }
             </div>
           </div>
@@ -1812,27 +2046,65 @@ export function Transfertoken2({ setRemoveSale, bidDetails, user, nftData }) {
 
 export function Transfertoken3({ setBurnToken, nftData, user }) {
   const [cancel, setCancel] = useState(false);
+  const [loading,setLoading]=useState(false)
+  const [done,setDone]=useState(false)
   const web3 = new Web3(window.ethereum);
-
+  console.log(user.userid);
   const handleCancel = () => {
     setCancel(!cancel);
     setBurnToken(false)
   };
-  const nftContractAddress = Contract.ChronicleVerseNFT
+  const nftContractAddress = nftData.collection_id
   const burnToken = async () => {
     try {
-      const tokenId = nftData.nfttoken
+      setLoading(true)
+      const tokenId = Number(nftData.nfttoken)
+      console.log(tokenId);
       const contractInstance = new web3.eth.Contract(NFT_ABI, nftContractAddress);
-      let limit = await contractInstance.methods
-        .burn(tokenId)
-        .estimateGas({ from: user.userid });
+      console.log(contractInstance);
+       const limit = await contractInstance.methods.burn(tokenId).estimateGas({ from: user.userid })
+      const burnNft = await contractInstance.methods.burn(tokenId).send(
+        {
+          from: user.userid,
+          gasLimit: Number(limit) + 5000,
+        })
+        sendnotificationRFS()
+        deleteNft()
+        setLoading(false)
+        setDone(true)
     } catch (error) {
+      setLoading(false)
+      if (error.message == "Returned error: MetaMask Tx Signature: User denied transaction signature.") {
+        return toast.error("User denied transaction signature.")
+      }
       console.log(errors);
     }
 
   }
   if (cancel) {
     return null;
+  }
+
+  const deleteNft = async () => {
+   try {
+    const {data} =await axios.delete(`${API_URL}/deletenft/${nftData.nfttoken}/${nftData.collection_id}`)
+    
+   } catch (error) {
+    console.log(error);
+   }
+  }
+  const sendnotificationRFS = async () => {
+    const formData = new FormData()
+    formData.append("user", user._id)
+    formData.append("notifyTo", user._id)
+    formData.append("Distillery", nftData.nft_name)
+    formData.append("notificationType", "burnToken")
+    formData.append("img", nftData.image)
+    try {
+      const notification = await axios.post(`${API_URL}/notification`, formData, { withCredentials: true })
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <>
@@ -1848,15 +2120,19 @@ export function Transfertoken3({ setBurnToken, nftData, user }) {
               </div>
               <div className="transfer_paragraph2">
                 <p>
-                  Do you really want to remove your item from sale ? You can put
-                  it on sale anytime
+                  Do you really want to remove your item from sale ?
                 </p>
               </div>
-              <div className="transfer_button_div_Continue">
-                <button onClick={burnToken}>Continue</button>
+              <div className="placebid3_button_div_cancel">
+                {
+                  done ?<Link to={"/profile/onsale"}>Done</Link>:
+                  <button onClick={burnToken} disabled={loading}>{loading ? <CircleSpinner size={30} color="#ba00a7" /> : "Continue"}</button>
+                }
               </div>
               <div className="placebid3_button_div_cancel">
-                <button>Cancel</button>
+               {
+                (loading || done)  ? "": <button onClick={handleCancel}>Cancel</button>
+               }
               </div>
             </div>
           </div>
@@ -1866,15 +2142,43 @@ export function Transfertoken3({ setBurnToken, nftData, user }) {
   );
 }
 
-export function Transfertoken4() {
+export function Transfertoken4({ setReportNft, user }) {
   const [cancel, setCancel] = useState(false);
-
+  const [content, setContent] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [reportDone, setReportDone] = useState(false)
   const handleCancel = () => {
     setCancel(!cancel);
+    setReportNft(false)
   };
 
   if (cancel) {
     return null;
+  }
+
+  const handleClick = () => {
+    if (!content) {
+      return toast.error("Please Enter Some Content")
+    }
+    setLoading(true)
+    const data = {
+      user: user._id,
+      content
+    }
+    sendReport(data)
+  }
+
+  const sendReport = async (data) => {
+    try {
+      const report = await axios.post(`${API_URL}/report`, data)
+      toast.success("Successfully Reported")
+      setReportDone(true)
+      setLoading(false)
+
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+    }
   }
   return (
     <>
@@ -1901,14 +2205,112 @@ export function Transfertoken4() {
                     type="text"
                     className="transfer_messagebox_input"
                     placeholder="Tell us the details"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
                   />
                 </div>
               </div>
-              <div className="transfer_button_div_sendnow">
-                <button>Send now</button>
+              {
+                reportDone ? <div className="placebid3_button_div_cancel margin">
+                  <button onClick={handleCancel}>Done</button>
+                </div> : <>  <div className="transfer_button_div_sendnow">
+                  <button type="button" onClick={handleClick} disabled={loading}>{loading ? <CircleSpinner size={30} color="#ba00a7" loading={loading} /> : "Send Now"}</button>
+                </div>
+                  {
+                    loading ? "" : <div className="placebid3_button_div_cancel">
+                      <button>Cancel</button>
+                    </div>
+                  }
+
+                </>
+              }
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export function Share({ setShare, nftData }) {
+  const [url, setUrl] = useState("")
+  useEffect(() => {
+    const currentUrl = window.location.href;
+    setUrl(currentUrl)
+  }, [])
+  const [cancel, setCancel] = useState(false);
+
+  const handleCancel = () => {
+    setCancel(!cancel);
+    setShare(false)
+  };
+
+  if (cancel) {
+    return null;
+  }
+
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(url);
+    toast.success('Link copied Successfully');
+  };
+
+
+  const shareUrl = window.location.href;;
+  const title = "Please share this";
+  const imageUrl = nftData.image; // Replace with the URL of your image
+  const instagramShareUrl = `https://telegram.me/share/url?url=${shareUrl}`;
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(title)}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`;
+  return (
+    <>
+      <div className="home_popup_background">
+        <div className="placebid3_Maindiv">
+          <div className="placebid3">
+            <div className="popup_transfer">
+              <div className="transfer_header">
+                <h2>Share The Link</h2>
+                <h2 onClick={handleCancel}>
+                  <SlClose className="wrong_icon" />
+                </h2>
               </div>
-              <div className="placebid3_button_div_cancel">
-                <button>Cancel</button>
+              <div className="transfer_paragraph">
+
+              </div>
+              <div className="transfer_messagebox background">
+                <div className="form_input_container background">
+                  <input
+                    type="text"
+                    value={`${url.substring(0, 30)}....${url.substring(103)}`}
+                    className="transfer_messagebox_input share"
+                    placeholder="Tell us the details"
+                  />
+
+                </div>
+                <FaCopy className="icon" onClick={handleCopyClick} />
+              </div>
+              <div className="share_social_media_icon">
+                <a
+                  href={facebookShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebook className="icons" />
+                </a>
+                <a
+                  href={twitterShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <BsTwitterX className="icons" />
+                </a>
+                <a
+                  href={instagramShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaTelegram className="icons" />
+                </a>
               </div>
             </div>
           </div>
@@ -1917,3 +2319,5 @@ export function Transfertoken4() {
     </>
   );
 }
+
+

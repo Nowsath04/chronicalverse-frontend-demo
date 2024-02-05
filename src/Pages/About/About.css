@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
 }
+
 .JesusAbout_div {
   width: 83%;
   display: flex;
@@ -26,11 +27,9 @@
   z-index: -1;
   height: 1177px;
   width: 1177px;
-  background: radial-gradient(
-    50% 50% at 50% 50%,
-    rgba(193, 0, 162, 0.71) 0%,
-    rgba(143, 0, 183, 0) 100%
-  );
+  background: radial-gradient(50% 50% at 50% 50%,
+      rgba(193, 0, 162, 0.71) 0%,
+      rgba(143, 0, 183, 0) 100%);
   top: -400px;
   left: -450px;
 }
@@ -46,12 +45,15 @@
 .JesusImg span:nth-child(1) {
   clip-path: polygon(48.5% 0, 48.5% 48.5%, 0 48.5%, 0 0);
 }
+
 .JesusImg span:nth-child(2) {
   clip-path: polygon(100% 0, 100% 48.5%, 51.5% 48.5%, 51.5% 0);
 }
+
 .JesusImg span:nth-child(3) {
   clip-path: polygon(48.5% 51.5%, 48.5% 100%, 0 100%, 0 51.5%);
 }
+
 .JesusImg span:nth-child(4) {
   clip-path: polygon(100% 51.5%, 100% 100%, 51.5% 100%, 51.5% 51.5%);
 }
@@ -66,6 +68,7 @@
   font-family: Averia Serif Libre;
   color: white;
   margin-bottom: 10px;
+  width: 508px;
 }
 
 .Jesus_heading span {
@@ -79,7 +82,8 @@
 .Jesus_paragraph {
   color: #a3a6b7;
   margin-bottom: 20px;
-  font-size: 14px;
+  font-size: 16px;
+  width: 508px;
 }
 
 .Jesus_Button {
@@ -100,40 +104,52 @@
   display: none;
 }
 
-@media screen and (max-width: 1190px) {
+@media screen and (max-width: 1250px) {
   .JesusImg {
     position: relative;
     height: 445px;
     width: 445px;
   }
+
   .Jesus_heading {
     font-size: 2.4rem;
     font-weight: 700;
+    width: 441px;
   }
+
+  .Jesus_paragraph {
+    width: 441px;
+  }
+
 }
-@media screen and (max-width: 1190px) {
+
+/* @media screen and (max-width: 1170px) {
   .JesusImg {
     position: relative;
     height: 435px;
     width: 435px;
   }
+
   .Jesus_heading {
     font-size: 2.3rem;
     font-weight: 700;
   }
-}
+} */
 
-@media screen and (max-width: 1060px) {
+@media screen and (max-width: 1170px) {
   .JesusImg {
     height: 430px;
     width: 430px;
   }
+
   .Jesus_heading {
-    font-size: 2rem;
+    font-size: 2.3rem;
     font-weight: 700;
   }
+
   .Jesus_paragraph {
     font-size: 0.9rem;
+    width: 458px;
   }
 
   .Jesus_grdient {
@@ -144,25 +160,63 @@
   }
 }
 
-@media screen and (max-width: 1010px) {
+@media screen and (max-width: 1100px) {
   .JesusImg {
-    height: 410px;
-    width: 410px;
+    position: relative;
+    height: 400px !important;
+    width: 400px !important;
   }
+
   .Jesus_heading {
+    width: 415px;
     font-size: 2.3rem;
     font-weight: 700;
   }
-  .Jesus_heading {
-    font-size: 1.9rem;
+
+  .Jesus_paragraph {
+    font-size: 0.9rem;
+    width: 415px;
   }
 }
+
+@media screen and (max-width: 1060px) {
+  .JesusImg {
+    height: 380px !important;
+    width: 380px !important;
+  }
+
+  .Jesus_heading {
+    font-size: 2.3rem;
+    font-weight: 700;
+    width: 393px;
+  }
+
+  .Jesus_paragraph {
+    font-size: 0.9rem;
+    width: 400px;
+  }
+
+}
+
+@media screen and (max-width: 1000px) {
+
+  .Jesus_heading {
+    width: 355px;
+  }
+
+  .Jesus_paragraph {
+    width: 333px;
+  }
+
+}
+
 
 @media screen and (max-width: 980px) {
   .JesusImg {
     height: 380px;
     width: 380px;
   }
+
   .Jesus_heading {
     font-size: 1.8rem;
   }
@@ -176,29 +230,45 @@
     width: 100%;
     text-align: center;
   }
+
   .Jesus_div1 {
     display: none;
   }
+
   .Jesus_div2 {
     display: flex;
     padding-top: 1.25rem;
   }
+
   .JesusImg {
     height: 450px;
     width: 450px;
   }
+
   .Jesus_heading {
     font-size: 2.6rem;
+    width: 80%;
   }
+
+  .JesusContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   .Jesus_paragraph {
+    width: 80%;
     font-size: 1.4rem;
   }
+
   .Jesus_grdient {
     height: 800px;
     width: 800px;
     top: -180px;
     left: -200px;
   }
+
   .Jesus_Button {
     margin-left: 0;
     margin-top: 0;
@@ -210,48 +280,60 @@
     flex-direction: column-reverse;
     width: 100%;
   }
+
   .JesusImg {
-    width: 450px;
-    height: 450px;
+    width: 450px !important;
+    height: 450px !important;
     margin-top: 1.8rem;
   }
+
   .JesusImgdiv {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
   .JesusImg span:nth-child(1) {
     clip-path: polygon(49% 0, 49% 49%, 0 49%, 0 0);
   }
+
   .JesusImg span:nth-child(2) {
     clip-path: polygon(100% 0, 100% 49%, 51% 49%, 51% 0);
   }
+
   .JesusImg span:nth-child(3) {
     clip-path: polygon(49% 51%, 49% 100%, 0 100%, 0 51%);
   }
+
   .JesusImg span:nth-child(4) {
     clip-path: polygon(100% 51%, 100% 100%, 51% 100%, 51% 51%);
   }
+
   .Jesus_div1 {
     display: none;
   }
+
   .Jesus_div2 {
     display: flex;
     padding: 0;
   }
+
   .Jesus_heading {
     font-size: 2.3rem;
   }
+
   .Jesus_paragraph {
     font-size: 1rem !important;
   }
+
   .Jesus_grdient {
     height: 800px;
     width: 800px;
     top: -170px;
     left: -20px;
   }
+
   .Jesus_Button {
     margin-top: 20px;
   }
@@ -259,24 +341,28 @@
 
 @media screen and (max-width: 706px) {
   .JesusImg {
-    width: 347px;
-    height: 360px;
+    width: 347px !important;
+    height: 360px !important;
     margin-top: 1.8rem;
   }
+
   .Jesus_paragraph {
     font-size: 0.8rem;
   }
+
   .Jesus_grdient {
     height: 563px;
     width: 563px;
     top: -80px;
     left: 60px;
   }
+
   .Jesus_Button {
     width: 144px;
     height: 40px;
     margin: 0;
   }
+
   .JesusImgdiv {
     margin-bottom: 16px !important;
   }
@@ -307,9 +393,11 @@
     top: -39px;
     left: -20px;
   }
+
   .Jesus_heading {
     font-size: 2.1rem;
   }
+
   .Jesus_paragraph {
     font-size: 0.8rem !important;
     margin: 0;
@@ -320,9 +408,11 @@
   .Jesus_heading {
     font-size: 24px;
   }
+
   .Jesus_paragraph {
     font-size: 0.8rem !important;
   }
+
   .Jesus_grdient {
     height: 500px;
     width: 500px;

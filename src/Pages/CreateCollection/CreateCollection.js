@@ -69,7 +69,7 @@ console.log(user);
 
   //send req in backend
 
-  const creatNewCollection = async (ipfsData) => {
+  const creatNewCollection = async (ipfsData,collectionId) => {
     const formData = new FormData();
     formData.append("collectiontitle", collectionData.collectiontitle);
     formData.append("collectionurl", collectionData.collectionurl);
@@ -78,6 +78,7 @@ console.log(user);
       collectionData.collectiondescription
     );
     formData.append("ipfshashvalue", ipfsData);
+    formData.append("collectionId",collectionId)
     const data = await axios.post(
       `${API_URL}/new-collection`,
       formData,
@@ -142,15 +143,16 @@ console.log(user);
       const limit = await contractInstance.methods
         .createCollection(collectionName, ipfsHash)
         .estimateGas({ from: account });
-      const adjustedGasLimit = Number(limit) + Number(5000);
+      const adjustedGasLimit = Number(limit) + 5000;
       console.log("limit", limit);
       const createCollection = await contractInstance.methods
         .createCollection(collectionName, ipfsHash)
         .send({
           from: account,
+          gasLimit: adjustedGasLimit,
         });
       console.log("createCollection", createCollection);
-      creatNewCollection(hashmetaData);
+      creatNewCollection(hashmetaData,createCollection.events.CollectionCreated.returnValues.newCollection);
       getNotification(collectionName)
       toast.success("Collection created successfully")
       navigate("/createsinglecollection")
@@ -180,6 +182,9 @@ console.log(error);
     }
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
 

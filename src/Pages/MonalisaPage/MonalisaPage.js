@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Group_186 from "../../Assets/monalisa.gif";
 import blurImg from "../../Assets/blurImg.png";
 import "./MonalisaPage.css";
+import { useNavigate } from "react-router-dom";
 
 export default function MonalisaPage() {
+  const navigate = useNavigate()
+  const handleClick = () => {
+    navigate("/searchallcard")
+  }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="MonalisaDiv">
@@ -17,13 +25,12 @@ export default function MonalisaPage() {
                 <span> NFTs</span> here
               </div>
               <p className="Monalisa_paragraph">
-                Lorem ipsum dolor sit amet consectetur. Viverra sagittis <br />
-                dignissim amet cursus urna vitae et. Amet aliquet <br />
-                volutpat ac at nunc.
+              Explore a realm of beauty with our exquisite collection of NFTs.<br />
+              Elevate your digital art experience and  <br />
+              discover stunning creations here.
               </p>
               <div className="Monalisabutton_div1">
-                <button className="monalisa_content_button">Explore</button>
-                <button className="monalisa_content_button">Create</button>
+                <button onClick={handleClick} className="monalisa_content_button">Explore</button>
               </div>
             </div>
           </div>
@@ -31,8 +38,8 @@ export default function MonalisaPage() {
             <img src={Group_186} className="monalisa-img" />
           </div>
           <div className="Monalisabutton_div2">
-            <button className="Monalisa_button">Explore</button>
-            <button className="Monalisa_button">Create</button>
+            <button onClick={handleClick} className="Monalisa_button">Explore</button>
+          
           </div>
         </div>
       </div>

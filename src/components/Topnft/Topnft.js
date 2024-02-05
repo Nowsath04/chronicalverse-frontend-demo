@@ -17,28 +17,28 @@ export default function Topnft() {
   console.log(userid);
   const slider = useRef(null);
   const [allUser, setAllUser] = useState([])
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [headingContent, setHeadingContent] = useState("This Week");
   const [filter1, setFilter1] = useState(false);
+  const [cardLength, setCardLength] = useState(0)
   const [dropdown, setDropDown] = useState(false);
   const [filterTrue, setFilterTrue] = useState(false);
   const filter1div = () => {
     setFilter1(!filter1);
     setFilterTrue(!false);
   };
-  const getAllUser = async() => {
+  const getAllUser = async () => {
     try {
-      const {data}  = await axios.get(`${API_URL}/getalluser`)
-      const otherUser=data.allUser.filter(data=>data.userid ===Number(userid)) 
-      console.log("otherUser",otherUser);
-       setAllUser(data.allUser)
+      const { data } = await axios.get(`${API_URL}/get_topartists`)
+      setAllUser(data.allArtist)
+      setCardLength(data.allArtist.length)
     } catch (error) {
       console.log(error);
     }
-    }
-  
-    useEffect(() => {
-      getAllUser()
-    },[])
+  }
+  useEffect(() => {
+    getAllUser()
+  }, [])
   const handleDropdownItemClick = (newContent) => {
     setHeadingContent(newContent);
     setDropDown(false);
@@ -49,14 +49,17 @@ export default function Topnft() {
     setDropDown(!dropdown);
     setFilterTrue(!filterTrue);
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const settings = {
     dots: false,
     infinite: true,
     arrows: false,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 2,
+    initialSlide: 0,
     responsive: [
       {
         breakpoint: 1130,
@@ -125,7 +128,7 @@ export default function Topnft() {
         },
       },
       {
-        breakpoint: 430,
+        breakpoint: 435,
         settings: {
           className: "center",
           centerMode: true,
@@ -186,7 +189,18 @@ export default function Topnft() {
       },
     ],
   };
+  const updateWindowDimensions = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    // Add event listener for window resize
+    window.addEventListener('resize', updateWindowDimensions);
 
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', updateWindowDimensions);
+    };
+  }, []);
 
   return (
     <>
@@ -195,41 +209,11 @@ export default function Topnft() {
           <div className="TopNft_header_Div">
             <div className="TopNft_grident"></div>
             <h1 className="TopNft_header">
-              Out top <span>NFT</span> artists
+              Our top <span>NFT</span> artists
             </h1>
           </div>
           <div className="dropdown_div">
-            <div class="dropdown">
-              <RiArrowDropDownLine
-                className={filterTrue ? "dropicon_up" : "dropicon"}
-                onClick={handleSubmit}
-              />
-              <div className="dropbtn" onClick={filter1div}>
-                {headingContent}
-              </div>
-              {dropdown && (
-                <div className="Thisweek_dropdown">
-                  <div
-                    className="Thisweek_dropdown_option"
-                    onClick={() => handleDropdownItemClick("This week")}
-                  >
-                    This week
-                  </div>
-                  <div
-                    className="Thisweek_dropdown_option"
-                    onClick={() => handleDropdownItemClick("This month")}
-                  >
-                    This month
-                  </div>
-                  <div
-                    className="Thisweek_dropdown_option"
-                    onClick={() => handleDropdownItemClick("This year")}
-                  >
-                    This year
-                  </div>
-                </div>
-              )}
-            </div>
+
             <button className="leftarrow">
               <PiArrowCircleLeftBold
                 className="leftarrowIcon"
@@ -247,15 +231,27 @@ export default function Topnft() {
       </div>
 
       <div className="card_1box">
-        <Slider ref={slider} {...settings}>
-          {allUser && allUser.map((item, index) => {
-            return (
-              <React.Fragment key={index}>
-                <Card1 item={item} />
-              </React.Fragment>
-            );
-          })}
-        </Slider>
+        {
+          (cardLength < 4 && windowWidth >1130) ?
+           <div className="artistcard_len">
+              {allUser && allUser.map((item, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <Card1 item={item.Artist} />
+                </React.Fragment>
+              );
+            })}
+          </div> : <Slider ref={slider} {...settings}>
+            {allUser && allUser.map((item, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <Card1 item={item.Artist} />
+                </React.Fragment>
+              );
+            })}
+          </Slider>
+        }
+
       </div>
     </>
   );

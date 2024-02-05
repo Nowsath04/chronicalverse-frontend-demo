@@ -15,6 +15,7 @@ import { API_URL } from "../../constants/userConstants";
 
 const EditProfile = () => {
   const [image, setimage] = useState("");
+  const [userProfile, setUserProfile] = useState([])
   const [content, setContent] = useState("Verify account");
   const [profileimg, setProfileImg] = useState(null);
 
@@ -75,6 +76,12 @@ const EditProfile = () => {
     if (!userData.email) {
       return toast.error("pls enter the email", { theme: "dark" });
     }
+    if (userData.bio.length <50 ) {
+      return toast.error("pls enter the bio minimum 50 words", { theme: "dark" });
+    }
+    if (!userData.bio  ) {
+      return toast.error("pls enter the bio", { theme: "dark" });
+    }
     if (!validateEmail(userData.email)) {
       return toast.error("pls enter the validate email", { theme: "dark" });
     }
@@ -95,7 +102,7 @@ const EditProfile = () => {
         { withCredentials: true }
       );
       toast.success("successfuly Updated", { theme: "dark" });
-      navigate("/profile");
+      navigate("/profile/collectibles");
     } catch (error) {
       console.log(error);
     }
@@ -119,25 +126,53 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (userProfile) {
       updateMultipleValues({
-        name: user.name,
-        bio: user.bio,
-        email: user.email,
-        url: user.url,
+        name: userProfile.name,
+        bio: userProfile.bio,
+        email: userProfile.email,
+        url: userProfile.url,
       });
-      setProfileImg(user.imgpath);
+      setProfileImg(userProfile.imgpath);
     }
-  }, [user]);
+  }, [userProfile]);
 
   console.log(profileimg, "hi");
+  const getProfile = async () => {
+    try {
+      const { data } = await axios.get(`${API_URL}/myprofile`, { withCredentials: true })
+      setUserProfile(data.user)
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
+  useEffect(() => {
+    getProfile()
+  }, [])
+
+  const clearFunction=()=>{
+    updateMultipleValues({
+      name: "",
+      bio: "",
+      email: "",
+      url: "",
+    });
+    setimage("")
+    setProfileImg("")
+  }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const goBack = () => {
+    window.history.back();
+  };
   return (
     <div className="editprofile">
       <div className="editprofile_container">
         <div className="editprofile_heading">
-          <img src={arrow} alt="" />
-          <AiOutlineLeft className="editprofile_responsive_arrowbar" />
+          <img src={arrow} alt="" onClick={goBack} />
+          <AiOutlineLeft className="editprofile_responsive_arrowbar"  />
           <div>
             <h4>Edit profile</h4>
             <p>
@@ -228,11 +263,11 @@ const EditProfile = () => {
                 </div>
               </div>
               <div className="add_more">
-                <button>{<AiOutlinePlus />}Add more social account</button>
+                <button type="button">{<AiOutlinePlus />}Add more social account</button>
               </div>
               <div className="editprofile_section_right_input_submit">
                 <div>
-                  <p>
+                  <p onClick={clearFunction}>
                     Clear all
                     <IoMdCloseCircleOutline />
                   </p>

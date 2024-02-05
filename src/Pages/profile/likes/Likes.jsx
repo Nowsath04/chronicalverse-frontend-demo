@@ -144,27 +144,38 @@ const Likes = () => {
     getLikedNft()
   }, [user])
 
-  const getLikedNft=async()=>{
-    const { data } = await axios.get(`${API_URL}/likeNft/${user?._id}`)
-    const nftdata = data.likedNft
-    setLikedNft(nftdata)
+  const getLikedNft = async () => {
+    try {
+      const { data } = await axios.get(`${API_URL}/likeNft/${user?._id}`)
+      const nftdata = data.likedNft
+      setLikedNft(nftdata)
+    } catch (error) {
+      console.log(error);
+    }
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="OnSale">
-        {likedNft.map((data, index) => {
+        {likedNft ? likedNft?.map((data, index) => {
           return <ProfileCard data={data} />;
-        })}
+        }) : <div>
+          No likes found
+        </div>}
       </div>
       <div className="onsale_responsive">
         <Slider ref={slider}  {...settings}>
-          {likedNft.map((data, index) => {
+          {likedNft ? likedNft?.map((data, index) => {
             return (
               <React.Fragment key={index}>
-                <ProfileCard  data={data} />
+                <ProfileCard data={data} />
               </React.Fragment>
             );
-          })}
+          }) : <div>
+            No likes found
+          </div>}
         </Slider>
       </div>
     </>

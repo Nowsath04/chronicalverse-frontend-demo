@@ -18,7 +18,9 @@ const Followers = () => {
       console.log(error);
     }
   }
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     if (user) {
       getFollowers()
@@ -29,6 +31,11 @@ const Followers = () => {
       {followers.map((data, index) => {
         return <Followers2 key={index} data={data} setupdate={setupdate} />;
       })}
+        {
+        followers.length ==0? <div >
+          You currently have no followers.
+        </div>:""
+      }
     </div>
   );
 };

@@ -12,6 +12,8 @@ import axios from "axios";
 import { API_URL } from "../../constants/userConstants";
 
 export default function SearchAllCard() {
+  const [loading,setLoading]=useState(false)
+  const [usd,setUsd]=useState(0)
   const [filterPopup, setFilterPopup] = useState(false);
   const [headingContent, setHeadingContent] = useState("All");
   const [headingContent2, setHeadingContent2] = useState("All");
@@ -161,6 +163,7 @@ export default function SearchAllCard() {
 
   const getAllNftData = async () => {
     try {
+      setLoading(true)
       const { data } = await axios.get(
         `${API_URL}/nft-all-data?keyword=${searchInput}`,
         {
@@ -169,10 +172,27 @@ export default function SearchAllCard() {
       );
       console.log("data", data.data);
       setNftData(data.data);
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       console.log(error);
     }
   };
+  const getUsd = async () => {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd');
+      const data = await response.json();
+
+      const maticToUSDExchangeRate = data['matic-network'].usd;
+      setUsd(maticToUSDExchangeRate)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getUsd()
+  }, [])
+  console.log("usd", usd);
 
   useEffect(() => {
     getAllNftData()
@@ -595,15 +615,15 @@ export default function SearchAllCard() {
           {nftdata.map((item, index) => {
             return (
               <React.Fragment key={index}>
-                <Allcardfunction item={item} />
+                <Allcardfunction item={item} usd={usd}  />
               </React.Fragment>
             );
           })}
         </div>
       </div>
-      <div className="Search_loading">
+    {loading?  <div className="Search_loading">
         <h5 style={{ textAlign: "center", color: "white" }}>loading 🏐</h5>
-      </div>
+      </div>:""}
     </div>
   );
 }

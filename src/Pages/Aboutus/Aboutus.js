@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Aboutus.css";
 import card1 from "../../asserts/images/card1.png";
 import Introductioncard from "../../components/introduction_card/Introductioncard";
 import heart from "../../asserts/images/heart.png";
+import axios from "axios";
+import { API_URL } from "../../constants/userConstants";
+import { Link } from "react-router-dom";
+
 const Aboutus = () => {
+  const [nft, setNft] = useState([])
+  const [usd, setUsd] = useState("")
   const data = {
     img: card1,
     id: "1",
@@ -11,10 +17,41 @@ const Aboutus = () => {
     price: "4.83ETHe",
     price_USD: "$10,000.56",
   };
+
+  const getAllNft = async () => {
+    try {
+      const { data } = await axios.get(`${API_URL}/nft-all-data`)
+      const nfts = data.data.reverse().slice(0, 3)
+      setNft(nfts)
+      console.log(nfts);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getAllNft()
+    getUsd()
+  }, [])
+
+  const getUsd = async () => {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=usd');
+      const data = await response.json();
+
+      const maticToUSDExchangeRate = data['matic-network'].usd;
+      setUsd(maticToUSDExchangeRate)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="about">
       <div className="about_use">
-        <p>ABOUT AS</p>
+        <p>ABOUT US</p>
         <h4>Sustainable Innovation in the Open Digital Economy</h4>
         <div>
           Embracing the Future with NFTs using state-of-the-art technology
@@ -38,25 +75,25 @@ const Aboutus = () => {
           <div className="introduction_container_right">
             <div className="small_card">
               <div className="introduction_card_big" style={{ zIndex: "5" }}>
-                <img src={data.img} alt="" />
+                <img src={nft[1]?.image} alt="" />
                 <div className="introduction_card_big_name">
-                  <p>Metaverse man</p>
-                  <div>
-                    <img src={heart} alt="" />
-                    <p>{data.likes}</p>
-                  </div>
+                  <p>{`${nft[1]?.nft_name.substring(0, 30)}...`}</p>
+
                 </div>
                 <div className="introduction_card_big_bid">
-                  <p>Current bid</p>
-                  <div>{data.price}</div>
+                  <p>price</p>
+                  <div>{nft[1]?.amount} MATIC</div>
                 </div>
                 <div className="introduction_card_bid_dollor">
-                  <p>{data.price_USD}</p>
+                  <p>{`$ ${nft[1]?.amount * usd}`}</p>
                 </div>
-                <button>Place bid</button>
+                <div className="introduction_card_bid_dollor">
+
+                </div>
+                <Link to={"/searchallcard"}>View more</Link>
               </div>
-              <Introductioncard data={data} />
-              <Introductioncard data={data} />
+              <Introductioncard data={nft[0]} usd={usd}/>
+              <Introductioncard data={nft[2]} usd={usd}/>
             </div>
           </div>
         </div>
@@ -130,7 +167,7 @@ const Aboutus = () => {
             Digital NFTs
           </p>
         </div>
-        <button>Join now</button>
+        <Link to={"/contact"}>Join now</Link>
       </div>
     </div>
   );

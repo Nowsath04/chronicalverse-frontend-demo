@@ -6,71 +6,75 @@ import axios from "axios";
 import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../constants/userConstants";
+import CountUp from 'react-countup';
 
 export default function Home() {
 
+  const [allCount, setAllCount] = useState([])
   const [popup, setPopup] = useState(false);
-  const [data,setData]=useState([])
+  const [data, setData] = useState([])
   const [count, setCount] = useState(0)
   const [disabledBack, setDisableBack] = useState(false)
   const [disabledFront, setDisableFront] = useState(false)
   const [filterData, setfilterData] = useState([])
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
 
-const fetchDataFromBackend = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/get-auction`);
-    const data = response.data.draft;
-    setData(data)
-    return data;
-  } catch (error) {
-    console.error("Error fetching auction data:", error);
-    return [];
-  }
-};
-
-useEffect(()=>{
-   fetchDataFromBackend();
-},[])
-
-const fetchAuctionEndTime = async () => {
-
-
-  if (data.length > 0) {
-    const currentTime = Math.floor(Date.now() / 1000);
-    const filterData = data.filter(item => item.endTime > currentTime);
-
-    if (filterData.length > 0) {
-      filterData.sort((a, b) => a.endTime - b.endTime);
-      setfilterData(filterData);
-
-      const endTimeTimestamp = parseInt(filterData[count].endTime, 10); // Use index 0
-      const timeRemaining = Math.max(0, endTimeTimestamp - currentTime);
-
-      const remainingHours = Math.floor(timeRemaining / 3600);
-      const remainingMinutes = Math.floor((timeRemaining % 3600) / 60);
-      const remainingSeconds = timeRemaining % 60;
-
-      setTime({ hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds });
-    } else {
-      setTime({ hours: 0, minutes: 0, seconds: 0 });
+  const fetchDataFromBackend = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/get-auction`);
+      const data = response.data.draft;
+      setData(data)
+      return data;
+    } catch (error) {
+      console.error("Error fetching auction data:", error);
+      return [];
     }
-  }
-};
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  useEffect(() => {
+    fetchDataFromBackend();
+  }, [])
 
-useEffect(() => {
-  const fetchDataAndUpdateTime = async () => {
-    await fetchAuctionEndTime();
+  const fetchAuctionEndTime = async () => {
+
+
+    if (data.length > 0) {
+      const currentTime = Math.floor(Date.now() / 1000);
+      const filterData = data.filter(item => item.endTime > currentTime);
+      filterData.reverse()
+      const newfilterData=filterData.filter(item=>item.removeAuction ==false)
+      if (newfilterData.length > 0) {
+        setfilterData(newfilterData);
+
+        const endTimeTimestamp = parseInt(filterData[count].endTime, 10); // Use index 0
+        const timeRemaining = Math.max(0, endTimeTimestamp - currentTime);
+
+        const remainingHours = Math.floor(timeRemaining / 3600);
+        const remainingMinutes = Math.floor((timeRemaining % 3600) / 60);
+        const remainingSeconds = timeRemaining % 60;
+
+        setTime({ hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds });
+      } else {
+        setTime({ hours: 0, minutes: 0, seconds: 0 });
+      }
+    }
   };
 
-  fetchDataAndUpdateTime(); // Initial fetch
+  useEffect(() => {
+    const fetchDataAndUpdateTime = async () => {
+      await fetchAuctionEndTime();
+    };
 
-  const intervalId = setInterval(fetchDataAndUpdateTime, 1000);
+    fetchDataAndUpdateTime(); // Initial fetch
 
-  return () => {
-    clearInterval(intervalId);
-  };
-}, [data,count]);
+    const intervalId = setInterval(fetchDataAndUpdateTime, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [data, count]);
 
 
   const togglePopup = () => {
@@ -87,18 +91,29 @@ useEffect(() => {
 
   }
   const handleForward = () => {
-    const arrayCount=filterData.length-1
-    if (count > arrayCount ||(arrayCount) ===count) {
+    const arrayCount = filterData.length - 1
+    if (count > arrayCount || (arrayCount) === count) {
       setCount(arrayCount)
-     return setDisableFront(true);
-      
+      return setDisableFront(true);
+
     }
     setCount(count + 1);
     setDisableBack(false);
   };
 
+  const getCount = async () => {
+    try {
+      const { data } = await axios.get(`${API_URL}/get-count`)
+      setAllCount(data)
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-
+  useEffect(() => {
+    getCount()
+  }, [])
   // update more nft
 
   return (
@@ -112,7 +127,7 @@ useEffect(() => {
               }
             </div>
             <p className="Home_paragraph">
-             {filterData ? filterData[count]?.description.substring(0,150)+"..." : ""}
+              {filterData ? filterData[count]?.description.substring(0, 150) + "..." : ""}
             </p>
           </div>
           <div className="Image_Page_responsive">
@@ -196,15 +211,12 @@ useEffect(() => {
               </span>
             </div>
             <div className="HomeDownButton_div">
-              <button onClick={togglePopup} className="HomeDownButton">
-                Place bid
-              </button>
+
 
               <Link to={filterData ? filterData[count]?.pathname : "/"} className="HomeDownButton link" >View detail</Link>
             </div>
             <div className="home_left_btn_group">
               <button onClick={handleBackward} disabled={disabledBack}  ><FaRegArrowAltCircleLeft className="icon" /></button>
-
               <button onClick={handleForward} disabled={disabledFront}><FaRegArrowAltCircleRight className="icon" /></button>
             </div>
           </div>
@@ -226,9 +238,12 @@ useEffect(() => {
       <div className="Main_Bar">
         <div className="Bar_div">
           <div className="Bar_count">
-            <div>1050+</div>
-            <div>500+</div>
-            <div>200+</div>
+
+
+
+            <div><CountUp end={allCount.alluser - 1} duration={2} /> +</div>
+            <div><CountUp end={allCount.topArtist - 1} duration={2} /> +</div>
+            <div> <CountUp end={allCount.totalNft - 1} duration={2} /> +</div>
           </div>
           <div className="Bar_passion">
             <div>User’s</div>

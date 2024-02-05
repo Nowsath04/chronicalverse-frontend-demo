@@ -79,7 +79,29 @@
   left: -350px;
   top: -250px;
 }
-
+.item_price{
+  margin-top:12px ;
+  display: flex; 
+  justify-content: space-between;
+}
+.nft_price{
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.nft_price >p{
+  text-align: end;
+  font-size: 12px;
+}
+.nft_price_title{
+  font-size: 10px;
+}
+.nft_matic_price{
+  font-size: 12px;
+  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .Allcard_grident2 {
   position: absolute;
   z-index: -1;

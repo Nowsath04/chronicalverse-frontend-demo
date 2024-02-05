@@ -45,9 +45,15 @@ h4 {
   gap: 14px;
 }
 
+.itemDetailCard >img{
+  border-radius: 50%;
+}
 .Info_content > p {
   font-size: 20px;
   color: #919191;
+}
+.margin{
+  margin-bottom: 20px;
 }
 
 .Info_content > h4 {

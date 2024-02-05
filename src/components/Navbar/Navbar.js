@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Navbar.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaBarsStaggered } from "react-icons/fa6";
@@ -30,10 +30,14 @@ import Web3 from "web3";
 import expand from "../../Assets/expand_more_FILL0_wght300_GRAD0_opsz24 4.png";
 import card_arrow from "../../Assets/card_arrow.png";
 import { API_URL } from "../../constants/userConstants";
+import Logo from "../../Assets/Group 13047 xfn.svg"
+
 
 export default function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const notificationRef = useRef()
+  const profileRef = useRef()
   const { user, isAuthentication } = useSelector((selector) => selector.auth);
   const [userActive, setuserActive] = useState(false);
   const [currentAcc, setcurrectAcc] = useState("");
@@ -47,7 +51,7 @@ export default function Navbar() {
   const [notificationCount, setNotificationCount] = useState("")
   const [notifications, setNotifications] = useState([])
   // update notification when click the notification
-  const [updateNoti,setUpdateNoti]=useState("")
+  const [updateNoti, setUpdateNoti] = useState("")
   const web3 = new Web3(window.ethereum);
   // connect wallet function
   const connectWallets = async () => {
@@ -67,8 +71,10 @@ export default function Navbar() {
         const account = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        const address = account[0];
-        setcurrectAcc(address);
+        const address1 = account[0];
+        const address = web3.utils.toChecksumAddress(address1);
+        // console.log(checksumAddress);
+        // setcurrectAcc(checksumAddress);
         try {
           const { data } = await axios.post(
             `${API_URL}/generate-nonce`,
@@ -89,8 +95,8 @@ export default function Navbar() {
         console.log(error);
       }
     } else {
-      window.open =
-        "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn";
+      console.log("plsease");
+      window.location.href = "https://metamask.io/";
     }
   };
   // send user address and get nonce from backend
@@ -107,7 +113,7 @@ export default function Navbar() {
       dispatch(loginSuccess(data.user));
       if (data.user.name.length !== 0) {
         toast.success("login successfull", { theme: "dark" });
-        navigate("/profile");
+        navigate("/profile/onsale");
       } else {
         navigate("/editprofile");
       }
@@ -130,12 +136,12 @@ export default function Navbar() {
     if (user) {
       setProfileImage(user.imgpath);
     }
-  
+
   }, [user]);
 
-  useEffect(()=>{
+  useEffect(() => {
     getNotificaton()
-  },[user,updateNoti])
+  }, [user, updateNoti])
 
   // getbalance
 
@@ -151,10 +157,11 @@ export default function Navbar() {
 
   // user logout
   const userlogout = () => {
+    setConnectShowSecondButton(false)
     setuserActive(false);
     setUserDropDown(false);
     dispatch(logoutUser);
-    window.location.href = "/";
+
   };
 
   const getNotificaton = async () => {
@@ -168,14 +175,9 @@ export default function Navbar() {
     }
   }
 
-  const handleCopyClick = async () => {
-    try {
-      await navigator.clipboard.writeText(user.userid);
-      // Optionally, you can provide user feedback that the text has been copied
-      toast.success('Text copied the wallet Address');
-    } catch (error) {
-      console.error('Unable to copy to clipboard:', error);
-    }
+  const handleCopyClick =() => {
+      navigator.clipboard.writeText(user?.userid);
+      toast.success('Text copied to the wallet Address');
   };
   // update notification
   const updateNotification = async () => {
@@ -186,44 +188,64 @@ export default function Navbar() {
       console.log();
     }
   }
-  
+
   console.log(isAuthentication);
 
+
+  // close the  notification model if i clicked ouside the model
+  useEffect(() => {
+    const handelClick = (e) => {
+      if (!notificationRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handelClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handelClick);
+    };
+  }, []);
+  useEffect(() => {
+    const handelClick = (e) => {
+      if (!profileRef?.current?.contains(e.target)) {
+        setUserDropDown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handelClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handelClick);
+    };
+  }, []);
   return (
     <>
       <header>
         <div className="Navbar_Div">
           <Link className="logo" to={"/"}>
-            Logo
+            <img src={Logo} alt=""/>
           </Link>
           <ul className="Navbar">
             <Link to={"/searchallcard"} className="Link">
               <a>Market place</a>
             </Link>
             <Link to={"/about_us"} className="Link">
-              <a>About as</a>
+              <a>About us</a>
             </Link>
             <Link to={"/contact"} className="Link">
-              <a>Contact as</a>
+              <a>Contact us</a>
             </Link>
           </ul>
           <div className="search">
-            <div className="search_relative">
-              <div id="grad_input">
-                <input
-                  type="text"
-                  className="search_input"
-                  placeholder="search"
-                />
-              </div>
-              <button className="search_absolute">
-                <AiOutlineSearch />
-              </button>
-            </div>
-            <div className="bell_relative">
-              <GoBell className="bell_icon" onClick={() => setOpen(!open)} />
+
+            <div className="bell_relative" ref={notificationRef}>
               {
-                notificationCount == "0" ? "" : <div className="bell_absolute">{notificationCount}</div>
+                user ? <>
+                  <GoBell className="bell_icon" onClick={() => setOpen(!open)} />
+                  {
+                    notificationCount == "0" ? "" : <div className="bell_absolute">{notificationCount}</div>
+                  }</> : ""
               }
 
               {open && (
@@ -235,24 +257,26 @@ export default function Navbar() {
                     <div className="div_notification">
                       <div className="bell_notification_header">
                         <h3>Notification</h3>
-                        <button>See all</button>
                       </div>
                       {notifications.map((item, index) => {
-                        return <NotificationCard item={item}  user={user} setUpdateNoti={setUpdateNoti} updateNotification={updateNotification} />;
+                        return <NotificationCard item={item} user={user} setUpdateNoti={setUpdateNoti} updateNotification={updateNotification} />;
                       })}
                     </div>
                   </div>
                 </div>
               )}
             </div>
-            <Link to={"/create_collection"} className="darkbutton1">
-              Create
-            </Link>
+            {
+              user ? <Link to={"/create_collection"} className="darkbutton1">
+                Create
+              </Link> : ""
+            }
             {userActive ? (
-              <div className="nav_userbtn_div">
+              <div className="nav_userbtn_div" ref={profileRef}>
                 <div
                   className="nav_loginuser_div"
-                // UserDropDown //
+                  // UserDropDown //
+                  onClick={() => setUserDropDown(!userDropDown)}
                 >
                   <img
                     src={profileImg ? profileImg : buttonImg}
@@ -266,7 +290,7 @@ export default function Navbar() {
                     <img
                       src={expand}
                       alt="icon"
-                      onClick={() => setUserDropDown(!userDropDown)}
+
                     />
                     {userDropDown && (
                       <div className="UserDropDown_ManuBar">
@@ -277,7 +301,7 @@ export default function Navbar() {
                           <div className="UserDropDown_Heading">
                             <h3>{user ? user.name : ""}</h3>
                             <p>
-                             { `${(user.userid).substring(0,20)}....${(user.userid).substring(32)}`}
+                              {`${(user.userid).substring(0, 20)}....${(user.userid).substring(32)}`}
                               <FiCopy className="Copy_Icon" onClick={handleCopyClick} />
                             </p>
                           </div>
@@ -290,9 +314,6 @@ export default function Navbar() {
                                   <h3>0.{balances} MATIC</h3>
                                 </div>
                               </div>
-                              <div className="UserDropDown_Box_button">
-                                <button>Manage Metamask</button>
-                              </div>
                             </div>
                           </div>
                           <div className="UserDropDown_list_div">
@@ -302,30 +323,12 @@ export default function Navbar() {
                                   <img src={profile} />
                                   <Link
                                     className="mypofile_link"
-                                    to={"/profile"}
+                                    to={"/profile/onsale"}
                                   >
                                     My profile
                                   </Link>
                                 </li>
                                 <hr />
-                                <li onClick={() => setUserDropDown(false)}>
-                                  <img src={image} />
-                                  <Link
-                                    className="mypofile_link"
-                                    to={"/itemdetails"}
-                                  >
-                                    My items
-                                  </Link>
-                                </li>
-                                <hr />
-                                <li>
-                                  <img src={LightBulb} />
-                                  Dark theme
-                                  <label className="toggle_btn_dropdown">
-                                    <input type="checkbox" />
-                                    <span className="toggle_btn_dropdown_slider"></span>
-                                  </label>
-                                </li>
                                 <hr />
                                 <li onClick={userlogout}>
                                   <img src={Signout} />
@@ -385,21 +388,25 @@ export default function Navbar() {
           <div className="responsive_Navbar_1">
             <div className="responsive_Navbar_1_heading">
               <Link className="logo" to={"/"}>
-                Logo
+              <img src={Logo} alt=""/>
               </Link>
             </div>
-            <Link className="search_navbar" to={"/searchallcard"}>
-              <AiOutlineSearch />
-            </Link>
           </div>
           <div className="responsive_Navbar_2">
-            <Link className="create_link" to={"/create_collection_Page"}>
-              <BiSolidPlusCircle className="pluscircle" />
-              <span className="create_link_span">Create</span>
-            </Link>
+{
+  user ?             <Link className="create_link" to={"/create_collection_Page"}>
+  <BiSolidPlusCircle className="pluscircle" />
+  <span className="create_link_span">Create</span>
+</Link> : ""
+}
             <div className="bell_relative">
-              <GoBell className="bell_icon" onClick={() => setOpen(!open)} />
-              <div className="bell_absolute"></div>
+            {
+                user ? <>
+                  <GoBell className="bell_icon" onClick={() => setOpen(!open)} />
+                  {
+                    notificationCount == "0" ? "" : <div className="bell_absolute">{notificationCount}</div>
+                  }</> : ""
+              }
               {open && (
                 <div className="notification_mainCard">
                   <div className="bell_arrowbar_2">
@@ -428,86 +435,58 @@ export default function Navbar() {
                       <img src={Group_187} />
                     </div>
                     <ul className="Menu_bar">
-                      <a>
+                      <Link to={"/searchallcard"} >
                         <li className="Menu_list">Market place</li>
-                      </a>
-                      <a>
+                      </Link>
+                      <Link to={"/about_us"}>
                         <li className="Menu_list">About as</li>
-                      </a>
-                      <a>
+                      </Link>
+                      <Link to={"/contact"} >
                         <li className="Menu_list">Contact as</li>
-                      </a>
+                      </Link>
                       <a style={{ width: "100%" }}>
-                        {showConnectSecondButton ? (
-                          <button
+                     { !userActive ? <button
+                            className="Menu_list_button"
+                            onClick={connectWallets}
+                          >
+                            Connect wallet
+                          </button> : <button
+                            className="Menu_list_button_responsive"
                             onClick={() =>
                               setConnectShowSecondButton(
                                 !showConnectSecondButton
                               )
                             }
-                            className="Menu_list_button"
                           >
-                            Connect wallet
-                          </button>
-                        ) : (
+                            <img src={profileImg ? profileImg : buttonImg} className="buttonImg" alt="" />
+                            <p>0.{balances} </p> <span>MATIC</span>
+                            <RiArrowDropUpLine className="updropdown" />
+                          </button>}
+                        {showConnectSecondButton ? 
+                         (
                           <div>
-                            <button
-                              className="Menu_list_button_responsive"
-                              onClick={() =>
-                                setConnectShowSecondButton(
-                                  !showConnectSecondButton
-                                )
-                              }
-                            >
-                              <img src={buttonImg} className="buttonImg" />
-                              <p>7.00879</p> <span>ETH</span>
-                              <RiArrowDropUpLine className="updropdown" />
-                            </button>
+                        
                             <div className="hidden_dropdown_div">
                               <div className="UserDropDown_Heading_responsive">
-                                <h3>Rabindra de alwiz</h3>
+                                <h3>{user ? user.name : ""}</h3>
                                 <p>
-                                  0GFHRYTIU...Y647UHFG
-                                  <FiCopy className="Copy_Icon" />
+                                  {`${(user?.userid).substring(0, 10)}....${(user?.userid).substring(35)}`}
+                                  <FiCopy className="Copy_Icon" onClick={handleCopyClick} />
                                 </p>
                               </div>
                               <div className="UserDropDown_Box_div_responsive">
-                                <div className="UserDropDown_Box_responsive">
-                                  <div className="UserDropDown_Box_Content_div_responsive">
-                                    <img src={eth} />
-                                    <div className="UserDropDown_Box_Content_responsive">
-                                      <p>Balance</p>
-                                      <h3>7.00879 ETH</h3>
-                                    </div>
-                                  </div>
-                                  <div className="UserDropDown_responsive_Box_button">
-                                    <button>Manage Metamask</button>
-                                  </div>
-                                </div>
+
                               </div>
                               <div className="UserDropDown_list_div">
                                 <div className="UserDropDown_list_responsive">
                                   <ul>
-                                    <li>
+                                    <Link to={"/profile/onsale"} className="responsive_nav_pro">
                                       <img src={profile} />
                                       My profile
-                                    </li>
+                                    </Link>
                                     <hr />
-                                    <li>
-                                      <img src={image} />
-                                      My items
-                                    </li>
-                                    <hr />
-                                    <li>
-                                      <img src={LightBulb} />
-                                      Dark theme
-                                      <label className="toggle_btn_responsive_dropdown">
-                                        <input type="checkbox" />
-                                        <span className="toggle_btn_responsive_dropdown_slider"></span>
-                                      </label>
-                                    </li>
-                                    <hr />
-                                    <li>
+                                    <li onClick={userlogout}>
+
                                       <img src={Signout} />
                                       Disconnect
                                     </li>
@@ -516,7 +495,7 @@ export default function Navbar() {
                               </div>
                             </div>
                           </div>
-                        )}
+                        ):""}
                       </a>
                     </ul>
                   </div>

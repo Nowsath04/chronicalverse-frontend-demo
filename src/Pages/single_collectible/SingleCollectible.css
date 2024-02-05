@@ -605,22 +605,21 @@ input:checked+.toggle_btn1_slider {
   padding-bottom: 20px;
   margin-bottom: 10px;
   display: flex;
-  align-items: center;
   width: 100%;
+  flex-direction: column;
+  gap: 10px;
   justify-content: space-between;
   border-bottom: 1px solid rgba(157, 157, 157, 0.4);
 }
 
 .singlecollectible_right_card_detail>h4 {
   font-size: 20px;
+  overflow-wrap: break-word;
 }
 
 .singlecollectible_right_card_detail>p {
-  font-family: Averia Serif Libre;
-  font-size: 20px;
-  background: linear-gradient(90.41deg, #c100a2 0.35%, #9700c1 99.78%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 12px;
+  overflow-wrap: break-word;
 }
 
 .singlecollectible_right_card_bottom {

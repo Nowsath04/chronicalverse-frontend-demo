@@ -28,8 +28,10 @@ const OthersFollowers = () => {
   }
 
   useEffect(()=>{
-    getUserData()
-  },[update])
+    if(id){
+      getUserData()
+    }
+  },[update,id])
 
   return (
     <div className="followers">
