@@ -220,14 +220,8 @@ export default function Navbar() {
     };
   }, []);
   const copyText = async () => {
-    try {
-      await navigator.clipboard.writeText("hello iam pratheesh");
-      // Assuming toast is properly defined and available
+    navigator.clipboard.writeText("hello iam pratheesh");
       toast.success("Copied");
-    } catch (error) {
-      // Handle errors, if any
-      console.error("Error copying text to clipboard:", error);
-    }
   };
   return (
     <>
