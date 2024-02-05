@@ -220,7 +220,7 @@ export default function Navbar() {
     };
   }, []);
   const copyText = async () => {
-    navigator.clipboard.writeText("hello iam pratheesh");
+    navigator.clipboard.writeText(window.location.href);
       toast.success("Copied");
   };
   return (
