@@ -219,6 +219,16 @@ export default function Navbar() {
       document.removeEventListener("mousedown", handelClick);
     };
   }, []);
+  const copyText = async () => {
+    try {
+      await navigator.clipboard.writeText("hello iam pratheesh");
+      // Assuming toast is properly defined and available
+      toast.success("Copied");
+    } catch (error) {
+      // Handle errors, if any
+      console.error("Error copying text to clipboard:", error);
+    }
+  };
   return (
     <>
       <header>
@@ -233,6 +243,7 @@ export default function Navbar() {
             <Link to={"/about_us"} className="Link">
               <a>About us</a>
             </Link>
+            <button onClick={copyText}>copy</button>
             <Link to={"/contact"} className="Link">
               <a>Contact us</a>
             </Link>
